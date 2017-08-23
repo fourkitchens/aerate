@@ -9,5 +9,8 @@
   "dependencies": {
     "eslint": "^4.3.0",
     "webpagetest-mapper": "^1.0.1"
+  },
+  "scripts": {
+    "wpt": "node sift.js"
   }
 }

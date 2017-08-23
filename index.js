@@ -1,8 +1,18 @@
 /* globals require */
 
-module.exports = (gulp, config) => {
+module.exports.init = (config) => {
   // General
   const wpt = require('webpagetest-mapper');
+
+  wpt.run({
+    uri: config.uri,
+    tests: path.join(__dirname, 'tests.json'),
+    silent: true
+  }).then(function (mapped) {
+    fs.writeFileSync(path.join(__dirname, 'results.html'), mapped);
+  }).catch(function (error) {
+    console.log(error.stack);
+  });
 
   /**
    * Theme task declaration
