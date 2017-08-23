@@ -2,9 +2,7 @@
 
 module.exports = (gulp, config) => {
   // General
-  // eslint-disable-next-line no-redeclare, no-var
-  var gulp = require('gulp-help')(gulp);
-  const _ = require('lodash');
+  const wpt = require('webpagetest-mapper');
 
   /**
    * Theme task declaration
