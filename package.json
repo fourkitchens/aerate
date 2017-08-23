@@ -1,0 +1,11 @@
+{
+  "name": "sift",
+  "description": "Measure frontend performance against a budget using lovely charts in a browser",
+  "version": "0.0.1",
+  "devDependencies": {
+    "eslint": "^4.3.0",
+    "gulp": "^3.9.1",
+    "gulp-help": "^1.6.1",
+    "lodash": "^4.17.4",
+  }
+}
