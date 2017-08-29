@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Nature homepage",
+        "url": "http://www.nature.com/",
+        "type": "home"
+    },
+    {
+        "name": "Nature article",
+        "url": "http://www.nature.com/articles/sdata201456",
+        "type": "home"
+    },
+    {
+        "name": "CNN homepage",
+        "url": "http://edition.cnn.com/",
+        "type": "away"
+    },
+    {
+        "name": "CNN article",
+        "url": "http://edition.cnn.com/2015/04/16/entertainment/feat-star-wars-force-awakens-trailer/index.html",
+        "type": "away"
+    }
+]

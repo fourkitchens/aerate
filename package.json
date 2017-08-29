@@ -11,6 +11,6 @@
     "webpagetest-mapper": "^1.0.1"
   },
   "scripts": {
-    "wpt": "node sift.js"
+    "sift": "node sift.js"
   }
 }

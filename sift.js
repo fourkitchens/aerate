@@ -1,3 +1,5 @@
-const sift = require('./index.js');
+// wpt.js
+var sift = require("./wpt");
+var config = require('./config/config.json');
 
-sift.wpt.run();
+sift.wpt(config);
