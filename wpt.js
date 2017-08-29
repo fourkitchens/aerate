@@ -1,19 +1,22 @@
 /* globals require */
 'use strict';
 
-var wpt = require('webpagetest-mapper');
-var path = require('path');
+const wpt = require('webpagetest-mapper');
+const path = require('path');
+const fs = require('fs');
+const opn = require('opn');
 
 var exports = module.exports = {};
 
-exports.wpt = function(config) {
+exports.wpt = (config) => {
   wpt.run({
-    uri: config.uri,
-    key: config.key,
+    key: 'A.bfff1c3ce3cd62a820640fa21b060583',
     tests: path.join(__dirname, 'config/tests.json'),
     silent: true,
+    count: 1,
   }).then(function (mapped) {
     fs.writeFileSync(path.join(__dirname, 'results.html'), mapped);
+    opn('results.html');
   }).catch(function (error) {
     console.log(error.stack);
   });
