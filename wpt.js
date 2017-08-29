@@ -9,6 +9,7 @@ var exports = module.exports = {};
 exports.wpt = function(config) {
   wpt.run({
     uri: config.uri,
+    key: config.key,
     tests: path.join(__dirname, 'config/tests.json'),
     silent: true,
   }).then(function (mapped) {
