@@ -1,4 +1,19 @@
 {
-  "uri" : "http://google.com",
-  "key" : "A.bfff1c3ce3cd62a820640fa21b060583"
+  "key" : "A.bfff1c3ce3cd62a820640fa21b060583",
+  "budget" : {
+    "speedindex": "1,000",
+    "firstbyte": "200",
+    "startrender": "1,000",
+    "load": "2,000",
+    "bytes": "400,000",
+    "requests": "12",
+    "connections": "5"
+  },
+  "tests": [
+    {
+      "name": "Four Kitchens",
+      "url": "http://www.fourkitchens.com/",
+      "type": "home"
+    }
+  ]
 }

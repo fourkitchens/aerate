@@ -7,11 +7,14 @@
     "eslint-plugin-import": "^2.7.0"
   },
   "dependencies": {
+    "britecharts": "^2.0.0",
+    "d3-selection": "^1.1.0",
     "eslint": "^4.3.0",
     "opn": "^5.1.0",
     "webpagetest-mapper": "^1.0.1"
   },
   "scripts": {
-    "sift": "node sift.js"
+    "sift": "node sift.js",
+    "postinstall": "cd node_modules && ln -s ../mapper/sift"
   }
 }
