@@ -55,6 +55,13 @@ handlebars.registerHelper('lowercase', function (string) {
 
     return string.toLowerCase();
 });
+handlebars.registerHelper('uppercase', function (string) {
+    if (!string) {
+        return string;
+    }
+
+    return string.toUpperCase();
+});
 handlebars.registerHelper('debug', function (value) {
     console.log('######################################################################');
     console.log('#####               ##################################################');

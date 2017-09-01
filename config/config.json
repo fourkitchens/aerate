@@ -1,8 +1,16 @@
 {
   "key" : "A.bfff1c3ce3cd62a820640fa21b060583",
   "budget" : {
-    "render": "1,000",
-    "loadTime": "2,000"
+    "render": {
+      "name": "Start Render",
+      "description": "",
+      "value": "1000"
+    },
+    "loadTime": {
+      "name": "Fully Loaded",
+      "description": "",
+      "value": "2000"
+    }
   },
   "tests": [
     {

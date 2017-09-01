@@ -148,11 +148,21 @@ function mapResults (options, results) {
     var newMap = [];
     // loop through defined config options to get data
     for (var key in config.budget) {
+        var budgetItem = {};
+        // Budget
+        budgetItem.percentage = parseInt(config.budget[key].value);
+        budgetItem.name = "Budget";
+        budgetItem.id = 0;
+        newMap.push(budgetItem);
         if (results.data[0][key] !== undefined) {
-          var budgetItem = {};
-          budgetItem.percentage = results.data[0][key].data.median.firstView[key];
-          budgetItem.name = key;
-          newMap.push(budgetItem);
+          var actualItem = {};
+          // Measurement
+          // Measurement Value
+          actualItem.percentage = results.data[0][key].data.median.firstView[key];
+          // Measurement Name
+          actualItem.name = "Actual";
+          actualItem.id = 1;
+          newMap.push(actualItem);
         }
     }
 

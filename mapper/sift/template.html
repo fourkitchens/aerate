@@ -19,7 +19,10 @@
         <li><a href="#optimisations">Optimisations</a></li>
       </ul>
 
+      {{#each budget}}
+      <h2 class="chart-title">{{ this.name }}</h2>
       <div class="js-horizontal-bar-chart-container"></div>
+      {{/each}}
       <div class="hidden">
         {{#each results}}
         <code>
@@ -236,7 +239,6 @@
 
       window.addEventListener("resize", redrawChart);
     }
-    createHorizontalBarChart();
     </script>
   </body>
 </html>
