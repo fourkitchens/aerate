@@ -1,13 +1,8 @@
 {
   "key" : "A.bfff1c3ce3cd62a820640fa21b060583",
   "budget" : {
-    "speedindex": "1,000",
-    "firstbyte": "200",
-    "startrender": "1,000",
-    "load": "2,000",
-    "bytes": "400,000",
-    "requests": "12",
-    "connections": "5"
+    "render": "1,000",
+    "loadTime": "2,000"
   },
   "tests": [
     {

@@ -69,6 +69,10 @@ handlebars.registerHelper('debug', function (value) {
     }
 });
 
+handlebars.registerHelper('json', function(context) {
+    return JSON.stringify(context);
+});
+
 module.exports = {
     compile: compile
 };

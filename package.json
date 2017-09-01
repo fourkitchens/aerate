@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "britecharts": "^2.0.0",
+    "browser-sync": "^2.18.13",
     "d3-selection": "^1.1.0",
     "eslint": "^4.3.0",
     "opn": "^5.1.0",

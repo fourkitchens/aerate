@@ -131,7 +131,7 @@ function map (options, results) {
 }
 
 function mapResults (options, results) {
-    var date, formattedDate, locationParts, browser, mapped;
+    var date, formattedDate, locationParts, browser, mapped, chartMap;
 
     date = getTime(results, 'end');
     formattedDate = date.toLocaleDateString();
@@ -143,6 +143,18 @@ function mapResults (options, results) {
 
     browser = getBrowser(results) || locationParts[1] || 'unknown';
     mapped = results.data.map(mapResult.bind(null, options.log));
+
+    // Britecharts Needs
+    var newMap = [];
+    // loop through defined config options to get data
+    for (var key in config.budget) {
+        if (results.data[0][key] !== undefined) {
+          var budgetItem = {};
+          budgetItem.percentage = results.data[0][key].data.median.firstView[key];
+          budgetItem.name = key;
+          newMap.push(budgetItem);
+        }
+    }
 
     return {
         application: packageInfo.name,
@@ -162,8 +174,9 @@ function mapResults (options, results) {
         chartMargin: chartMargin,
         barHeight: barHeight,
         labelOffset: labelOffset,
+        // Sift specific
         budget: config.budget,
-        all: results.toString()
+        newMap: newMap
     };
 }
 
@@ -558,3 +571,5 @@ function mapChartResult (view, chartKey, derivative, metric, unitsPerPixel, resu
         textAnchor: textAnchor
     };
 }
+
+// charts
