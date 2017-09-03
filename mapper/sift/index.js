@@ -146,14 +146,14 @@ function mapResults (options, results) {
 
     // Britecharts Needs
     var newMap = [];
-    // loop through defined config options to get data
     for (var key in config.budget) {
+        var budgetData = [];
         var budgetItem = {};
         // Budget
         budgetItem.percentage = parseInt(config.budget[key].value);
         budgetItem.name = "Budget";
         budgetItem.id = 0;
-        newMap.push(budgetItem);
+        budgetData.push(budgetItem)
         if (results.data[0][key] !== undefined) {
           var actualItem = {};
           // Measurement
@@ -162,8 +162,9 @@ function mapResults (options, results) {
           // Measurement Name
           actualItem.name = "Actual";
           actualItem.id = 1;
-          newMap.push(actualItem);
+          budgetData.push(actualItem);
         }
+        newMap.push(budgetData);
     }
 
     return {
