@@ -1,5 +1,12 @@
 {
   "key" : "A.82807ee5a9e7dce9e3a3cdee30f01567",
+  "test": [
+    {
+      "name": "FourKitchens.com",
+      "url": "http://fourkitchens.com/",
+      "type": "homepage"
+    }
+  ],
   "budget" : {
     "render": {
       "name": "Start Render",
@@ -16,12 +23,5 @@
       "description": "The metrics grouped together under the Fully Loaded heading are the metrics collected up until there was 2 seconds of no network activity after Document Complete.  This will usually include any activity that is triggered by javascript after the main page loads",
       "value": "5500"
     }
-  },
-  "test": [
-    {
-      "name": "FourKitchens.com",
-      "url": "http://fourkitchens.com/",
-      "type": "homepage"
-    }
-  ]
+  }
 }
