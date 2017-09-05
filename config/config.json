@@ -1,22 +1,27 @@
 {
-  "key" : "A.bfff1c3ce3cd62a820640fa21b060583",
+  "key" : "A.82807ee5a9e7dce9e3a3cdee30f01567",
   "budget" : {
     "render": {
       "name": "Start Render",
-      "description": "",
-      "value": "1000"
+      "description": "The Start Render time is the first point in time that something was displayed to the screen.  Before this point in time the user was staring at a blank page.  This does not necessarily mean the user saw the page content, it could just be something as simple as a background color but it is the first indication of something happening for the user.",
+      "value": "3000"
+    },
+    "docTime": {
+      "name": "Document Complete",
+      "description": "The metrics grouped together under the Document Complete heading are the metrics collected up until the browser considered the page loaded (onLoad event for those familiar with the javascript events).  This usually happens after all of the images content have loaded but may not include content that is triggered by javascript execution.",
+      "value": "4000"
     },
     "loadTime": {
       "name": "Fully Loaded",
-      "description": "",
-      "value": "2000"
+      "description": "The metrics grouped together under the Fully Loaded heading are the metrics collected up until there was 2 seconds of no network activity after Document Complete.  This will usually include any activity that is triggered by javascript after the main page loads",
+      "value": "5500"
     }
   },
-  "tests": [
+  "test": [
     {
-      "name": "Four Kitchens",
-      "url": "http://www.fourkitchens.com/",
-      "type": "home"
+      "name": "FourKitchens.com",
+      "url": "http://fourkitchens.com/",
+      "type": "homepage"
     }
   ]
 }

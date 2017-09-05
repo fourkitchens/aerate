@@ -5,190 +5,50 @@
     <meta name="generator" content="{{application}} {{version}}" />
     <meta name="description" content="Sift results for {{date}}" />
 
-    <title>Sift</title>
+    <title>Sift of {{config.test.0.name}}</title>
 
     <link rel="stylesheet" href="mapper/sift/css/style.css" media="all" />
     <link type="text/css" rel="stylesheet" href="node_modules/britecharts/dist/css/britecharts.min.css">
   </head>
   <body>
-    <h1>Sift</h1>
+    <h1>Sift of {{config.test.0.name}}</h1>
     <div class="content">
-      <ul class="menu">
+      <!-- <ul class="menu">
         <li><a href="#summary">Summary</a></li>
         <li><a href="#charts">Charts</a></li>
         <li><a href="#optimisations">Optimisations</a></li>
-      </ul>
+      </ul> -->
 
       <div id="britecharts">
         {{#each budget}}
-        <h2 class="chart-title">{{ this.name }}</h2>
-        <div class="britecharts-chart"></div>
+        <div class="chart">
+          <div class="chart__meta">
+            <h2 class="chart__title">{{ this.name }}</h2>
+            <p class="chart__description">{{ this.description }}</p>
+          </div>
+          <div class="chart__data">
+            <div class="chart__barchart"></div>
+            <span class="chart__label">milliseconds</span>
+          </div>
+        </div>
         {{/each}}
       </div>
 
-      <section id="summary">
-        <h2>Summary</h2>
-
-        <table cellspacing="0" cellpadding="0">
-          <caption class="visually-hidden">Performance data</caption>
-          <colgroup>
-            <col />
-          </colgroup>
-          <colgroup>
-            <col /><col /><col /><col /><col /><col /><col />
-          </colgroup>
-          <colgroup>
-            <col /><col />
-          </colgroup>
-          <thead>
-            <tr>
-              <th />
-              <th colspan="7" scope="colgroup">First view</th>
-              <th colspan="2" scope="colgroup">Repeat view</th>
-            </tr>
-            <tr>
-              <th scope="col">Page</th>
-              <th scope="col">Speed index</th>
-              <th scope="col">First byte</th>
-              <th scope="col">Start render</th>
-              <th scope="col">Load</th>
-              <th scope="col">Bytes</th>
-              <th scope="col">Requests</th>
-              <th scope="col">Connections</th>
-              <th scope="col">Speed index</th>
-              <th scope="col">Load</th>
-            </tr>
-          </thead>
-          <tfoot>
-            <tr>
-              <th />
-              <th colspan="20" scope="col">
-                  Times are in milliseconds
-                  and are the median values
-                  from {{count}} runs
-                  in WebPageTest.
-                  The test location was {{location}},
-                  the connection was <code>{{connection}}</code>
-                  and the browser was {{browser}}.
-                  All measurements were taken
-                  between {{times.begin}}
-                  and {{times.end}}.
-              </th>
-            </tr>
-          </tfoot>
-          <tbody>
-            <tr class="table-row-budget">
-              <th scope="row">Budget</th>
-              <td>{{ budget.speedindex }}</td><!-- speedindex -->
-              <td>{{ budget.firstbyte }}</td><!-- firstbyte -->
-              <td>{{ budget.startrender }}</td><!-- startrender -->
-              <td>{{ budget.load }}</td><!-- load -->
-              <td>{{ budget.bytes }}</td><!-- bytes -->
-              <td>{{ budget.requests }}</td><!-- requests -->
-              <td>{{ budget.connections }}</td><!-- connections -->
-              <td>N/A</td><!-- blank -->
-              <td>N/A</td><!-- blank -->
-            </tr>
-
-{{#each results}}                        <tr class="table-row-{{type}}">
-                  <th scope="row"><a href="{{url}}">{{name}}</a></th>
-{{#with firstView}}{{#with speedIndex}}                            <td><a href="{{url}}">{{formatInteger value}}</a></td>
-{{/with}}{{#with firstByte}}                            <td><a href="{{url}}">{{formatInteger value}}</a></td>
-{{/with}}{{#with startRender}}                            <td><a href="{{url}}">{{formatInteger value}}</a></td>
-{{/with}}{{#with load}}                            <td><a href="{{url}}">{{formatInteger value}}</a></td>
-{{/with}}{{#with bytes}}                            <td><a href="{{url}}">{{formatInteger value}}</a></td>
-{{/with}}{{#with requests}}                            <td><a href="{{url}}">{{formatInteger value}}</a></td>
-{{/with}}{{#with connections}}                            <td><a href="{{url}}">{{formatInteger value}}</a></td>
-{{/with}}{{/with}}{{#with repeatView}}{{#with speedIndex}}                            <td><a href="{{url}}">{{formatInteger value}}</a></td>
-{{/with}}{{#with load}}                            <td><a href="{{url}}">{{formatInteger value}}</a></td>
-{{/with}}{{/with}}                        </tr>
-{{/each}}                    </tbody>
-        </table>
-
-        <p>
-          Care should be taken
-          when making comparisons
-          between the figures
-          for different pages,
-          since each page contains
-          a different amount of data
-          and requires
-          a different amount of work.
-          Nonetheless,
-          some comparisons can be made.
-        </p>
-      </section>
-
-      <section id="charts">
-        <h2>Charts</h2>
-
-{{#each charts}}
-{{#if sectionTitle}}                <section>
-              <h3>{{sectionTitle}}</h3>
-{{/if}}
-              <svg width="{{../chartWidth}}px" height="{{height}}px">
-                  <title>{{title}}</title>
-
-                  <g transform="translate({{../chartMargin}}, 0)">
-                      <line x1="-3px" y1="0" x2="-3px" y2="{{yAxisHeight}}px" class="chart-axis" />
-{{#each tests}}
-                      <g transform="translate(0, {{offset}})">
-                          <title>{{name}}</title>
-                          <rect width="{{barWidth}}px" height="{{../../barHeight}}px" class="chart-bar chart-bar-{{type}}" />
-                          <g transform="translate(0, {{../../labelOffset}})">
-                              <text text-anchor="{{textAnchor}}" x="{{barWidth}}px" dx="{{textOrientation}}4px" dy="6px" class="{{textClass}}">{{formatInteger value}}</text>
-                              <text x="-{{../../chartMargin}}px" dy="6px" class="chart-label">{{name}}</text>
-                          </g>
-                      </g>
-{{/each}}
-{{#with xAxis}}                            <g transform="translate(-2, {{offset}})">
-                          <line x1="0" y1="0" x2="{{width}}px" y2="0" class="chart-axis" />
-                          <text text-anchor="middle" x="{{labelPosition}}" dy="24px" class="chart-label">{{../label}}</text>
-                      </g>
-{{/with}}                        </g>
-              </svg>
-{{#unless sectionTitle}}                </section>
-{{/unless}}{{/each}}            </section>
-
-      <section id="optimisations">
-        <h2>Optimisations</h2>
-
-        <table cellspacing="0" cellpadding="0">
-          <caption class="visually-hidden">Performance optimisations</caption>
-            <thead>
-              <tr>
-                <th scope="col">Page</th>
-                <th scope="col">First byte</th>
-                <th scope="col">Persistent connections</th>
-                <th scope="col">GZIP compression</th>
-                <th scope="col">Image compression</th>
-                <th scope="col">Progressive JPEGs</th>
-                <th scope="col">Browser caching</th>
-                <th scope="col">Asset CDN</th>
-              </tr>
-            </thead>
-            <tbody>
-{{#each results}}                        <tr class="table-row-{{type}}">
-                      <th scope="row"><a href="{{url}}">{{name}}</a></th>
-{{#with firstView}}{{#with targetFirstByte}}                            <td class="table-data-{{rating}}"><a href="{{../../optimisationsUrl}}#first_byte_time">{{percent value}}</a></td>
-{{/with}}{{#with persistent}}                            <td class="table-data-{{rating}}"><a href="{{../../optimisationsUrl}}#keep_alive_enabled">{{percent value}}</a></td>
-{{/with}}{{#with gzip}}                            <td class="table-data-{{rating}}"><a href="{{../../optimisationsUrl}}#compress_text">{{percent value}}</a></td>
-{{/with}}{{#with images}}                            <td class="table-data-{{rating}}"><a href="{{../../optimisationsUrl}}#compress_images">{{percent value}}</a></td>
-{{/with}}{{#with progJpeg}}                            <td class="table-data-{{rating}}"><a href="{{../../optimisationsUrl}}#progressive_jpeg">{{percent value}}</a></td>
-{{/with}}{{#with caching}}                            <td class="table-data-{{rating}}"><a href="{{../../optimisationsUrl}}#cache_static_content">{{percent value}}</a></td>
-{{/with}}{{#with cdn}}                            <td class="table-data-{{rating}}"><a href="{{../../optimisationsUrl}}#use_of_cdn">{{percent value}}</a></td>
-{{/with}}{{/with}}                        </tr>
-{{/each}}                    </tbody>
-          </table>
-      </section>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/britecharts/2.0.0/bundled/britecharts.min.js"></script>
     <script>
     var newMap = {{{json newMap}}};
     for (var i = 0, len = newMap.length; i < len; i++) {
-      var briteElement = document.querySelectorAll('.britecharts-chart');
+      var briteElement = document.querySelectorAll('.chart__barchart');
       var briteChart = briteElement[i];
+      var budgetData = newMap[i];
+      var colors = ['#ffce00', '#6aedc7'];
+      console.log(budgetData);
+      // if (budgetData[2].class.length) {
+      //   briteChart.classList.add('over-budget');
+      //   colors = ['#ffce00', '#f55573'];
+      // }
 
       function createHorizontalBarChart() {
         let tooltip = new britecharts.miniTooltip();
@@ -207,16 +67,16 @@
              .isHorizontal(true)
              .margin(margin)
              .width(containerWidth)
-             .colorSchema(britecharts.colors.colorSchemas.britecharts)
+             .colorSchema(colors)
              .valueLabel('percentage')
              .isAnimated(true)
-             .percentageAxisToMaxRatio(1.3)
-             .height(300)
+             .percentageAxisToMaxRatio(1.2)
+             .height(200)
              .on('customMouseOver', tooltip.show)
              .on('customMouseMove', tooltip.update)
              .on('customMouseOut', tooltip.hide);
 
-          barContainer.datum(newMap[i]).call(barChart);
+          barContainer.datum(budgetData).call(barChart);
         }
 
         var tooltipItem = briteChart.querySelectorAll('.metadata-group');
@@ -232,7 +92,7 @@
             barChart.width(newContainerWidth);
 
             // Rendering the chart again
-            container.datum(newMap[i]).call(barChart);
+            container.datum(budgetData).call(barChart);
         };
 
         window.addEventListener("resize", redrawChart);

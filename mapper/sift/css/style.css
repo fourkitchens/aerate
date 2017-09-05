@@ -220,3 +220,33 @@ img {
   display: block;
   margin: -1.5em auto 3em;
 }
+
+/*
+* charts
+*/
+.chart__meta {
+}
+
+.chart__data {
+  position: relative;
+}
+
+.chart__label {
+  bottom: 2em;
+  color: #8f8f8f;
+  display: block;
+  font-size: 1.4em;
+  left: 50%;
+  margin-left: -50px;
+  position: absolute;
+  text-align: center;
+}
+
+.chart__barchart {
+  background-color: #fde7e7;
+  padding: 3em 0 3.5em;
+}
+
+.over-budget {
+  background-color: #fde7e7;
+}

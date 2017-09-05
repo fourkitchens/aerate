@@ -148,21 +148,25 @@ function mapResults (options, results) {
     var newMap = [];
     for (var key in config.budget) {
         var budgetData = [];
-        var budgetItem = {};
-        // Budget
-        budgetItem.percentage = parseInt(config.budget[key].value);
-        budgetItem.name = "Budget";
-        budgetItem.id = 0;
-        budgetData.push(budgetItem)
-        if (results.data[0][key] !== undefined) {
+        // console.log(results.data[0].SpeedIndex.data.median.firstView);
+        if (results.data[0].SpeedIndex.data.median.firstView[key] !== undefined) {
           var actualItem = {};
           // Measurement
           // Measurement Value
-          actualItem.percentage = results.data[0][key].data.median.firstView[key];
+          actualItem.percentage = results.data[0].SpeedIndex.data.median.firstView[key];
           // Measurement Name
-          actualItem.name = "Actual";
+          actualItem.name = "Results";
           actualItem.id = 1;
           budgetData.push(actualItem);
+          // Budget
+          var budgetItem = {};
+          budgetItem.percentage = parseInt(config.budget[key].value);
+          budgetItem.name = "Budget";
+          budgetItem.id = 0;
+          if (actualItem.percentage > budgetItem.percentage) {
+            budgetItem.class = "over-budget";
+          }
+          budgetData.push(budgetItem)
         }
         newMap.push(budgetData);
     }
@@ -186,6 +190,7 @@ function mapResults (options, results) {
         barHeight: barHeight,
         labelOffset: labelOffset,
         // Sift specific
+        config: config,
         budget: config.budget,
         newMap: newMap
     };
@@ -248,6 +253,9 @@ function mapResult (log, result) {
                     url: getWaterfallUrl(result, 'loadTime', 'first'),
                     value: getMedianRun(result, 'loadTime', 'first').loadTime,
                     rtt: getMedianRun(result, 'loadTime', 'first').server_rtt
+                },
+                docTime: {
+                  value: getMedianRun(result, 'SpeedIndex', 'first').docTime
                 },
                 bytes: {
                     url: getWaterfallUrl(result, 'SpeedIndex', 'first'),

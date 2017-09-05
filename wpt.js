@@ -19,10 +19,10 @@ portscanner.findAPortNotInUse(3000, 3010, '127.0.0.1', (error, port) => {
 exports.wpt = (config) => {
   wpt.run({
     key: config.key,
-    tests: config.tests,
+    tests: config.test,
     mapper: 'sift',
-    silent: true,
-    count: 1,
+    connection: "Mobile LTE",
+    count: 6,
   }).then(function (mapped) {
     fs.writeFileSync(path.join(__dirname, 'results.html'), mapped);
     browserSync.init({
