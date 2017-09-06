@@ -7,7 +7,7 @@ Measure frontend performance against a budget using lovely charts in a browser
 
 1. `npm install` or `yarn install` (ignore warnings)
 2. Edit `config.json` and add your [API key](https://www.webpagetest.org/getkey.php) and test information to "key" and "test"
-3. `npm run sift` or `yarn run sift`
+3. `npm run sift` or `yarn run sift` (may take a minute or two)
 
 ## TODO
 
