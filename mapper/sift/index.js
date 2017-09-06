@@ -28,7 +28,7 @@ path = require('path');
 check = require('check-types');
 render = require('../../src/templates').compile(path.join(__dirname, 'template.html'));
 packageInfo = require('../../package.json');
-config = require('../../config/config.json');
+config = require('../../config.json');
 
 charts = [
     {
