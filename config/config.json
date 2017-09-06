@@ -11,7 +11,7 @@
     "TTFB": {
       "name": "First Byte",
       "description": "The First Byte time (often abbreviated as TTFB) is measured as the time from the start of the initial navigation until the first byte of the base page is received by the browser (after following redirects).",
-      "value": "300"
+      "value": "500"
     },
     "render": {
       "name": "Start Render",

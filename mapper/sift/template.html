@@ -26,6 +26,9 @@
           <div class="chart__meta">
             <h2 class="chart__title">{{ this.name }}</h2>
             <p class="chart__description">{{ this.description }}</p>
+            <span class="chart__stats">Budget:<span class="chart__budget"></span></span>
+            <span class="chart__stats">Results:<span class="chart__results"></span></span>
+            <span class="chart__stats"><span class="chart__passed">Passed</span></span>
           </div>
           <div class="chart__data">
             <div class="chart__barchart"></div>
@@ -45,10 +48,22 @@
       var briteChart = briteElement[i];
       var briteElementChart = briteElement[i].querySelectorAll('.chart__barchart');
       var budgetData = newMap[i];
+
+      // Data
+      var budgetSpan = briteElement[i].querySelectorAll('.chart__budget');
+      budgetSpan[0].textContent = ' ' + budgetData[1].percentage;
+
+      var resultsSpan = briteElement[i].querySelectorAll('.chart__results');
+      resultsSpan[0].textContent = ' ' + budgetData[0].percentage;
+
+      // Britecharts
       var colors = ['#ffce00', '#6aedc7'];
       if (budgetData[1].class.length > 0) {
         briteElement[i].classList.add('over-budget');
         colors = ['#ffce00', '#f55573'];
+
+        var statusSpan = briteElement[i].querySelectorAll('.chart__passed');
+        statusSpan[0].textContent = ' Failed';
       }
 
       function createHorizontalBarChart() {

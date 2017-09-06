@@ -131,7 +131,7 @@ svg {
   color: #fff;
   content: "✓";
   display: block;
-  font: 63em/.55 'Source Code Pro', monospace;
+  font: 63em/.59 'Source Code Pro', monospace;
   opacity: .25;
   position: absolute;
   top: 0;
@@ -161,6 +161,21 @@ svg {
   .chart__meta {
     padding-right: 6em;
   }
+}
+
+.chart__stats {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-right: 1em;
+}
+
+.chart__stats span {
+  font-weight: normal;
+}
+
+.chart__passed {
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .chart__data {
