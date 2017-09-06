@@ -166,7 +166,10 @@ function mapResults (options, results) {
           if (actualItem.percentage > budgetItem.percentage) {
             budgetItem.class = "over-budget";
           }
-          budgetData.push(budgetItem)
+          else {
+            budgetItem.class = "";
+          }
+          budgetData.push(budgetItem);
         }
         newMap.push(budgetData);
     }

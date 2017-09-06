@@ -1,17 +1,22 @@
 {
-  "key" : "A.82807ee5a9e7dce9e3a3cdee30f01567",
+  "key" : "A.bfff1c3ce3cd62a820640fa21b060583",
   "test": [
     {
-      "name": "FourKitchens.com",
-      "url": "http://fourkitchens.com/",
+      "name": "BradFrost.com",
+      "url": "http://bradfrost.com/",
       "type": "homepage"
     }
   ],
   "budget" : {
+    "TTFB": {
+      "name": "First Byte",
+      "description": "The First Byte time (often abbreviated as TTFB) is measured as the time from the start of the initial navigation until the first byte of the base page is received by the browser (after following redirects).",
+      "value": "300"
+    },
     "render": {
       "name": "Start Render",
       "description": "The Start Render time is the first point in time that something was displayed to the screen.  Before this point in time the user was staring at a blank page.  This does not necessarily mean the user saw the page content, it could just be something as simple as a background color but it is the first indication of something happening for the user.",
-      "value": "3000"
+      "value": "700"
     },
     "docTime": {
       "name": "Document Complete",

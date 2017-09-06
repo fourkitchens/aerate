@@ -5,13 +5,14 @@
     <meta name="generator" content="{{application}} {{version}}" />
     <meta name="description" content="Sift results for {{date}}" />
 
-    <title>Sift of {{config.test.0.name}}</title>
+    <title>Sift</title>
 
     <link rel="stylesheet" href="mapper/sift/css/style.css" media="all" />
     <link type="text/css" rel="stylesheet" href="node_modules/britecharts/dist/css/britecharts.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Arimo|Poiret+One|Source+Code+Pro" rel="stylesheet">
   </head>
   <body>
-    <h1>Sift of {{config.test.0.name}}</h1>
+    <h1>Sift</h1>
     <div class="content">
       <!-- <ul class="menu">
         <li><a href="#summary">Summary</a></li>
@@ -40,15 +41,15 @@
     <script>
     var newMap = {{{json newMap}}};
     for (var i = 0, len = newMap.length; i < len; i++) {
-      var briteElement = document.querySelectorAll('.chart__barchart');
+      var briteElement = document.querySelectorAll('.chart');
       var briteChart = briteElement[i];
+      var briteElementChart = briteElement[i].querySelectorAll('.chart__barchart');
       var budgetData = newMap[i];
       var colors = ['#ffce00', '#6aedc7'];
-      console.log(budgetData);
-      // if (budgetData[2].class.length) {
-      //   briteChart.classList.add('over-budget');
-      //   colors = ['#ffce00', '#f55573'];
-      // }
+      if (budgetData[1].class.length > 0) {
+        briteElement[i].classList.add('over-budget');
+        colors = ['#ffce00', '#f55573'];
+      }
 
       function createHorizontalBarChart() {
         let tooltip = new britecharts.miniTooltip();
@@ -59,7 +60,7 @@
               top: 20,
               bottom: 30
             },
-            barContainer = d3.select(briteChart),
+            barContainer = d3.select(briteElementChart[0]),
             containerWidth = barContainer.node() ? barContainer.node().getBoundingClientRect().width : false;
 
         if (containerWidth) {
@@ -79,20 +80,21 @@
           barContainer.datum(budgetData).call(barChart);
         }
 
-        var tooltipItem = briteChart.querySelectorAll('.metadata-group');
+        var tooltipItem = briteElement[i].querySelectorAll('.metadata-group');
         tooltipContainer = d3.select(tooltipItem[0]);
         tooltipContainer.datum([]).call(tooltip);
 
         // Responsive
         const redrawChart = () => {
-            let container = d3.select(briteChart);
-            let newContainerWidth = container.node() ? container.node().getBoundingClientRect().width : false;
+          var allCharts = document.querySelectorAll('.chart__barchart');
+          let container = d3.select(allCharts[i]);
+          let newContainerWidth = container.node() ? container.node().getBoundingClientRect().width : false;
 
-            // Setting the new width on the chart
-            barChart.width(newContainerWidth);
+          // Setting the new width on the chart
+          barChart.width(newContainerWidth);
 
-            // Rendering the chart again
-            container.datum(budgetData).call(barChart);
+          // Rendering the chart again
+          container.datum(budgetData).call(barChart);
         };
 
         window.addEventListener("resize", redrawChart);
