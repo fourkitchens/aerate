@@ -27,9 +27,9 @@ exports.wpt = (config) => {
     fs.writeFileSync(path.join(__dirname, 'results.html'), mapped);
     browserSync.init({
       server: {
-        baseDir: './',
+        baseDir: __dirname,
       },
-      startPath: '/results.html',
+      startPath: './results.html',
       ui: false,
       open: true,
       port: openPort,
