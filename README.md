@@ -5,9 +5,22 @@ Measure frontend performance against a budget using lovely charts in a browser
 
 ## Usage
 
-1. `npm install` or `yarn install` (ignore warnings)
-2. Edit `config.json` and add your [API key](https://www.webpagetest.org/getkey.php) and test information to "key" and "test"
-3. `npm run sift` or `yarn run sift` (may take a minute or two)
+### Standalone
+1. Clone this repo.
+2. `npm install` or `yarn install` (ignore warnings)
+3. Edit `config.json` and add your [API key](https://www.webpagetest.org/getkey.php) and test information to "key" and "test"
+4. `npm run sift` or `yarn run sift` (may take a minute or two)
+
+### In Your Project
+1. `npm install fourkitchens/sift --save`
+2. Add a script to your local package.json file like
+
+```
+  "scripts": {
+    "sift": "sift"
+  }
+```
+3. Create a local-config.json file (see [config.json](https://github.com/fourkitchens/sift/blob/master/config.json) as an example)
 
 ## TODO
 
