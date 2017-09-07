@@ -14,9 +14,7 @@
     "opn": "^5.1.0",
     "webpagetest-mapper": "^1.0.1"
   },
-  "bin" : {
-    "sift": "./sift.js"
-  },
+  "bin" : "./sift.js",
   "scripts": {
     "sift": "node sift.js",
     "postinstall": "./scripts/sift-map.sh"
