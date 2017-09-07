@@ -20,7 +20,7 @@ exports.wpt = (config) => {
   wpt.run({
     key: config.key,
     tests: config.test,
-    mapper: 'sift',
+    mapper: 'siftmap',
     connection: "Mobile LTE",
     count: 6,
   }).then(function (mapped) {

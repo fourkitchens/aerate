@@ -19,6 +19,6 @@
   },
   "scripts": {
     "sift": "node sift.js",
-    "postinstall": "ln -s ./mapper/sift-map ../"
+    "postinstall": "./scripts/sift-map.sh"
   }
 }
