@@ -1,0 +1,48 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/evan/.nvm/versions/node/v7.5.0/bin/node',
+1 verbose cli   '/Users/evan/.nvm/versions/node/v7.5.0/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'sift' ]
+2 info using npm@4.1.2
+3 info using node@v7.5.0
+4 verbose run-script [ 'presift', 'sift', 'postsift' ]
+5 info lifecycle sift@0.0.1~presift: sift@0.0.1
+6 silly lifecycle sift@0.0.1~presift: no script for presift, continuing
+7 info lifecycle sift@0.0.1~sift: sift@0.0.1
+8 verbose lifecycle sift@0.0.1~sift: unsafe-perm in lifecycle true
+9 verbose lifecycle sift@0.0.1~sift: PATH: /Users/evan/.nvm/versions/node/v7.5.0/lib/node_modules/npm/bin/node-gyp-bin:/Users/evan/Sites/node/sift/node_modules/.bin:/Users/evan/.rvm/gems/ruby-2.3.0/bin:/Users/evan/.rvm/gems/ruby-2.3.0@global/bin:/Users/evan/.rvm/rubies/ruby-2.3.0/bin:/Users/evan/.nvm/versions/node/v7.5.0/bin:/Users/evan/.composer/vendor/bin:/usr/local/mysql/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/evan/.rvm/bin:/Users/evan/terminus1x/vendor/bin
+10 verbose lifecycle sift@0.0.1~sift: CWD: /Users/evan/Sites/node/sift
+11 silly lifecycle sift@0.0.1~sift: Args: [ '-c', 'node sift.js' ]
+12 silly lifecycle sift@0.0.1~sift: Returned: code: 1  signal: null
+13 info lifecycle sift@0.0.1~sift: Failed to exec sift script
+14 verbose stack Error: sift@0.0.1 sift: `node sift.js`
+14 verbose stack Exit status 1
+14 verbose stack     at EventEmitter.<anonymous> (/Users/evan/.nvm/versions/node/v7.5.0/lib/node_modules/npm/lib/utils/lifecycle.js:279:16)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at EventEmitter.emit (events.js:192:7)
+14 verbose stack     at ChildProcess.<anonymous> (/Users/evan/.nvm/versions/node/v7.5.0/lib/node_modules/npm/lib/utils/spawn.js:40:14)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at ChildProcess.emit (events.js:192:7)
+14 verbose stack     at maybeClose (internal/child_process.js:890:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+15 verbose pkgid sift@0.0.1
+16 verbose cwd /Users/evan/Sites/node/sift
+17 error Darwin 16.7.0
+18 error argv "/Users/evan/.nvm/versions/node/v7.5.0/bin/node" "/Users/evan/.nvm/versions/node/v7.5.0/bin/npm" "run" "sift"
+19 error node v7.5.0
+20 error npm  v4.1.2
+21 error code ELIFECYCLE
+22 error sift@0.0.1 sift: `node sift.js`
+22 error Exit status 1
+23 error Failed at the sift@0.0.1 sift script 'node sift.js'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the sift package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     node sift.js
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs sift
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls sift
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]
