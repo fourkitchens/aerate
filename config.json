@@ -1,12 +1,4 @@
 {
-  "key" : "A.bfff1c3ce3cd62a820640fa21b060583",
-  "test": [
-    {
-      "name": "BradFrost.com",
-      "url": "http://bradfrost.com/",
-      "type": "homepage"
-    }
-  ],
   "budget" : {
     "TTFB": {
       "name": "First Byte",
