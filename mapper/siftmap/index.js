@@ -22,13 +22,13 @@
 
 var path, check, render, packageInfo,
     charts, chartWidth, chartMargin, chartPadding,
-    barHeight, barPadding, labelOffset, config;
+    barHeight, barPadding, labelOffset, budget;
 
 path = require('path');
 check = require('check-types');
 render = require('../../src/templates').compile(path.join(__dirname, 'template.html'));
 packageInfo = require('../../package.json');
-config = require('../../config.json');
+budget = require('../../budget');
 
 charts = [
     {
@@ -146,7 +146,7 @@ function mapResults (options, results) {
 
     // Britecharts Needs
     var newMap = [];
-    for (var key in config.budget) {
+    for (var key in budget) {
         var budgetData = [];
         // console.log(results.data[0].SpeedIndex.data.median.firstView);
         if (results.data[0].SpeedIndex.data.median.firstView[key] !== undefined) {
@@ -160,7 +160,7 @@ function mapResults (options, results) {
           budgetData.push(actualItem);
           // Budget
           var budgetItem = {};
-          budgetItem.percentage = parseInt(config.budget[key].value);
+          budgetItem.percentage = parseInt(budget[key].value);
           budgetItem.name = "Budget";
           budgetItem.id = 0;
           if (actualItem.percentage > budgetItem.percentage) {
@@ -193,8 +193,7 @@ function mapResults (options, results) {
         barHeight: barHeight,
         labelOffset: labelOffset,
         // Sift specific
-        config: config,
-        budget: config.budget,
+        budget: budget,
         newMap: newMap
     };
 }

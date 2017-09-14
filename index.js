@@ -2,10 +2,10 @@
 
 // wpt.js
 var wpt = require("./wpt");
-var config = require('./config.json');
+var budget = require('./budget');
 
 exports = module.exports = sift;
 
 function sift (options) {
-  wpt.wpt(config, options)
+  wpt.wpt(budget, options)
 }
