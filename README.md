@@ -16,9 +16,9 @@ sift({
   key: 'YOUR_API_KEY',
   tests: [
     {
-      'name': 'Four Kitchens',
-      'url': 'http://fourkitchens.com/',
-      'type': 'homepage'
+      name: 'Four Kitchens',
+      url: 'http://fourkitchens.com/',
+      type: 'homepage'
     }
   ]
 });

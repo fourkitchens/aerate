@@ -19,7 +19,7 @@ portscanner.findAPortNotInUse(3000, 3010, '127.0.0.1', (error, port) => {
 exports.wpt = (budget, options) => {
   wpt.run({
     key: options.key,
-    tests: options.test,
+    tests: options.tests,
     mapper: 'siftmap',
     connection: options.connection || 'Mobile LTE',
     count: options.count || 6,
