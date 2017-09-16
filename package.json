@@ -16,7 +16,7 @@
     "webpagetest-mapper": "^1.0.1"
   },
   "bin": {
-    "sift": "./sift.js"
+    "sift": "./index.js"
   },
   "scripts": {
     "sift": "node index.js",
