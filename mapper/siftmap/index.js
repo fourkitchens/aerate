@@ -28,7 +28,15 @@ path = require('path');
 check = require('check-types');
 render = require('../../src/templates').compile(path.join(__dirname, 'template.html'));
 packageInfo = require('../../package.json');
-budget = require('../../budget');
+
+// Check for local budget file
+var fs = require('fs');
+if (fs.existsSync(process.env.PWD + '/budget.json')) {
+  var budget = require(process.env.PWD + '/budget.json');
+}
+else {
+  var budget = require('../../budget');
+}
 
 charts = [
     {

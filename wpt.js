@@ -16,7 +16,7 @@ portscanner.findAPortNotInUse(3000, 3010, '127.0.0.1', (error, port) => {
   openPort = port;
 });
 
-exports.wpt = (budget, options) => {
+exports.wpt = (options) => {
   wpt.run({
     key: options.key,
     tests: options.tests,
