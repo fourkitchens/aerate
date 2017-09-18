@@ -23,7 +23,24 @@ sift({
   ]
 });
 ```
-4. (Optional) Create/copy your own budget.js file
+4. (Optional) Create/copy your own budget.json file using the following format:
+
+```
+{
+  "TTFB": { // WPT Statistic name
+    "name": "First Byte", // Readable Name presented on UI
+    "description": "Time to First Byte is measured as the time from the start of the initial navigation until the first byte of the base page is received by the browser (after following redirects).",
+    "value": "300" // Budgeted Value
+  }
+}
+
+```
+Accepted values currently are:
+1. TTFB (Time to First Byte)
+2. render (Start Render)
+3. docTime (Document Complete)
+4. loadTime (Fully Loaded)
+
 
 ### Available Options:
 1. `key`: REQUIRED API Key
