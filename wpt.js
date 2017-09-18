@@ -16,13 +16,14 @@ portscanner.findAPortNotInUse(3000, 3010, '127.0.0.1', (error, port) => {
   openPort = port;
 });
 
-exports.wpt = (config) => {
+exports.wpt = (options) => {
   wpt.run({
-    key: config.key,
-    tests: config.test,
+    key: options.key,
+    tests: options.tests,
     mapper: 'siftmap',
-    connection: "Mobile LTE",
-    count: 6,
+    connection: options.connection || 'Mobile LTE',
+    count: options.count || 6,
+    ui: options.ui || true,
   }).then(function (mapped) {
     fs.writeFileSync(path.join(__dirname, 'results.html'), mapped);
     browserSync.init({

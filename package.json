@@ -2,6 +2,7 @@
   "name": "sift",
   "description": "Measure frontend performance against a budget using lovely charts in a browser",
   "version": "0.0.1",
+  "author": "Evan Willhite <evan@fourkitchens.com> (http://fourkitchens.com/)",
   "devDependencies": {
     "eslint-config-airbnb-base": "^11.3.1",
     "eslint-plugin-import": "^2.7.0"
@@ -15,10 +16,10 @@
     "webpagetest-mapper": "^1.0.1"
   },
   "bin": {
-    "sift": "./sift.js"
+    "sift": "./index.js"
   },
   "scripts": {
-    "sift": "node sift.js",
+    "sift": "node index.js",
     "postinstall": "./scripts/sift-map.sh"
   }
 }
