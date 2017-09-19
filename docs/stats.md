@@ -23,8 +23,8 @@
     "value": "4000"
   },
   "load": {
-    "name": "Fully Loaded",
-    "description": "The metrics grouped together under the Fully Loaded heading are the metrics collected up until there was 2 seconds of no network activity after Document Complete.  This will usually include any activity that is triggered by javascript after the main page loads",
+    "name": "Load Time",
+    "description": "The Load Time is measured as the time from the start of the initial navigation until the beginning of the window load event (onload).",
     "value": "5500"
   },
   "bytes": {

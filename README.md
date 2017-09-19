@@ -10,7 +10,7 @@ Measure frontend performance against a budget using lovely charts in a browser
 ```
 const sift = require('sift');
 ```
-3. Call the function with the options (options below)
+3. Call the function with the options (options [below](https://github.com/fourkitchens/sift#available-options))
 ```
 sift({
   key: 'YOUR_API_KEY',
@@ -23,6 +23,7 @@ sift({
   ]
 });
 ```
+
 4. (Optional) Create/copy your own [budget.json](https://github.com/fourkitchens/sift/blob/master/budget.json) file using the following format:
 
 ```
@@ -35,11 +36,7 @@ sift({
 }
 
 ```
-Accepted values currently are:
-1. TTFB (Time to First Byte)
-2. render (Start Render)
-3. docTime (Document Complete)
-4. loadTime (Fully Loaded)
+See [`/docs/stats.md`](https://github.com/fourkitchens/sift/blob/master/docs/stats.md) for the list of available budget statistics
 
 
 ### Available Options:
