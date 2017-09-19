@@ -196,3 +196,45 @@ svg {
 .chart__barchart {
   padding: 3em 0 3.5em;
 }
+
+/* Single Data Ones */
+.chart--bytes::before,
+.chart--requests::before,
+.chart--connections::before {
+  display: none;
+}
+
+.chart--bytes .chart__data,
+.chart--bytes .chart__stats,
+.chart--requests .chart__data,
+.chart--requests .chart__stats,
+.chart--connections .chart__data,
+.chart--connections .chart__stats {
+  display: none;
+}
+
+.chart--bytes .chart__stats:nth-child(2n),
+.chart--requests .chart__stats:nth-child(2n),
+.chart--connections .chart__stats:nth-child(2n) {
+  display: block;
+  font-size: 1.3rem;
+}
+
+.chart--bytes .chart__stats:nth-child(2n)::after,
+.chart--requests .chart__stats:nth-child(2n)::after,
+.chart--connections .chart__stats:nth-child(2n)::after {
+  font-size: 1.1rem;
+  font-weight: normal;
+}
+
+.chart--bytes .chart__stats:nth-child(2n)::after {
+  content: " bytes";
+}
+
+.chart--requests .chart__stats:nth-child(2n)::after {
+  content: " requests";
+}
+
+.chart--connections .chart__stats:nth-child(2n)::after {
+  content: " connections";
+}

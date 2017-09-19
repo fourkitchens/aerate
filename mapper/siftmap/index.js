@@ -153,19 +153,20 @@ function mapResults (options, results) {
     mapped = results.data.map(mapResult.bind(null, options.log));
 
     // Britecharts Needs
-    var newMap = [];
+    var newBarChart = [];
+    var newSingleData = [];
     for (var key in budget) {
-        var budgetData = [];
-        // console.log(results.data[0].SpeedIndex.data.median.firstView);
-        if (results.data[0].SpeedIndex.data.median.firstView[key] !== undefined) {
+        var barChartData = [];
+        // console.log(mapped[0].firstView[key]);
+        if (mapped[0].firstView[key] !== undefined) {
           var actualItem = {};
           // Measurement
           // Measurement Value
-          actualItem.percentage = results.data[0].SpeedIndex.data.median.firstView[key];
+          actualItem.percentage = mapped[0].firstView[key].value;
           // Measurement Name
           actualItem.name = "Results";
           actualItem.id = 1;
-          budgetData.push(actualItem);
+          barChartData.push(actualItem);
           // Budget
           var budgetItem = {};
           budgetItem.percentage = parseInt(budget[key].value);
@@ -177,9 +178,12 @@ function mapResults (options, results) {
           else {
             budgetItem.class = "";
           }
-          budgetData.push(budgetItem);
+          if (key == 'bytes' || key == 'requests' || key == 'connections') {
+            budgetItem.class = "single-data";
+          }
+          barChartData.push(budgetItem);
         }
-        newMap.push(budgetData);
+        newBarChart.push(barChartData);
     }
 
     return {
@@ -202,7 +206,8 @@ function mapResults (options, results) {
         labelOffset: labelOffset,
         // Sift specific
         budget: budget,
-        newMap: newMap
+        newBarChart: newBarChart,
+        newSingleData: newSingleData
     };
 }
 
@@ -600,5 +605,3 @@ function mapChartResult (view, chartKey, derivative, metric, unitsPerPixel, resu
         textAnchor: textAnchor
     };
 }
-
-// charts
