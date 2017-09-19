@@ -24,7 +24,7 @@ sift({
 });
 ```
 
-4. (Optional) Create/copy your own [budget.json](https://github.com/fourkitchens/sift/blob/master/budget.json) file using the following format:
+4. (Optional) Create/copy your own budget.json file using the following format:
 
 ```
 {
