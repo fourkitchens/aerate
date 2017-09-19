@@ -49,6 +49,7 @@ See [`/docs/stats.md`](https://github.com/fourkitchens/sift/blob/master/docs/sta
 
 ## TODO
 
+1. Detect local installation?
 1. Multiple tests (pages)
 2. Responsive charts
 3. Fix webpagetest-mapper install warnings (node-gyp related?)
