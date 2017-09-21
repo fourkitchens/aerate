@@ -4,8 +4,8 @@
 # Determine location of node_modules
 if [ -d ../../node_modules ]
 then
-  cd ./node_modules && ln -s ../mapper/siftmap
+  cd ../../node_modules && ln -s ./sift/mapper/siftmap
 elif [ -d ./node_modules ]
 then
-  cd ../../node_modules && ln -s ./sift/mapper/siftmap
+  cd ./node_modules && ln -s ../mapper/siftmap
 fi
