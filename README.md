@@ -49,10 +49,14 @@ See [`/docs/stats.md`](https://github.com/fourkitchens/sift/blob/master/docs/sta
 
 ## TODO
 
+1. Console results
 1. Detect local installation?
 1. Multiple tests (pages)
-2. Responsive charts
-3. Fix webpagetest-mapper install warnings (node-gyp related?)
-4. Email when test fails?
-5. Cleanup mapper files
-6. Loading screen?
+1. Add server response time
+1. Possibly subtract server response time in data to return better results?
+1. Responsive charts
+1. Fix webpagetest-mapper install warnings (node-gyp related?)
+1. Email results on a regular basis (separate tool likely)
+1. Cleanup mapper files
+1. Loading screen?
+1. Tracking/charting results for a set time period
