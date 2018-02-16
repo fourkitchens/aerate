@@ -25,7 +25,7 @@ portscanner.findAPortNotInUse(3000, 3010, '127.0.0.1', (error, port) => {
 });
 
 exports.wpt = (options) => {
-  // If UI is false
+  // If UI
   if (options.ui == true) {
     wpt.run({
       key: options.key,
