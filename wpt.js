@@ -16,7 +16,7 @@ portscanner.findAPortNotInUse(3000, 3010, '127.0.0.1', (error, port) => {
   openPort = port;
 });
 
-exports.wpt = (options) => {
+var wptRun = (options, tunnel) => {
   wpt.run({
     key: options.key,
     tests: options.tests,
@@ -25,6 +25,9 @@ exports.wpt = (options) => {
     count: options.count || 6,
     ui: options.ui || true,
   }).then(function (mapped) {
+    if (tunnel) {
+      tunnel.close();
+    }
     fs.writeFileSync(path.join(__dirname, 'results.html'), mapped);
     browserSync.init({
       server: {
@@ -37,5 +40,28 @@ exports.wpt = (options) => {
       });
   }).catch(function (error) {
     console.log(error.stack);
+    if (tunnel) {
+      tunnel.close();
+    }
   });
+}
+
+exports.wpt = (options) => {
+  if (options.localPort) {
+    const localtunnel = require('localtunnel');
+
+    const tunnel = localtunnel(options.localPort, function(err, tunnel) {
+        if (err) {
+          console.log(err);
+        }
+        Object.values(options.tests).forEach(i => {
+          i.url = tunnel.url + i.url;
+        });
+
+        wptRun(options, tunnel);
+    });
+  }
+  else {
+    wptRun(options);
+  }
 }
