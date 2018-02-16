@@ -44,12 +44,11 @@ See [`/docs/stats.md`](https://github.com/fourkitchens/sift/blob/master/docs/sta
 2. `tests`: REQUIRED tests to run
 3. `connection`: OPTIONAL defaults to 'Mobile LTE'
 4. `count`: OPTIONAL how many tests to run (WebPageTest.org supports up to 9)
-5. `ui`: OPTIONAL open Sift UI in browser defaults to true
+5. `ui`: OPTIONAL open Sift UI in browser vs. console (defaults to false)
 
 
 ## TODO
 
-1. Console results (node status?)
 1. Detect local installation?
 1. Multiple tests (pages)
 1. Add server response time
