@@ -128,6 +128,7 @@ exports.wpt = (options) => {
         Object.values(options.tests).forEach(i => {
           i.url = tunnel.url + i.url;
         });
+        console.log(tunnel.url);
 
         wptRun(options, tunnel);
     });
