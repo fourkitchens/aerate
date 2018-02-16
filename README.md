@@ -49,7 +49,6 @@ See [`/docs/stats.md`](https://github.com/fourkitchens/sift/blob/master/docs/sta
 
 ## TODO
 
-1. Console results (node status?)
 1. Detect local installation?
 1. Multiple tests (pages)
 1. Add server response time
