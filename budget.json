@@ -2,7 +2,7 @@
   "firstByte": {
     "name": "First Byte",
     "description": "Time to First Byte is measured as the time from the start of the initial navigation until the first byte of the base page is received by the browser (after following redirects).",
-    "value": ""
+    "value": "800"
   },
   "startRender": {
     "name": "Start Render (First Paint)",

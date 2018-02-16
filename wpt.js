@@ -24,7 +24,7 @@ portscanner.findAPortNotInUse(3000, 3010, '127.0.0.1', (error, port) => {
   openPort = port;
 });
 
-var wptRun = (options, tunnel) => {
+var wptRun = (options, ngrok, url) => {
   // If UI
   if (options.ui == true) {
     wpt.run({
@@ -34,9 +34,6 @@ var wptRun = (options, tunnel) => {
       connection: options.connection || 'Mobile LTE',
       count: options.count || 9,
     }).then(function (mapped) {
-      if (tunnel) {
-        tunnel.close();
-      }
       fs.writeFileSync(path.join(__dirname, 'results.html'), mapped);
       browserSync.init({
         server: {
@@ -47,13 +44,17 @@ var wptRun = (options, tunnel) => {
         open: true,
         port: openPort,
         });
+        if (ngrok) {
+          ngrok.kill();
+        }
     }).catch(function (error) {
       console.log(error.stack);
-      if (tunnel) {
-        tunnel.close();
+      if (ngrok) {
+        ngrok.kill();
       }
     });
   }
+  // Not UI
   else {
     wpt.fetch({
       key: options.key,
@@ -62,9 +63,6 @@ var wptRun = (options, tunnel) => {
       count: options.count || 9,
       silent: true,
     }).then(function (result) {
-      if (tunnel) {
-        tunnel.close();
-      }
       result.data.forEach(function (datum, index) {
         const table = new Table({
           head: ['Test', 'Result'],
@@ -109,28 +107,31 @@ var wptRun = (options, tunnel) => {
           return console.log('-------------------------------------------------' + '\n' + '\n' + 'Sift Results for ' + options.tests[index].name + ':' + '\n' + table.toString());
         }
         console.log('Test failed, reason: ' + datum.error.message);
-        if (tunnel) {
-          tunnel.close();
+        if (ngrok) {
+          ngrok.kill();
         }
       });
+      if (ngrok) {
+        ngrok.kill();
+      }
     });
   }
 }
 
 exports.wpt = (options) => {
   if (options.localPort) {
-    const localtunnel = require('localtunnel');
+    var ngrok = require('ngrok');
 
-    const tunnel = localtunnel(options.localPort, function(err, tunnel) {
-        if (err) {
-          console.log(err);
-        }
-        Object.values(options.tests).forEach(i => {
-          i.url = tunnel.url + i.url;
-        });
-        console.log(tunnel.url);
+    ngrok.connect(options.localPort, function (err, url) {
+      if (err) {
+        console.log(err);
+      }
+      Object.values(options.tests).forEach(i => {
+        i.url = url + i.url;
+      });
+      console.log(url);
 
-        wptRun(options, tunnel);
+      wptRun(options, ngrok, url);
     });
   }
   else {

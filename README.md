@@ -1,7 +1,7 @@
 [![Four Kitchens](https://img.shields.io/badge/4K-Four%20Kitchens-35AA4E.svg)](https://fourkitchens.com/)
 
 # Sift
-Measure frontend performance against a budget using lovely charts in a browser
+Measure frontend performance against a budget with an option to view them using lovely charts in a browser
 
 ## Usage
 
@@ -17,7 +17,7 @@ sift({
   tests: [
     {
       name: 'Four Kitchens',
-      url: 'http://fourkitchens.com/',
+      url: 'http://fourkitchens.com/', // Or use relative urls for local tests
       type: 'homepage'
     }
   ]
@@ -45,12 +45,12 @@ See [`/docs/stats.md`](https://github.com/fourkitchens/sift/blob/master/docs/sta
 3. `connection`: OPTIONAL defaults to 'Mobile LTE'
 4. `count`: OPTIONAL how many tests to run (WebPageTest.org supports up to 9)
 5. `ui`: OPTIONAL open Sift UI in browser vs. console (defaults to false)
+6. `localPort`: OPTIONAL for local testing, enter your environment port
 
 
 ## TODO
 
-1. Detect local installation?
-1. Multiple tests (pages)
+1. Multiple tests in UI
 1. Add server response time
 1. Possibly subtract server response time in data to return better results?
 1. Responsive charts
