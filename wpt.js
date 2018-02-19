@@ -24,7 +24,7 @@ portscanner.findAPortNotInUse(3000, 3010, '127.0.0.1', (error, port) => {
   openPort = port;
 });
 
-exports.wpt = (options) => {
+const wptRun = (options, ngrok, url) => {
   // If UI
   if (options.ui == true) {
     wpt.run({
@@ -44,10 +44,13 @@ exports.wpt = (options) => {
         open: true,
         port: openPort,
         });
+        ngrok.kill();
     }).catch(function (error) {
       console.log(error.stack);
+      ngrok.kill();
     });
   }
+  // Not UI
   else {
     wpt.fetch({
       key: options.key,
@@ -79,19 +82,19 @@ exports.wpt = (options) => {
                 result = datum.render.data.median.firstView.bytesIn;
                 break;
               case 'firstByte':
-                result = datum.render.data.median.firstView.TTFB;
+                result = datum.render.data.median.firstView.TTFB + ' ms';
                 break;
               case 'startRender':
-                result = datum.render.data.median.firstView.render;
+                result = datum.render.data.median.firstView.render + ' ms';
                 break;
               case 'speedIndex':
-                result = datum.render.data.median.firstView.SpeedIndex;
+                result = datum.render.data.median.firstView.SpeedIndex + ' ms';
                 break;
               case 'docTime':
-                result = datum.render.data.median.firstView.docTime;
+                result = datum.render.data.median.firstView.docTime + ' ms';
                 break;
               case 'load':
-                result = datum.render.data.median.firstView.loadTime;
+                result = datum.render.data.median.firstView.loadTime + ' ms';
             }
             table.push(
               [budget[key].name, result.toLocaleString()],
@@ -100,7 +103,30 @@ exports.wpt = (options) => {
           return console.log('-------------------------------------------------' + '\n' + '\n' + 'Sift Results for ' + options.tests[index].name + ':' + '\n' + table.toString());
         }
         console.log('Test failed, reason: ' + datum.error.message);
+        ngrok.kill();
       });
+      ngrok.kill();
     });
+  }
+}
+
+exports.wpt = (options) => {
+  if (options.localPort) {
+    var ngrok = require('ngrok');
+
+    ngrok.connect(options.localPort, function (err, url) {
+      if (err) {
+        console.log(err);
+      }
+      Object.values(options.tests).forEach(i => {
+        i.url = url + i.url;
+      });
+      console.log(url);
+
+      wptRun(options, ngrok, url);
+    });
+  }
+  else {
+    wptRun(options);
   }
 }
