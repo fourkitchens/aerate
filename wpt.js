@@ -24,7 +24,7 @@ portscanner.findAPortNotInUse(3000, 3010, '127.0.0.1', (error, port) => {
   openPort = port;
 });
 
-var wptRun = (options, ngrok, url) => {
+const wptRun = (options, ngrok, url) => {
   // If UI
   if (options.ui == true) {
     wpt.run({
@@ -44,14 +44,10 @@ var wptRun = (options, ngrok, url) => {
         open: true,
         port: openPort,
         });
-        if (ngrok) {
-          ngrok.kill();
-        }
+        ngrok.kill();
     }).catch(function (error) {
       console.log(error.stack);
-      if (ngrok) {
-        ngrok.kill();
-      }
+      ngrok.kill();
     });
   }
   // Not UI
@@ -86,19 +82,19 @@ var wptRun = (options, ngrok, url) => {
                 result = datum.render.data.median.firstView.bytesIn;
                 break;
               case 'firstByte':
-                result = datum.render.data.median.firstView.TTFB;
+                result = datum.render.data.median.firstView.TTFB + ' ms';
                 break;
               case 'startRender':
-                result = datum.render.data.median.firstView.render;
+                result = datum.render.data.median.firstView.render + ' ms';
                 break;
               case 'speedIndex':
-                result = datum.render.data.median.firstView.SpeedIndex;
+                result = datum.render.data.median.firstView.SpeedIndex + ' ms';
                 break;
               case 'docTime':
-                result = datum.render.data.median.firstView.docTime;
+                result = datum.render.data.median.firstView.docTime + ' ms';
                 break;
               case 'load':
-                result = datum.render.data.median.firstView.loadTime;
+                result = datum.render.data.median.firstView.loadTime + ' ms';
             }
             table.push(
               [budget[key].name, result.toLocaleString()],
@@ -107,13 +103,9 @@ var wptRun = (options, ngrok, url) => {
           return console.log('-------------------------------------------------' + '\n' + '\n' + 'Sift Results for ' + options.tests[index].name + ':' + '\n' + table.toString());
         }
         console.log('Test failed, reason: ' + datum.error.message);
-        if (ngrok) {
-          ngrok.kill();
-        }
-      });
-      if (ngrok) {
         ngrok.kill();
-      }
+      });
+      ngrok.kill();
     });
   }
 }
