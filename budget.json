@@ -37,6 +37,6 @@
   "connections": {
     "name": "Connections",
     "description": "The number of connections used",
-    "value": "3"
+    "value": ""
   }
 }
