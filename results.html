@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="generator" content="sift 0.0.1" />
-    <meta name="description" content="Sift results for 9/12/2017" />
+    <meta name="description" content="Sift results for 2018-2-19" />
 
     <title>Sift</title>
 
@@ -21,7 +21,7 @@
       </ul> -->
 
       <div id="britecharts">
-        <div class="chart">
+        <div class="chart chart--firstByte">
           <div class="chart__meta">
             <h2 class="chart__title">First Byte</h2>
             <p class="chart__description">Time to First Byte is measured as the time from the start of the initial navigation until the first byte of the base page is received by the browser (after following redirects).</p>
@@ -34,9 +34,9 @@
             <span class="chart__label">milliseconds</span>
           </div>
         </div>
-        <div class="chart">
+        <div class="chart chart--startRender">
           <div class="chart__meta">
-            <h2 class="chart__title">Start Render</h2>
+            <h2 class="chart__title">Start Render (First Paint)</h2>
             <p class="chart__description">The Start Render time is the first point in time that something was displayed to the screen.  Before this point in time the user was staring at a blank page.  This does not necessarily mean the user saw the page content, it could just be something as simple as a background color but it is the first indication of something happening for the user.</p>
             <span class="chart__stats">Budget:<span class="chart__budget"></span></span>
             <span class="chart__stats">Results:<span class="chart__results"></span></span>
@@ -47,7 +47,20 @@
             <span class="chart__label">milliseconds</span>
           </div>
         </div>
-        <div class="chart">
+        <div class="chart chart--speedIndex">
+          <div class="chart__meta">
+            <h2 class="chart__title">Speed Index (First Meaningful Paint)</h2>
+            <p class="chart__description">The Speed Index is a calculated metric that represents how quickly the page rendered the user-visible content (lower is better)</p>
+            <span class="chart__stats">Budget:<span class="chart__budget"></span></span>
+            <span class="chart__stats">Results:<span class="chart__results"></span></span>
+            <span class="chart__stats"><span class="chart__passed">Passed</span></span>
+          </div>
+          <div class="chart__data">
+            <div class="chart__barchart"></div>
+            <span class="chart__label">milliseconds</span>
+          </div>
+        </div>
+        <div class="chart chart--docTime">
           <div class="chart__meta">
             <h2 class="chart__title">Document Complete</h2>
             <p class="chart__description">The metrics grouped together under the Document Complete heading are the metrics collected up until the browser considered the page loaded (onLoad event for those familiar with the javascript events).  This usually happens after all of the images content have loaded but may not include content that is triggered by javascript execution.</p>
@@ -60,10 +73,49 @@
             <span class="chart__label">milliseconds</span>
           </div>
         </div>
-        <div class="chart">
+        <div class="chart chart--load">
           <div class="chart__meta">
-            <h2 class="chart__title">Fully Loaded</h2>
-            <p class="chart__description">The metrics grouped together under the Fully Loaded heading are the metrics collected up until there was 2 seconds of no network activity after Document Complete.  This will usually include any activity that is triggered by javascript after the main page loads</p>
+            <h2 class="chart__title">Load Time</h2>
+            <p class="chart__description">The Load Time is measured as the time from the start of the initial navigation until the beginning of the window load event (onload).</p>
+            <span class="chart__stats">Budget:<span class="chart__budget"></span></span>
+            <span class="chart__stats">Results:<span class="chart__results"></span></span>
+            <span class="chart__stats"><span class="chart__passed">Passed</span></span>
+          </div>
+          <div class="chart__data">
+            <div class="chart__barchart"></div>
+            <span class="chart__label">milliseconds</span>
+          </div>
+        </div>
+        <div class="chart chart--bytes">
+          <div class="chart__meta">
+            <h2 class="chart__title">Bytes In (Page Size)</h2>
+            <p class="chart__description">The amount of data that the browser had to download in order to load the page. It is also commonly referred to as the page size</p>
+            <span class="chart__stats">Budget:<span class="chart__budget"></span></span>
+            <span class="chart__stats">Results:<span class="chart__results"></span></span>
+            <span class="chart__stats"><span class="chart__passed">Passed</span></span>
+          </div>
+          <div class="chart__data">
+            <div class="chart__barchart"></div>
+            <span class="chart__label">milliseconds</span>
+          </div>
+        </div>
+        <div class="chart chart--requests">
+          <div class="chart__meta">
+            <h2 class="chart__title">Requests</h2>
+            <p class="chart__description">The total amount of requests</p>
+            <span class="chart__stats">Budget:<span class="chart__budget"></span></span>
+            <span class="chart__stats">Results:<span class="chart__results"></span></span>
+            <span class="chart__stats"><span class="chart__passed">Passed</span></span>
+          </div>
+          <div class="chart__data">
+            <div class="chart__barchart"></div>
+            <span class="chart__label">milliseconds</span>
+          </div>
+        </div>
+        <div class="chart chart--connections">
+          <div class="chart__meta">
+            <h2 class="chart__title">Connections</h2>
+            <p class="chart__description">The number of connections used</p>
             <span class="chart__stats">Budget:<span class="chart__budget"></span></span>
             <span class="chart__stats">Results:<span class="chart__results"></span></span>
             <span class="chart__stats"><span class="chart__passed">Passed</span></span>
@@ -79,28 +131,41 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/britecharts/2.0.0/bundled/britecharts.min.js"></script>
     <script>
-    var newMap = [[{"percentage":209,"name":"Results","id":1},{"percentage":500,"name":"Budget","id":0,"class":""}],[{"percentage":888,"name":"Results","id":1},{"percentage":700,"name":"Budget","id":0,"class":"over-budget"}],[{"percentage":2078,"name":"Results","id":1},{"percentage":4000,"name":"Budget","id":0,"class":""}],[{"percentage":2078,"name":"Results","id":1},{"percentage":5500,"name":"Budget","id":0,"class":""}]];
-    for (var i = 0, len = newMap.length; i < len; i++) {
+    var newBarChart = [[{"percentage":407,"name":"Results","id":1},{"percentage":800,"name":"Budget","id":0,"class":""}],[{"percentage":600,"name":"Results","id":1},{"percentage":700,"name":"Budget","id":0,"class":""}],[{"percentage":699,"name":"Results","id":1},{"percentage":1500,"name":"Budget","id":0,"class":""}],[{"percentage":1757,"name":"Results","id":1},{"percentage":4000,"name":"Budget","id":0,"class":""}],[{"percentage":1803,"name":"Results","id":1},{"percentage":5500,"name":"Budget","id":0,"class":""}],[{"percentage":746103,"name":"Results","id":1},{"percentage":null,"name":"Budget","id":0,"class":"single-data"}],[{"percentage":24,"name":"Results","id":1},{"percentage":null,"name":"Budget","id":0,"class":"single-data"}],[{"percentage":8,"name":"Results","id":1},{"percentage":3,"name":"Budget","id":0,"class":"single-data"}]];
+    for (var i = 0, len = newBarChart.length; i < len; i++) {
       var briteElement = document.querySelectorAll('.chart');
       var briteChart = briteElement[i];
       var briteElementChart = briteElement[i].querySelectorAll('.chart__barchart');
-      var budgetData = newMap[i];
+      var budgetData = newBarChart[i];
 
-      // Data
+      // Data (budget)
       var budgetSpan = briteElement[i].querySelectorAll('.chart__budget');
-      budgetSpan[0].textContent = ' ' + budgetData[1].percentage + 'ms';
+      if (budgetData[1].percentage !== null) {
+        budgetSpan[0].textContent = ' ' + budgetData[1].percentage + 'ms';
+      }
+      else {
+        budgetSpan[0].textContent = ' NA';
+      }
 
+      // Data (results)
       var resultsSpan = briteElement[i].querySelectorAll('.chart__results');
       resultsSpan[0].textContent = ' ' + budgetData[0].percentage + 'ms';
 
       // Britecharts
       var colors = ['#ffce00', '#6aedc7'];
       if (budgetData[1].class.length > 0) {
-        briteElement[i].classList.add('over-budget');
-        colors = ['#ffce00', '#f55573'];
+        briteElement[i].classList.add(budgetData[1].class);
 
-        var statusSpan = briteElement[i].querySelectorAll('.chart__passed');
-        statusSpan[0].textContent = ' Failed';
+        if (budgetData[1].class == 'single-data') {
+          resultsSpan[0].textContent = ' ' + budgetData[0].percentage;
+        }
+
+        if (budgetData[1].class == 'over-budget') {
+          colors = ['#ffce00', '#f55573'];
+
+          var statusSpan = briteElement[i].querySelectorAll('.chart__passed');
+          statusSpan[0].textContent = ' Failed';
+        }
       }
 
       function createHorizontalBarChart() {

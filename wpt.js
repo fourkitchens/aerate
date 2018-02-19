@@ -26,88 +26,103 @@ portscanner.findAPortNotInUse(3000, 3010, '127.0.0.1', (error, port) => {
 
 const wptRun = (options, ngrok, url) => {
   // If UI
-  if (options.ui == true) {
-    wpt.run({
-      key: options.key,
-      tests: options.tests,
-      mapper: 'siftmap',
-      connection: options.connection || 'Mobile LTE',
-      count: options.count || 9,
-    }).then(function (mapped) {
-      fs.writeFileSync(path.join(__dirname, 'results.html'), mapped);
-      browserSync.init({
-        server: {
-          baseDir: __dirname,
-        },
-        startPath: './results.html',
-        ui: false,
-        open: true,
-        port: openPort,
-        });
-        ngrok.kill();
-    }).catch(function (error) {
-      console.log(error.stack);
-      ngrok.kill();
-    });
-  }
-  // Not UI
-  else {
-    wpt.fetch({
-      key: options.key,
-      tests: options.tests,
-      connection: options.connection || 'Mobile LTE',
-      count: options.count || 9,
-      silent: true,
-    }).then(function (result) {
-      result.data.forEach(function (datum, index) {
-        const table = new Table({
-          head: ['Test', 'Result'],
-          chars: { 'top': '═' , 'top-mid': '╤' , 'top-left': '╔' , 'top-right': '╗'
-                 , 'bottom': '═' , 'bottom-mid': '╧' , 'bottom-left': '╚' , 'bottom-right': '╝'
-                 , 'left': '║' , 'left-mid': '╟' , 'mid': '─' , 'mid-mid': '┼'
-                 , 'right': '║' , 'right-mid': '╢' , 'middle': '│' },
-          style: {
-            head: ['cyan']
-          }
-        });
-        if (!datum.error) {
-          Object.keys(budget).forEach(key => {
-            var result = '';
-            switch (key) {
-              case 'requests':
-              case 'connections':
-                result = datum.render.data.median.firstView[key];
-                break;
-              case 'bytes':
-                result = datum.render.data.median.firstView.bytesIn;
-                break;
-              case 'firstByte':
-                result = datum.render.data.median.firstView.TTFB + ' ms';
-                break;
-              case 'startRender':
-                result = datum.render.data.median.firstView.render + ' ms';
-                break;
-              case 'speedIndex':
-                result = datum.render.data.median.firstView.SpeedIndex + ' ms';
-                break;
-              case 'docTime':
-                result = datum.render.data.median.firstView.docTime + ' ms';
-                break;
-              case 'load':
-                result = datum.render.data.median.firstView.loadTime + ' ms';
-            }
-            table.push(
-              [budget[key].name, result.toLocaleString()],
-            );
-          });
-          return console.log('-------------------------------------------------' + '\n' + '\n' + 'Sift Results for ' + options.tests[index].name + ':' + '\n' + table.toString());
+  // if (options.ui == true) {
+  //   wpt.run({
+  //     key: options.key,
+  //     tests: options.tests,
+  //     mapper: 'siftmap',
+  //     connection: options.connection || 'Mobile LTE',
+  //     count: options.count || 9,
+  //   }).then(function (mapped) {
+  //     fs.writeFileSync(path.join(__dirname, 'results.html'), mapped);
+  //     browserSync.init({
+  //       server: {
+  //         baseDir: __dirname,
+  //       },
+  //       startPath: './results.html',
+  //       ui: false,
+  //       open: true,
+  //       port: openPort,
+  //       });
+  //       ngrok.kill();
+  //   }).catch(function (error) {
+  //     console.log(error.stack);
+  //     ngrok.kill();
+  //   });
+  wpt.fetch({
+    key: options.key,
+    tests: options.tests,
+    connection: options.connection || 'Mobile LTE',
+    count: options.count || 9
+  }).then(function (result) {
+    result.data.forEach(function (datum, index) {
+      const table = new Table({
+        head: ['Test', 'Result'],
+        chars: { 'top': '═' , 'top-mid': '╤' , 'top-left': '╔' , 'top-right': '╗'
+               , 'bottom': '═' , 'bottom-mid': '╧' , 'bottom-left': '╚' , 'bottom-right': '╝'
+               , 'left': '║' , 'left-mid': '╟' , 'mid': '─' , 'mid-mid': '┼'
+               , 'right': '║' , 'right-mid': '╢' , 'middle': '│' },
+        style: {
+          head: ['cyan']
         }
-        console.log('Test failed, reason: ' + datum.error.message);
-        ngrok.kill();
       });
-      ngrok.kill();
+      if (!datum.error) {
+        Object.keys(budget).forEach(key => {
+          var result = '';
+          switch (key) {
+            case 'requests':
+            case 'connections':
+              result = datum.render.data.median.firstView[key];
+              break;
+            case 'bytes':
+              result = datum.render.data.median.firstView.bytesIn;
+              break;
+            case 'firstByte':
+              result = datum.render.data.median.firstView.TTFB + ' ms';
+              break;
+            case 'startRender':
+              result = datum.render.data.median.firstView.render + ' ms';
+              break;
+            case 'speedIndex':
+              result = datum.render.data.median.firstView.SpeedIndex + ' ms';
+              break;
+            case 'docTime':
+              result = datum.render.data.median.firstView.docTime + ' ms';
+              break;
+            case 'load':
+              result = datum.render.data.median.firstView.loadTime + ' ms';
+          }
+          table.push(
+            [budget[key].name, result.toLocaleString()],
+          );
+        });
+        return console.log('-------------------------------------------------' + '\n' + '\n' + 'Sift Results for ' + options.tests[index].name + ':' + '\n' + table.toString());
+      }
+      console.log('Test failed, reason: ' + datum.error.message);
     });
-  }
+
+    // If UI
+    if (options.ui == true) {
+      wpt.map({
+        mapper: 'siftmap'
+      }, result).then(function (mapped) {
+        fs.writeFileSync(path.join(__dirname, 'results.html'), mapped);
+        browserSync.init({
+          server: {
+            baseDir: __dirname,
+          },
+          startPath: './results.html',
+          ui: false,
+          open: true,
+          port: openPort,
+          });
+      }).catch(function (error) {
+        console.log(error.stack);
+      });
+    }
+
+    if (ngrok) { ngrok.kill(); }
+  });
 }
 
 exports.wpt = (options) => {
