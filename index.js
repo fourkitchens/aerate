@@ -2,11 +2,11 @@
 
 const wpt = require('./wpt');
 
-exports = module.exports = sift;
-
 function sift(options) {
   wpt.wpt(options);
 }
+
+exports = module.exports = sift;
 
 sift({
   key: 'A.0d267d8f8a0ce4a79c5c4a5a5415221b',

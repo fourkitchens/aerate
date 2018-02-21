@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU General Public License along with
 // webpagetest-mapper. If not, see <http://www.gnu.org/licenses/>.
 
-/*globals require, __dirname, module */
+/* globals require, __dirname, module */
 
 const fs = require('fs');
 const path = require('path');
@@ -114,8 +114,6 @@ const barHeight = 32;
 const barPadding = 2;
 const labelOffset = 16;
 
-module.exports = { map };
-
 function getTime(results, key) {
   return results.times[key];
 }
@@ -130,6 +128,7 @@ function getBrowser(results) {
   } catch (error) {
     console.log(error);
   }
+  return true;
 }
 
 function getViewResult(view, result) {
@@ -164,7 +163,8 @@ function getDerivativeOperands(view, chartKey, metric, result) {
     lhs = getViewResult(view[0], result);
     rhs = getViewResult(view[1], result);
   } else {
-    lhs = rhs = getViewResult(view, result);
+    rhs = getViewResult(view, result);
+    lhs = rhs;
   }
 
   if (Array.isArray(chartKey)) {
@@ -280,14 +280,17 @@ function getMaximumValue(view, chartKey, derivative, metric, results) {
 function mapChart(results, chart) {
   const fResults = filterResults.bind(null, chart.view, chart.key, chart.derivative, chart.metric);
   const filteredResults = results.filter(fResults);
+  const cResults = compareResults.bind(null, chart.view, chart.key, chart.derivative, chart.metric);
+  const maxValue = getMaximumValue(chart.view, chart.key, chart.derivative, chart.metric, results);
+  const chartDiff = maxValue / (chartWidth - chartMargin);
+  const mappedResult = mapChartResult.bind(null, chart.view, chart.key, chart.derivative, chart.metric, chartDiff); // eslint-disable-line
 
   return {
     title: chart.title,
     sectionTitle: chart.sectionTitle,
     height: (filteredResults.length * (barHeight + barPadding)) + chartPadding,
     yAxisHeight: (filteredResults.length * (barHeight + barPadding)) + barPadding,
-    tests: filteredResults.sort(compareResults.bind(null, chart.view, chart.key, chart.derivative, chart.metric),
-    ).map(mapChartResult.bind(null, chart.view, chart.key, chart.derivative, chart.metric, getMaximumValue(chart.view, chart.key, chart.derivative, chart.metric, results) / (chartWidth - chartMargin))),
+    tests: filteredResults.sort(cResults).map(mappedResult),
     label: chart.label,
     xAxis: {
       offset: (filteredResults.length * (barHeight + barPadding)) + 1,
@@ -336,9 +339,9 @@ function getUrls(result, medianMetric, view) {
   let run;
 
   if (Array.isArray(median.run)) {
-    run = median.run[0];
+    run = median.run[0]; // eslint-disable-line
   } else {
-    run = median.run;
+    run = median.run; // eslint-disable-line
   }
 
   return getData(result, medianMetric).runs[run][getViewKey(view)].pages;
@@ -565,3 +568,5 @@ function map(options, results) {
 
   return render(mapResults(options, results));
 }
+
+module.exports = { map };
