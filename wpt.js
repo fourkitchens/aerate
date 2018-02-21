@@ -26,9 +26,9 @@ const wptRun = (options, ngrok) => {
     tests: options.tests,
     connection: options.connection || 'Mobile LTE',
     count: options.count || 9,
-  }).then((results) => {
+  }).then((result) => {
     // For each test.
-    results.data.forEach((datum, index) => { // eslint-disable-line
+    result.data.forEach((datum, index) => { // eslint-disable-line
       const table = new Table({
         head: ['Test', 'Budget', 'Result', 'Pass/Fail'],
         chars: {
@@ -109,7 +109,7 @@ const wptRun = (options, ngrok) => {
     if (options.ui === true) {
       wpt.map({
         mapper: 'siftmap',
-      }, results).then((mapped) => {
+      }, result).then((mapped) => {
         fs.writeFileSync(path.join(__dirname, 'results.html'), mapped);
         browserSync.init({
           server: {
