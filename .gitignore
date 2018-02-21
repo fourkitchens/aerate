@@ -1,3 +1,8 @@
+# Node
 node_modules
 
+# Sift
+results.html
+
+# System
 .DS_Store
