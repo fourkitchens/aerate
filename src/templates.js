@@ -85,7 +85,7 @@ module.exports = {
 };
 
 function compile (templatePath) {
-    check.assert.unemptyString(templatePath, 'invalid template path');
+    check.assert.nonEmptyString(templatePath, 'invalid template path');
 
     return handlebars.compile(fs.readFileSync(templatePath, { encoding: 'utf8' }));
 }
