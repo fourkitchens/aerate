@@ -1,22 +1,18 @@
 /* globals require */
-'use strict';
 
 const wpt = require('webpagetest-mapper');
 const path = require('path');
 const fs = require('fs');
-const opn = require('opn');
 const portscanner = require('portscanner');
 const browserSync = require('browser-sync').create();
 const Table = require('cli-table');
+let budget = require('./budget');
 
-if (fs.existsSync(process.env.PWD + '/budget.json')) {
-  var budget = require(process.env.PWD + '/budget.json');
-}
-else {
-  var budget = require('./budget');
+if (fs.existsSync(`${process.env.PWD}/budget.json`)) {
+  budget = require(`${process.env.PWD}/budget.json`); // eslint-disable-line
 }
 
-var exports = module.exports = {};
+var exports = module.exports = {}; // eslint-disable-line
 
 // Find open port using portscanner.
 let openPort = '';
@@ -24,96 +20,96 @@ portscanner.findAPortNotInUse(3000, 3010, '127.0.0.1', (error, port) => {
   openPort = port;
 });
 
-const wptRun = (options, ngrok, url) => {
+const wptRun = (options, ngrok) => {
   wpt.fetch({
     key: options.key,
     tests: options.tests,
     connection: options.connection || 'Mobile LTE',
-    count: options.count || 9
-  }).then(function (result) {
+    count: options.count || 9,
+  }).then((result) => {
     // For each test.
-    result.data.forEach(function (datum, index) {
+    result.data.forEach((datum, index) => { // eslint-disable-line
       const table = new Table({
         head: ['Test', 'Budget', 'Result', 'Pass/Fail'],
-        chars: { 'top': '═' , 'top-mid': '╤' , 'top-left': '╔' , 'top-right': '╗'
-               , 'bottom': '═' , 'bottom-mid': '╧' , 'bottom-left': '╚' , 'bottom-right': '╝'
-               , 'left': '║' , 'left-mid': '╟' , 'mid': '─' , 'mid-mid': '┼'
-               , 'right': '║' , 'right-mid': '╢' , 'middle': '│' },
+        chars: {
+          top: '═', 'top-mid': '╤', 'top-left': '╔', 'top-right': '╗', bottom: '═', 'bottom-mid': '╧', 'bottom-left': '╚', 'bottom-right': '╝', left: '║', 'left-mid': '╟', mid: '─', 'mid-mid': '┼', right: '║', 'right-mid': '╢', middle: '│',
+        },
         style: {
-          head: ['cyan']
-        }
+          head: ['cyan'],
+        },
       });
       // if there are not errors in the request to webpagetest.org.
       if (!datum.error) {
         // For each budget item.
-        Object.keys(budget).forEach(key => {
-          var result = '';
-          var budgetValue = '';
-          var grade = '';
+        Object.keys(budget).forEach((key) => {
+          let resultValue = '';
+          let budgetValue = '';
+          let grade = '';
+          let formattedResult = '';
           const gradeCheck = () => {
-            if (budget[key].value && result > budget[key].value) {
+            if (budget[key].value && resultValue > budget[key].value) {
               grade = 'FAIL';
-            }
-            else {
+            } else {
               grade = 'Pass';
             }
-          }
+          };
           switch (key) {
             case 'requests':
             case 'connections':
-              result = datum.render.data.median.firstView[key];
+              resultValue = datum.render.data.median.firstView[key];
               budgetValue = budget[key].value;
-              var formattedResult = result;
+              formattedResult = resultValue;
               break;
             case 'bytes':
-              result = datum.render.data.median.firstView.bytesIn;
+              resultValue = datum.render.data.median.firstView.bytesIn;
               budgetValue = budget[key].value;
-              var formattedResult = result;
+              formattedResult = resultValue;
               break;
             case 'firstByte':
-              result = datum.render.data.median.firstView.TTFB;
-              budgetValue = budget[key].value + ' ms';
+              resultValue = datum.render.data.median.firstView.TTFB;
+              budgetValue = `${budget[key].value} ms`;
               gradeCheck();
-              var formattedResult = result + ' ms';
+              formattedResult = `${resultValue} ms`;
               break;
             case 'startRender':
-              result = datum.render.data.median.firstView.render;
-              budgetValue = budget[key].value + ' ms';
+              resultValue = datum.render.data.median.firstView.render;
+              budgetValue = `${budget[key].value} ms`;
               gradeCheck();
-              var formattedResult = result + ' ms';
+              formattedResult = `${resultValue} ms`;
               break;
             case 'speedIndex':
-              result = datum.render.data.median.firstView.SpeedIndex;
-              budgetValue = budget[key].value + ' ms';
+              resultValue = datum.render.data.median.firstView.SpeedIndex;
+              budgetValue = `${budget[key].value} ms`;
               gradeCheck();
-              var formattedResult = result + ' ms';
+              formattedResult = `${resultValue} ms`;
               break;
             case 'docTime':
-              result = datum.render.data.median.firstView.docTime;
-              budgetValue = budget[key].value + ' ms';
+              resultValue = datum.render.data.median.firstView.docTime;
+              budgetValue = `${budget[key].value} ms`;
               gradeCheck();
-              var formattedResult = result + ' ms';
+              formattedResult = `${resultValue} ms`;
               break;
             case 'load':
-              result = datum.render.data.median.firstView.loadTime;
-              budgetValue = budget[key].value + ' ms';
+              resultValue = datum.render.data.median.firstView.loadTime;
+              budgetValue = `${budget[key].value} ms`;
               gradeCheck();
-              var formattedResult = result + ' ms';
+              formattedResult = `${resultValue} ms`;
+              break;
+            default:
+              // do nothing
           }
-          table.push(
-            [budget[key].name, budgetValue, formattedResult.toLocaleString(), grade],
-          );
+          table.push([budget[key].name, budgetValue, formattedResult.toLocaleString(), grade]);
         });
-        return console.log('-------------------------------------------------' + '\n' + '\n' + 'Sift Results for ' + options.tests[index].name + ':' + '\n' + table.toString());
+        return console.log('-------------------------------------------------' + '\n' + '\n' + 'Sift Results for ' + options.tests[index].name + ':' + '\n' + table.toString()); // eslint-disable-line
       }
-      console.log('Test failed, reason: ' + datum.error.message);
+      console.log(`Test failed, reason: ${datum.error.message}`);
     });
 
     // If UI
-    if (options.ui == true) {
+    if (options.ui === true) {
       wpt.map({
-        mapper: 'siftmap'
-      }, result).then(function (mapped) {
+        mapper: 'siftmap',
+      }, result).then((mapped) => {
         fs.writeFileSync(path.join(__dirname, 'results.html'), mapped);
         browserSync.init({
           server: {
@@ -123,8 +119,8 @@ const wptRun = (options, ngrok, url) => {
           ui: false,
           open: true,
           port: openPort,
-          });
-      }).catch(function (error) {
+        });
+      }).catch((error) => {
         console.log(error.stack);
       });
     }
@@ -132,25 +128,24 @@ const wptRun = (options, ngrok, url) => {
     // If local environment.
     if (ngrok) { ngrok.kill(); }
   });
-}
+};
 
 exports.wpt = (options) => {
   if (options.localPort) {
-    var ngrok = require('ngrok');
+    const ngrok = require('ngrok'); // eslint-disable-line
 
-    ngrok.connect(options.localPort, function (err, url) {
+    ngrok.connect(options.localPort, (err, url) => {
       if (err) {
         console.log(err);
       }
-      Object.values(options.tests).forEach(i => {
-        i.url = url + i.url;
+      Object.values(options.tests).forEach((i) => {
+        i.url = url + i.url; // eslint-disable-line
       });
       console.log(url);
 
-      wptRun(options, ngrok, url);
+      wptRun(options, ngrok);
     });
-  }
-  else {
+  } else {
     wptRun(options);
   }
-}
+};

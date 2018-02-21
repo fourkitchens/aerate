@@ -15,6 +15,7 @@
     "d3-selection": "^1.1.0",
     "ngrok": "^2.2.26",
     "opn": "^5.1.0",
+    "portscanner": "^2.1.1",
     "webpagetest-mapper": "^1.0.1"
   },
   "bin": {
