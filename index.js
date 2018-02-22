@@ -2,6 +2,4 @@
 
 const wpt = require('./wpt');
 
-function sift(options) {
-  wpt.wpt(options);
-}
+export default options => wpt.wpt(options);

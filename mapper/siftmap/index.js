@@ -20,7 +20,9 @@
 const fs = require('fs');
 const path = require('path');
 const check = require('check-types');
-const render = require('../../src/templates').compile(path.join(__dirname, 'template.html'));
+const render = require('../../src/templates').compile(
+  path.join(__dirname, 'template.html')
+);
 const packageInfo = require('../../package.json');
 
 // Check for local budget file
@@ -36,42 +38,42 @@ const charts = [
     key: 'speedIndex',
     sectionTitle: 'Speed index, first view',
     title: 'Speed index, first view',
-    label: 'First-view speed index (lower is better)',
+    label: 'First-view speed index (lower is better)'
   },
   {
     view: 'first',
     key: 'speedIndex',
     metric: 'rtt',
     title: 'Speed index, first view as RTTs',
-    label: 'First-view speed index as a function of RTT',
+    label: 'First-view speed index as a function of RTT'
   },
   {
     view: 'repeat',
     key: 'speedIndex',
     sectionTitle: 'Speed index, repeat view',
     title: 'Speed index, repeat view',
-    label: 'Repeat-view speed index (lower is better)',
+    label: 'Repeat-view speed index (lower is better)'
   },
   {
     view: ['repeat', 'first'],
     key: 'speedIndex',
     derivative: 'percentage',
     title: 'Speed index, repeat-view improvement',
-    label: 'Repeat-view speed index as a percentage of first-view',
+    label: 'Repeat-view speed index as a percentage of first-view'
   },
   {
     view: 'first',
     key: 'firstByte',
     sectionTitle: 'First byte',
     title: 'First byte in milliseconds',
-    label: 'Time to first byte (milliseconds)',
+    label: 'Time to first byte (milliseconds)'
   },
   {
     view: 'first',
     key: 'firstByte',
     metric: 'rtt',
     title: 'First byte in RTTs',
-    label: 'Time to first byte (RTTs)',
+    label: 'Time to first byte (RTTs)'
   },
   {
     view: 'first',
@@ -79,7 +81,7 @@ const charts = [
     derivative: 'difference',
     sectionTitle: 'Start render, difference from first byte',
     title: 'Start render, difference from first byte in milliseconds',
-    label: 'Time from first byte until start render (milliseconds)',
+    label: 'Time from first byte until start render (milliseconds)'
   },
   {
     view: 'first',
@@ -87,7 +89,7 @@ const charts = [
     derivative: 'difference',
     metric: 'rtt',
     title: 'Start render, difference from first byte in RTTs',
-    label: 'Time from first byte until start render (RTTs)',
+    label: 'Time from first byte until start render (RTTs)'
   },
   {
     view: 'first',
@@ -95,7 +97,7 @@ const charts = [
     derivative: 'difference',
     sectionTitle: 'Load, difference from first byte',
     title: 'Load, difference from first byte in milliseconds',
-    label: 'Time from first byte until load event (milliseconds)',
+    label: 'Time from first byte until load event (milliseconds)'
   },
   {
     view: 'first',
@@ -103,8 +105,8 @@ const charts = [
     derivative: 'difference',
     metric: 'rtt',
     title: 'Load, difference from first byte in RTTs',
-    label: 'Time from first byte until load event (RTTs)',
-  },
+    label: 'Time from first byte until load event (RTTs)'
+  }
 ];
 
 const chartWidth = 832;
@@ -123,7 +125,7 @@ function getBrowser(results) {
     const data = results.data[0].render.data.median.firstView;
 
     if (check.unemptyString(data.browser_name)) {
-      return (`${data.browser_name} ${data.browser_version}`).trim();
+      return `${data.browser_name} ${data.browser_version}`.trim();
     }
   } catch (error) {
     console.log(error);
@@ -143,7 +145,6 @@ function expressValueInRtt(datum) {
   return Math.ceil(datum.value / datum.rtt);
 }
 
-
 function getSimpleValue(view, chartKey, metric, result) {
   const datum = getViewResult(view, result)[chartKey];
 
@@ -153,7 +154,6 @@ function getSimpleValue(view, chartKey, metric, result) {
 
   return datum.value;
 }
-
 
 function getDerivativeOperands(view, chartKey, metric, result) {
   let lhs;
@@ -178,7 +178,7 @@ function getDerivativeOperands(view, chartKey, metric, result) {
   if (metric === 'rtt') {
     return {
       lhs: expressValueInRtt(lhs),
-      rhs: expressValueInRtt(rhs),
+      rhs: expressValueInRtt(rhs)
     };
   }
 
@@ -193,7 +193,7 @@ function getDerivativeValue(view, chartKey, derivative, metric, result) {
   }
 
   if (derivative === 'percentage') {
-    return Math.round((operands.lhs / operands.rhs) * 100);
+    return Math.round(operands.lhs / operands.rhs * 100);
   }
 
   throw new Error(`unrecognised derivative '${derivative}'`);
@@ -211,7 +211,15 @@ function filterResults(view, chartKey, derivative, metric, result) {
   return getValue(view, chartKey, derivative, metric, result) >= 0;
 }
 
-function mapChartResult(view, chartKey, derivative, metric, unitsPerPixel, result, index) {
+function mapChartResult(
+  view,
+  chartKey,
+  derivative,
+  metric,
+  unitsPerPixel,
+  result,
+  index
+) {
   if (result.error) {
     return result;
   }
@@ -243,7 +251,7 @@ function mapChartResult(view, chartKey, derivative, metric, unitsPerPixel, resul
     value: value + (derivative === 'percentage' ? '%' : ''),
     textOrientation,
     textClass,
-    textAnchor,
+    textAnchor
   };
 }
 
@@ -256,8 +264,10 @@ function compareResults(view, chartKey, derivative, metric, first, second) {
     return -1;
   }
 
-  return getValue(view, chartKey, derivative, metric, first) -
-      getValue(view, chartKey, derivative, metric, second);
+  return (
+    getValue(view, chartKey, derivative, metric, first) -
+    getValue(view, chartKey, derivative, metric, second)
+  );
 }
 
 function getMaximumValue(view, chartKey, derivative, metric, results) {
@@ -276,27 +286,51 @@ function getMaximumValue(view, chartKey, derivative, metric, results) {
   }, 0);
 }
 
-
 function mapChart(results, chart) {
-  const fResults = filterResults.bind(null, chart.view, chart.key, chart.derivative, chart.metric);
+  const fResults = filterResults.bind(
+    null,
+    chart.view,
+    chart.key,
+    chart.derivative,
+    chart.metric
+  );
   const filteredResults = results.filter(fResults);
-  const cResults = compareResults.bind(null, chart.view, chart.key, chart.derivative, chart.metric);
-  const maxValue = getMaximumValue(chart.view, chart.key, chart.derivative, chart.metric, results);
+  const cResults = compareResults.bind(
+    null,
+    chart.view,
+    chart.key,
+    chart.derivative,
+    chart.metric
+  );
+  const maxValue = getMaximumValue(
+    chart.view,
+    chart.key,
+    chart.derivative,
+    chart.metric,
+    results
+  );
   const chartDiff = maxValue / (chartWidth - chartMargin);
-  const mappedResult = mapChartResult.bind(null, chart.view, chart.key, chart.derivative, chart.metric, chartDiff); // eslint-disable-line
+  const mappedResult = mapChartResult.bind(
+    null,
+    chart.view,
+    chart.key,
+    chart.derivative,
+    chart.metric,
+    chartDiff
+  ); // eslint-disable-line
 
   return {
     title: chart.title,
     sectionTitle: chart.sectionTitle,
-    height: (filteredResults.length * (barHeight + barPadding)) + chartPadding,
-    yAxisHeight: (filteredResults.length * (barHeight + barPadding)) + barPadding,
+    height: filteredResults.length * (barHeight + barPadding) + chartPadding,
+    yAxisHeight: filteredResults.length * (barHeight + barPadding) + barPadding,
     tests: filteredResults.sort(cResults).map(mappedResult),
     label: chart.label,
     xAxis: {
-      offset: (filteredResults.length * (barHeight + barPadding)) + 1,
-      width: (chartWidth - chartMargin) + 2,
-      labelPosition: Math.round(((chartWidth - chartMargin) + 2) / 2),
-    },
+      offset: filteredResults.length * (barHeight + barPadding) + 1,
+      width: chartWidth - chartMargin + 2,
+      labelPosition: Math.round((chartWidth - chartMargin + 2) / 2)
+    }
   };
 }
 
@@ -309,7 +343,7 @@ function clone(thing) {
     cloned = {};
   }
 
-  Object.keys(thing).forEach((key) => {
+  Object.keys(thing).forEach(key => {
     const property = thing[key];
 
     if (check.either.object(property).or.array(property)) {
@@ -387,7 +421,6 @@ function getFirstByteScore(data) {
   return 100 - Math.round(difference / 10);
 }
 
-
 function mapResult(log, result) {
   let message;
 
@@ -408,79 +441,94 @@ function mapResult(log, result) {
         speedIndex: {
           url: getWaterfallUrl(result, 'SpeedIndex', 'first'),
           value: getMedianRun(result, 'SpeedIndex', 'first').SpeedIndex,
-          rtt: getMedianRun(result, 'SpeedIndex', 'first').server_rtt,
+          rtt: getMedianRun(result, 'SpeedIndex', 'first').server_rtt
         },
         firstByte: {
           url: getWaterfallUrl(result, 'TTFB', 'first'),
           value: getMedianRun(result, 'TTFB', 'first').TTFB,
-          rtt: getMedianRun(result, 'TTFB', 'first').server_rtt,
+          rtt: getMedianRun(result, 'TTFB', 'first').server_rtt
         },
         startRender: {
           url: getWaterfallUrl(result, 'render', 'first'),
           value: getMedianRun(result, 'render', 'first').render,
-          rtt: getMedianRun(result, 'render', 'first').server_rtt,
+          rtt: getMedianRun(result, 'render', 'first').server_rtt
         },
         load: {
           url: getWaterfallUrl(result, 'loadTime', 'first'),
           value: getMedianRun(result, 'loadTime', 'first').loadTime,
-          rtt: getMedianRun(result, 'loadTime', 'first').server_rtt,
+          rtt: getMedianRun(result, 'loadTime', 'first').server_rtt
         },
         docTime: {
-          value: getMedianRun(result, 'SpeedIndex', 'first').docTime,
+          value: getMedianRun(result, 'SpeedIndex', 'first').docTime
         },
         bytes: {
           url: getWaterfallUrl(result, 'SpeedIndex', 'first'),
-          value: getMedianRun(result, 'SpeedIndex', 'first').bytesIn,
+          value: getMedianRun(result, 'SpeedIndex', 'first').bytesIn
         },
         requests: {
           url: getWaterfallUrl(result, 'SpeedIndex', 'first'),
-          value: getMedianRun(result, 'SpeedIndex', 'first').requests,
+          value: getMedianRun(result, 'SpeedIndex', 'first').requests
         },
         connections: {
           url: getWaterfallUrl(result, 'SpeedIndex', 'first'),
-          value: getMedianRun(result, 'SpeedIndex', 'first').connections,
+          value: getMedianRun(result, 'SpeedIndex', 'first').connections
         },
         targetFirstByte: {
-          rating: getRating(getFirstByteScore(getMedianRun(result, 'SpeedIndex', 'first'))),
-          value: getFirstByteScore(getMedianRun(result, 'SpeedIndex', 'first')),
+          rating: getRating(
+            getFirstByteScore(getMedianRun(result, 'SpeedIndex', 'first'))
+          ),
+          value: getFirstByteScore(getMedianRun(result, 'SpeedIndex', 'first'))
         },
         persistent: {
-          rating: getRating(getMedianRun(result, 'SpeedIndex', 'first')['score_keep-alive']),
-          value: getMedianRun(result, 'SpeedIndex', 'first')['score_keep-alive'],
+          rating: getRating(
+            getMedianRun(result, 'SpeedIndex', 'first')['score_keep-alive']
+          ),
+          value: getMedianRun(result, 'SpeedIndex', 'first')['score_keep-alive']
         },
         gzip: {
-          rating: getRating(getMedianRun(result, 'SpeedIndex', 'first').score_gzip),
-          value: getMedianRun(result, 'SpeedIndex', 'first').score_gzip,
+          rating: getRating(
+            getMedianRun(result, 'SpeedIndex', 'first').score_gzip
+          ),
+          value: getMedianRun(result, 'SpeedIndex', 'first').score_gzip
         },
         images: {
-          rating: getRating(getMedianRun(result, 'SpeedIndex', 'first').score_compress),
-          value: getMedianRun(result, 'SpeedIndex', 'first').score_compress,
+          rating: getRating(
+            getMedianRun(result, 'SpeedIndex', 'first').score_compress
+          ),
+          value: getMedianRun(result, 'SpeedIndex', 'first').score_compress
         },
         progJpeg: {
-          rating: getRating(getMedianRun(result, 'SpeedIndex', 'first').score_progressive_jpeg),
-          value: getMedianRun(result, 'SpeedIndex', 'first').score_progressive_jpeg,
+          rating: getRating(
+            getMedianRun(result, 'SpeedIndex', 'first').score_progressive_jpeg
+          ),
+          value: getMedianRun(result, 'SpeedIndex', 'first')
+            .score_progressive_jpeg
         },
         caching: {
-          rating: getRating(getMedianRun(result, 'SpeedIndex', 'first').score_cache),
-          value: getMedianRun(result, 'SpeedIndex', 'first').score_cache,
+          rating: getRating(
+            getMedianRun(result, 'SpeedIndex', 'first').score_cache
+          ),
+          value: getMedianRun(result, 'SpeedIndex', 'first').score_cache
         },
         cdn: {
-          rating: getRating(getMedianRun(result, 'SpeedIndex', 'first').score_cdn),
-          value: getMedianRun(result, 'SpeedIndex', 'first').score_cdn,
-        },
+          rating: getRating(
+            getMedianRun(result, 'SpeedIndex', 'first').score_cdn
+          ),
+          value: getMedianRun(result, 'SpeedIndex', 'first').score_cdn
+        }
       },
       repeatView: {
         speedIndex: {
           url: getWaterfallUrl(result, 'SpeedIndex', 'repeat'),
           value: getMedianRun(result, 'SpeedIndex', 'repeat').SpeedIndex,
-          rtt: getMedianRun(result, 'SpeedIndex', 'repeat').server_rtt,
+          rtt: getMedianRun(result, 'SpeedIndex', 'repeat').server_rtt
         },
         load: {
           url: getWaterfallUrl(result, 'loadTime', 'repeat'),
           value: getMedianRun(result, 'loadTime', 'repeat').loadTime,
-          rtt: getMedianRun(result, 'loadTime', 'repeat').server_rtt,
-        },
-      },
+          rtt: getMedianRun(result, 'loadTime', 'repeat').server_rtt
+        }
+      }
     };
   } catch (error) {
     log.error(`failed to map ${message}; ${error.message}`);
@@ -503,7 +551,7 @@ function mapResults(options, results) {
   // Britecharts Needs
   const newBarChart = [];
   const newSingleData = [];
-  Object.keys(budget).forEach((key) => {
+  Object.keys(budget).forEach(key => {
     const barChartData = [];
     if (mapped[0].firstView[key] !== undefined) {
       const actualItem = {};
@@ -542,7 +590,7 @@ function mapResults(options, results) {
     browser,
     times: {
       begin: getTime(results, 'begin').toLocaleTimeString(),
-      end: `${date.toLocaleTimeString()} on ${formattedDate}`,
+      end: `${date.toLocaleTimeString()} on ${formattedDate}`
     },
     results: mapped,
     charts: charts.map(mapChart.bind(null, clone(mapped))),
@@ -553,7 +601,7 @@ function mapResults(options, results) {
     // Sift specific
     budget,
     newBarChart,
-    newSingleData,
+    newSingleData
   };
 }
 

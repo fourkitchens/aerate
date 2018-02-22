@@ -1,12 +1,13 @@
 ((document, window, d3, britecharts, tooltip) => {
-  function createHorizontalBarChart(budgetData, briteElementChart, colors) { // eslint-disable-line
+  function createHorizontalBarChart(budgetData, briteElementChart, colors) {
+    // eslint-disable-line
     const tooltip = new britecharts.miniTooltip(); // eslint-disable-line
     let barChart = new britecharts.bar(); // eslint-disable-line
     const margin = {
       left: 80,
       right: 20,
       top: 20,
-      bottom: 30,
+      bottom: 30
     };
     const barContainer = d3.select(briteElementChart[0]);
     const getWidth = barContainer.node().getBoundingClientRect().width;
@@ -48,12 +49,15 @@
 
   let i = 0;
   let len = 0;
+  let colors = ['#ffce00', '#6aedc7'];
+  const newBarChart = [];
+  const budgetData = newBarChart[i];
+  const briteElement = document.querySelectorAll('.chart');
+  const briteElementChart = briteElement[i].querySelectorAll(
+    '.chart__barchart'
+  );
+
   function createBarChart() {
-    const newBarChart = [];
-    let colors = ['#ffce00', '#6aedc7'];
-    const briteElement = document.querySelectorAll('.chart');
-    const briteElementChart = briteElement[i].querySelectorAll('.chart__barchart');
-    const budgetData = newBarChart[i];
     const tooltipItem = briteElement[i].querySelectorAll('.metadata-group');
     const tooltipContainer = d3.select(tooltipItem[0]);
     tooltipContainer.datum([]).call(tooltip);
