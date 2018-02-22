@@ -1,6 +1,7 @@
 {
   "name": "sift",
-  "description": "Measure frontend performance against a budget using lovely charts in a browser",
+  "description":
+    "Measure frontend performance against a budget using lovely charts in a browser",
   "version": "0.0.1",
   "author": "Evan Willhite <evan@fourkitchens.com> (http://fourkitchens.com/)",
   "devDependencies": {
@@ -31,10 +32,7 @@
     "sift": "./index.js"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
-      "prettier --single-quote --write",
-      "git add"
-    ]
+    "**/*.{js,jsx,json,css}": ["prettier --single-quote --write", "git add"]
   },
   "scripts": {
     "sift": "node index.js",
