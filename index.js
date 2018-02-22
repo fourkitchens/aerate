@@ -2,6 +2,6 @@
 
 const wpt = require('./wpt');
 
-function sift(options) {
+function sift(options) { // eslint-disable-line
   wpt.wpt(options);
 }
