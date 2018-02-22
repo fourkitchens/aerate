@@ -4,6 +4,8 @@
   "version": "0.0.1",
   "author": "Evan Willhite <evan@fourkitchens.com> (http://fourkitchens.com/)",
   "devDependencies": {
+    "@commitlint/cli": "^6.1.0",
+    "@commitlint/config-angular": "^6.1.0",
     "eslint": "^4.18.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
@@ -37,6 +39,7 @@
   "scripts": {
     "sift": "node index.js",
     "prettier": "prettier --single-quote --write \"**/*.{js,jsx}\"",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
     "lint": "eslint --ext .jsx,.js .",
     "precommit": "lint-staged && yarn lint",
     "postinstall": "./scripts/sift-map.sh"
