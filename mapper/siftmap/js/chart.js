@@ -1,8 +1,5 @@
-((document, window, d3, britecharts, tooltip, newBarChart) => {
-  let i = 0;
-  let len = 0;
-
-  function createHorizontalBarChart() { // eslint-disable-line
+((document, window, d3, britecharts, tooltip) => {
+  function createHorizontalBarChart(budgetData, briteElementChart, colors) { // eslint-disable-line
     const tooltip = new britecharts.miniTooltip(); // eslint-disable-line
     let barChart = new britecharts.bar(); // eslint-disable-line
     const margin = {
@@ -49,7 +46,10 @@
     // window.addEventListener('resize', redrawChart);
   }
 
-  for (i = 0, len = newBarChart.length; i < len; i += 1) {
+  let i = 0;
+  let len = 0;
+  function createBarChart() {
+    const newBarChart = [];
     let colors = ['#ffce00', '#6aedc7'];
     const briteElement = document.querySelectorAll('.chart');
     const briteElementChart = briteElement[i].querySelectorAll('.chart__barchart');
@@ -85,6 +85,10 @@
         statusSpan[0].textContent = ' Failed';
       }
     }
-    createHorizontalBarChart();
+  }
+
+  for (i = 0, len = newBarChart.length; i < len; i += 1) {
+    createBarChart(colors);
+    createHorizontalBarChart(budgetData, briteElementChart, colors);
   }
 })();
