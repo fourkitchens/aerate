@@ -2,4 +2,4 @@
 
 const wpt = require('./wpt');
 
-export default options => wpt.wpt(options);
+ module.exports = options => wpt.wpt(options);
