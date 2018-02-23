@@ -43,19 +43,6 @@ function getTime(results, key) {
   return results.times[key];
 }
 
-function getBrowser(results) {
-  try {
-    const data = results.data[0].render.data.median.firstView;
-
-    if (check.unemptyString(data.browser_name)) {
-      return (`${data.browser_name} ${data.browser_version}`).trim();
-    }
-  } catch (error) {
-    console.log(error);
-  }
-  return true;
-}
-
 function getViewResult(view, result) {
   return result[view + 'View']; // eslint-disable-line
 }
@@ -280,38 +267,6 @@ function getWaterfallUrl(result, medianMetric, view) {
   return getUrls(result, medianMetric, view).details;
 }
 
-function getRating(score) {
-  if (score >= 80 || score === -1) {
-    return 'good';
-  }
-
-  if (score >= 50) {
-    return 'okay';
-  }
-
-  return 'bad';
-}
-
-function getFirstByteScore(data) {
-  if (!data.server_rtt) {
-    return 0;
-  }
-
-  const actual = data.TTFB;
-  const target = data.server_rtt * 3;
-  const difference = actual - target;
-
-  if (difference <= 0) {
-    return 100;
-  }
-
-  if (difference >= 1000) {
-    return 0;
-  }
-
-  return 100 - Math.round(difference / 10);
-}
-
 
 function mapResult(log, result) {
   let message;
@@ -330,11 +285,6 @@ function mapResult(log, result) {
       url: result.url,
       optimisationsUrl: getOptimisationsUrl(result, 'SpeedIndex', 'first'),
       firstView: {
-        speedIndex: {
-          url: getWaterfallUrl(result, 'SpeedIndex', 'first'),
-          value: getMedianRun(result, 'SpeedIndex', 'first').SpeedIndex,
-          rtt: getMedianRun(result, 'SpeedIndex', 'first').server_rtt,
-        },
         firstByte: {
           url: getWaterfallUrl(result, 'TTFB', 'first'),
           value: getMedianRun(result, 'TTFB', 'first').TTFB,
@@ -345,13 +295,18 @@ function mapResult(log, result) {
           value: getMedianRun(result, 'render', 'first').render,
           rtt: getMedianRun(result, 'render', 'first').server_rtt,
         },
+        speedIndex: {
+          url: getWaterfallUrl(result, 'SpeedIndex', 'first'),
+          value: getMedianRun(result, 'SpeedIndex', 'first').SpeedIndex,
+          rtt: getMedianRun(result, 'SpeedIndex', 'first').server_rtt,
+        },
+        docTime: {
+          value: getMedianRun(result, 'SpeedIndex', 'first').docTime,
+        },
         load: {
           url: getWaterfallUrl(result, 'loadTime', 'first'),
           value: getMedianRun(result, 'loadTime', 'first').loadTime,
           rtt: getMedianRun(result, 'loadTime', 'first').server_rtt,
-        },
-        docTime: {
-          value: getMedianRun(result, 'SpeedIndex', 'first').docTime,
         },
         bytes: {
           url: getWaterfallUrl(result, 'SpeedIndex', 'first'),
@@ -364,46 +319,6 @@ function mapResult(log, result) {
         connections: {
           url: getWaterfallUrl(result, 'SpeedIndex', 'first'),
           value: getMedianRun(result, 'SpeedIndex', 'first').connections,
-        },
-        targetFirstByte: {
-          rating: getRating(getFirstByteScore(getMedianRun(result, 'SpeedIndex', 'first'))),
-          value: getFirstByteScore(getMedianRun(result, 'SpeedIndex', 'first')),
-        },
-        persistent: {
-          rating: getRating(getMedianRun(result, 'SpeedIndex', 'first')['score_keep-alive']),
-          value: getMedianRun(result, 'SpeedIndex', 'first')['score_keep-alive'],
-        },
-        gzip: {
-          rating: getRating(getMedianRun(result, 'SpeedIndex', 'first').score_gzip),
-          value: getMedianRun(result, 'SpeedIndex', 'first').score_gzip,
-        },
-        images: {
-          rating: getRating(getMedianRun(result, 'SpeedIndex', 'first').score_compress),
-          value: getMedianRun(result, 'SpeedIndex', 'first').score_compress,
-        },
-        progJpeg: {
-          rating: getRating(getMedianRun(result, 'SpeedIndex', 'first').score_progressive_jpeg),
-          value: getMedianRun(result, 'SpeedIndex', 'first').score_progressive_jpeg,
-        },
-        caching: {
-          rating: getRating(getMedianRun(result, 'SpeedIndex', 'first').score_cache),
-          value: getMedianRun(result, 'SpeedIndex', 'first').score_cache,
-        },
-        cdn: {
-          rating: getRating(getMedianRun(result, 'SpeedIndex', 'first').score_cdn),
-          value: getMedianRun(result, 'SpeedIndex', 'first').score_cdn,
-        },
-      },
-      repeatView: {
-        speedIndex: {
-          url: getWaterfallUrl(result, 'SpeedIndex', 'repeat'),
-          value: getMedianRun(result, 'SpeedIndex', 'repeat').SpeedIndex,
-          rtt: getMedianRun(result, 'SpeedIndex', 'repeat').server_rtt,
-        },
-        load: {
-          url: getWaterfallUrl(result, 'loadTime', 'repeat'),
-          value: getMedianRun(result, 'loadTime', 'repeat').loadTime,
-          rtt: getMedianRun(result, 'loadTime', 'repeat').server_rtt,
         },
       },
     };
@@ -422,39 +337,43 @@ function mapResults(options, results) {
     locationParts = options.location.split('_');
   }
 
-  const browser = getBrowser(results) || locationParts[1] || 'unknown';
   const mapped = results.data.map(mapResult.bind(null, options.log));
 
   // Britecharts Needs
   const newBarChart = [];
   const newSingleData = [];
-  Object.keys(budget).forEach((key) => {
-    const barChartData = [];
-    if (mapped[0].firstView[key] !== undefined) {
-      const actualItem = {};
-      // Measurement
-      // Measurement Value
-      actualItem.percentage = mapped[0].firstView[key].value;
-      // Measurement Name
-      actualItem.name = 'Results';
-      actualItem.id = 1;
-      barChartData.push(actualItem);
-      // Budget
-      const budgetItem = {};
-      budgetItem.percentage = parseInt(budget[key].value, 10);
-      budgetItem.name = 'Budget';
-      budgetItem.id = 0;
-      if (actualItem.percentage > budgetItem.percentage) {
-        budgetItem.class = 'over-budget';
-      } else {
-        budgetItem.class = '';
+  mapped.forEach((datum, index) => {
+    Object.keys(budget).forEach((key) => {
+      const barChartData = [];
+      if (mapped[index].firstView[key] !== undefined) {
+        const actualItem = {};
+        // Measurement
+        // Measurement Value
+        actualItem.percentage = mapped[index].firstView[key].value;
+        // Measurement Name
+        actualItem.name = 'Results';
+        actualItem.id = 1;
+        barChartData.push(actualItem);
+        mapped[index].firstView[key].testName = budget[key].name;
+        mapped[index].firstView[key].testDescription = budget[key].description;
+        // Budget
+        const budgetItem = {};
+        budgetItem.percentage = parseInt(budget[key].value, 10);
+        budgetItem.name = 'Budget';
+        budgetItem.id = 0;
+        if (actualItem.percentage > budgetItem.percentage) {
+          budgetItem.class = 'over-budget';
+        } else {
+          budgetItem.class = '';
+        }
+        if (key === 'bytes' || key === 'requests' || key === 'connections') {
+          budgetItem.class = 'single-data';
+        }
+        barChartData.push(budgetItem);
       }
-      if (key === 'bytes' || key === 'requests' || key === 'connections') {
-        budgetItem.class = 'single-data';
-      }
-      barChartData.push(budgetItem);
-    }
-    newBarChart.push(barChartData);
+      newBarChart.push(barChartData);
+    });
+    mapped.push(newBarChart);
   });
 
   return {
@@ -464,20 +383,18 @@ function mapResults(options, results) {
     count: options.count,
     location: locationParts[0],
     connection: options.connection,
-    browser,
     times: {
       begin: getTime(results, 'begin').toLocaleTimeString(),
       end: `${date.toLocaleTimeString()} on ${formattedDate}`,
     },
-    results: mapped,
     charts: charts.map(mapChart.bind(null, clone(mapped))),
     chartWidth,
     chartMargin,
     barHeight,
     labelOffset,
     // Sift specific
+    results: mapped,
     budget,
-    newBarChart,
     newSingleData,
   };
 }
