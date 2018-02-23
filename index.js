@@ -19,6 +19,11 @@ sift({
       url: 'https://www.yahoo.com/',
       type: 'homepage',
     },
+    {
+      name: 'Bing.com',
+      url: 'https://www.bing.com/',
+      type: 'homepage',
+    },
   ],
   count: 1,
   ui: true,

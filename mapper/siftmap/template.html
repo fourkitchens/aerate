@@ -12,37 +12,41 @@
     <link href="https://fonts.googleapis.com/css?family=Arimo|Poiret+One|Source+Code+Pro" rel="stylesheet">
   </head>
   <body>
-    <h1>Sift</h1>
-    <div class="content">
+    <div class="wrapper">
+      <header class="header">
       <ul class="menu">
         {{#each results}}
-          <li><a href="#{{ this.name }}">{{ this.name }} {{ this.type }}</a></li>
+          <li><a href="#{{ this.name }}" class="menu__link">{{ this.name }} {{ this.type }}</a></li>
         {{/each}}
       </ul>
+      </header>
 
-      <div id="britecharts">
-        {{#each results}}
-          <div class="britechart-test" id="{{ this.name }}">
-            <h2 class="britechart-test__header">{{ this.name }} {{ this.type }}</h2>
-          {{#each firstView}}
-            <div class="chart chart--{{ @key }}">
-              <div class="chart__meta">
-                <h2 class="chart__title">{{ this.testName }}</h2>
-                <p class="chart__description">{{ this.testDescription }}</p>
-                <span class="chart__stats">Budget:<span class="chart__budget"></span></span>
-                <span class="chart__stats">Results:<span class="chart__results"></span></span>
-                <span class="chart__stats"><span class="chart__passed">Passed</span></span>
+      <div class="content">
+        <h1>Sift</h1>
+        <div id="britecharts">
+          {{#each results}}
+            <div class="britechart-test" id="{{ this.name }}">
+              <h2 class="britechart-test__header">{{ this.name }} {{ this.type }}</h2>
+            {{#each firstView}}
+              <div class="chart chart--{{ @key }}">
+                <div class="chart__meta">
+                  <h2 class="chart__title">{{ this.testName }}</h2>
+                  <p class="chart__description">{{ this.testDescription }}</p>
+                  <span class="chart__stats">Budget:<span class="chart__budget"></span></span>
+                  <span class="chart__stats">Results:<span class="chart__results"></span></span>
+                  <span class="chart__stats"><span class="chart__passed">Passed</span></span>
+                </div>
+                <div class="chart__data">
+                  <div class="chart__barchart"></div>
+                  <span class="chart__label">milliseconds</span>
+                </div>
               </div>
-              <div class="chart__data">
-                <div class="chart__barchart"></div>
-                <span class="chart__label">milliseconds</span>
-              </div>
+              {{/each}}
             </div>
-            {{/each}}
-          </div>
-        {{/each}}
-      </div>
+          {{/each}}
+        </div>
 
+      </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/britecharts/2.0.0/bundled/britecharts.min.js"></script>
@@ -139,5 +143,6 @@
       }
     }
     </script>
+    <script src="mapper/siftmap/js/menu.js"></script>
   </body>
 </html>
