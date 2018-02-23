@@ -163,11 +163,14 @@ svg {
 * charts
 */
 .britechart-test {
-  display: none;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
 }
 
 .britechart-test--active {
-  display: block;
+  height: auto;
+  visibility: visible;
 }
 
 .britechart-test__header {
