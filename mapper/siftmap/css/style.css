@@ -74,6 +74,12 @@ ul li {
   padding: 2em 0;
   position: fixed;
   width: 300px;
+  transition: .3s all;
+  z-index: 2;
+}
+
+.header--active {
+  left: 0;
 }
 
 @media (min-width: 1000px) {
@@ -158,6 +164,22 @@ svg {
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
   overflow: hidden;
+}
+.mobile-menu {
+  font-size: 1.2rem;
+  color: #333;
+  background-color: #fff;
+  padding: .5em 1em;
+  position: absolute;
+  top: 120px;
+  right: 8%;
+}
+
+@media (min-width: 1000px) {
+  .mobile-menu {
+    height: 0;
+    visibility:hidden;
+  }
 }
 /*
 * charts

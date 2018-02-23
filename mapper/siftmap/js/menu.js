@@ -1,6 +1,7 @@
 ((document) => {
   const links = document.querySelectorAll('.menu__link');
   const tests = document.querySelectorAll('.britechart-test');
+  const header = document.getElementById('header');
   let i = 0;
 
   const handleClick = (link, test) => {
@@ -16,6 +17,7 @@
       }
       link.classList.add('menu__link--active');
       test.classList.add('britechart-test--active');
+      header.classList.remove('header--active');
     });
   };
 
@@ -26,4 +28,10 @@
     tests[0].classList.add('britechart-test--active');
     handleClick(link, test);
   }
+
+  const mobileMenu = document.getElementById('mobile-menu');
+  mobileMenu.addEventListener('click', (e) => {
+    e.preventDefault();
+    header.classList.toggle('header--active');
+  });
 })(document);
