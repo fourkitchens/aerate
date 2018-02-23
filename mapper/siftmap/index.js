@@ -341,7 +341,6 @@ function mapResults(options, results) {
 
   // Britecharts Needs
   const newBarChart = [];
-  const newSingleData = [];
   mapped.forEach((datum, index) => {
     Object.keys(budget).forEach((key) => {
       const barChartData = [];
@@ -376,6 +375,16 @@ function mapResults(options, results) {
     mapped.push(newBarChart);
   });
 
+  const tests = [];
+  const mappedResults = [];
+  mapped.forEach((index) => {
+    if (Array.isArray(index)) {
+      tests.push(index);
+    } else {
+      mappedResults.push(index);
+    }
+  });
+
   return {
     application: packageInfo.name,
     version: packageInfo.version,
@@ -393,9 +402,8 @@ function mapResults(options, results) {
     barHeight,
     labelOffset,
     // Sift specific
-    results: mapped,
-    budget,
-    newSingleData,
+    results: mappedResults,
+    tests,
   };
 }
 
