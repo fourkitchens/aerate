@@ -23,6 +23,7 @@
       <div id="britecharts">
         {{#each results}}
           <div class="britechart-test" id="{{ this.name }}">
+            <h2 class="britechart-test__header">{{ this.name }} {{ this.type }}</h2>
           {{#each firstView}}
             <div class="chart chart--{{ @key }}">
               <div class="chart__meta">

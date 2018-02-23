@@ -119,6 +119,10 @@ svg {
 /*
 * charts
 */
+.britechart-test__header {
+  background-color: #fff;
+  padding: 1em 2.3em;
+}
 
 .chart {
   align-items: center;
