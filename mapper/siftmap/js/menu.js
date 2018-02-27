@@ -1,16 +1,14 @@
-(window => {
-  const links = window.document.querySelectorAll('.menu__link');
-  const tests = window.document.querySelectorAll('.britechart-test');
-  const header = window.document.getElementById('header');
+(document => {
+  const links = document.querySelectorAll('.menu__link');
+  const tests = document.querySelectorAll('.britechart-test');
+  const header = document.getElementById('header');
   let i = 0;
 
   const handleClick = (link, test) => {
     link.addEventListener('click', e => {
       e.preventDefault();
-      const active = window.document.querySelector('.menu__link--active');
-      const activeTest = window.document.querySelector(
-        '.britechart-test--active'
-      );
+      const active = document.querySelector('.menu__link--active');
+      const activeTest = document.querySelector('.britechart-test--active');
       if (active) {
         active.classList.remove('menu__link--active');
       }
@@ -31,9 +29,9 @@
     handleClick(link, test);
   }
 
-  const mobileMenu = window.document.getElementById('mobile-menu');
+  const mobileMenu = document.getElementById('mobile-menu');
   mobileMenu.addEventListener('click', e => {
     e.preventDefault();
     header.classList.toggle('header--active');
   });
-})();
+})(document); // eslint-disable-line
