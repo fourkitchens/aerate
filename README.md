@@ -6,11 +6,12 @@ Measure frontend performance against a budget with an option to view them using 
 ## Usage
 
 1. Get a [WebPageTest.org API key](https://www.webpagetest.org/getkey.php)
-2. Require Sift
+2. `npm install fourkitchens/sift` or `yarn add fourkitchens/sift`
+3. Require Sift in your project
 ```
 const sift = require('sift');
 ```
-3. Call the function with the options (options [below](https://github.com/fourkitchens/sift#available-options))
+4. Call the function with the options (options [below](https://github.com/fourkitchens/sift#available-options))
 ```
 sift({
   key: 'YOUR_API_KEY',
@@ -23,8 +24,14 @@ sift({
   ]
 });
 ```
-
-4. (Optional) Create/copy your own budget.json file using the following format:
+5. For a shorter command, add a script to your package.json
+```
+"scripts": {
+  "sift": "node sift.js" (or whatever file you're using locally)
+}
+```
+6. `npm run sift` or `yarn sift`
+7. (Optional) Create/copy your own budget.json file using the following format:
 
 ```
 {
