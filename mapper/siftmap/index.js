@@ -329,8 +329,8 @@ function mapResult(log, result) {
 }
 
 function mapResults(options, results) {
-  const date = getTime(results, 'end');
-  const formattedDate = date.toLocaleDateString();
+  // const date = getTime(results, 'end');
+  // const formattedDate = date.toLocaleDateString();
 
   let locationParts = options.location.split(':');
   if (locationParts.length === 1) {
@@ -388,14 +388,14 @@ function mapResults(options, results) {
   return {
     application: packageInfo.name,
     version: packageInfo.version,
-    date: formattedDate,
+    // date: formattedDate,
     count: options.count,
     location: locationParts[0],
     connection: options.connection,
-    times: {
-      begin: getTime(results, 'begin').toLocaleTimeString(),
-      end: `${date.toLocaleTimeString()} on ${formattedDate}`,
-    },
+    // times: {
+    //   begin: getTime(results, 'begin').toLocaleTimeString(),
+    //   end: `${date.toLocaleTimeString()} on ${formattedDate}`,
+    // },
     charts: charts.map(mapChart.bind(null, clone(mapped))),
     chartWidth,
     chartMargin,
@@ -413,8 +413,8 @@ function map(options, results) {
   check.assert.object(results, 'invalid results');
   check.assert.array(results.data, 'invalid result data');
   check.assert.object(results.times, 'invalid result times');
-  check.assert.date(results.times.begin, 'invalid begin time');
-  check.assert.date(results.times.end, 'invalid end time');
+  // check.assert.date(results.times.begin, 'invalid begin time');
+  // check.assert.date(results.times.end, 'invalid end time');
 
   return render(mapResults(options, results));
 }

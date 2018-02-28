@@ -106,9 +106,7 @@ const wptRun = (options, ngrok) => {
     });
 
     // If UI
-    console.log(result);
     if (options.ui === true) {
-      console.log(result);
       wpt.map({
         mapper: 'siftmap',
       }, result).then((mapped) => {

@@ -41,25 +41,28 @@ gulp.task('css', (done) => {
 //   openPort = port;
 // });
 
-gulp.task('default', () => {
+gulp.task('html', () => {
   wpt.map({
     mapper: 'siftmap',
   }, fakeResults).then((mapped) => {
     fs.writeFileSync(path.join(__dirname, 'results.html'), mapped);
-    browserSync.init({
-      injectChanges: true,
-      server: {
-        baseDir: __dirname,
-      },
-      startPath: './results.html',
-      ui: false,
-      open: true,
-      port: 3010,
-    });
   }).catch((error) => {
     console.log(error.stack);
   });
+});
+
+gulp.task('default', ['css', 'html'], () => {
+  browserSync.init({
+    injectChanges: true,
+    server: {
+      baseDir: __dirname,
+    },
+    startPath: './results.html',
+    ui: false,
+    open: true,
+    port: 3010,
+  });
 
   gulp.watch('./mapper/siftmap/css/dev/**/*.css', ['css']);
-  gulp.watch('./mapper/siftmap/template.html', ['default']);
+  gulp.watch('./mapper/siftmap/template.html').on('change', browserSync.reload);
 });
