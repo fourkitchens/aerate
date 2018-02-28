@@ -110,6 +110,7 @@ const wptRun = (options, ngrok) => {
       wpt.map({
         mapper: 'siftmap',
       }, result).then((mapped) => {
+        console.log(mapped);
         fs.writeFileSync(path.join(__dirname, 'results.html'), mapped);
         browserSync.init({
           server: {
