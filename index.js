@@ -21,5 +21,4 @@ sift({
     },
   ],
   count: 1,
-  ui: true,
 });

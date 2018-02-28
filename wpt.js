@@ -106,11 +106,12 @@ const wptRun = (options, ngrok) => {
     });
 
     // If UI
+    console.log(result);
     if (options.ui === true) {
+      console.log(result);
       wpt.map({
         mapper: 'siftmap',
       }, result).then((mapped) => {
-        console.log(mapped);
         fs.writeFileSync(path.join(__dirname, 'results.html'), mapped);
         browserSync.init({
           server: {
