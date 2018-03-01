@@ -30,6 +30,7 @@ body {
 h1, h2, h3 {
   display: block;
   font-weight: bold;
+  font-family: $sans;
 }
 
 h1, h2 {
@@ -37,14 +38,18 @@ h1, h2 {
 }
 
 h1 {
-  color: #313131;
-  font: 13.2em 'Poiret One', cursive;
-  padding: 64px;
+  color: $grayDark;
+  font-size: 10.2em;
+}
+h1.title__main {
+  font-family: $serif;
+  padding: 16px 64px;
+  background-color: $white;
 }
 
 h2 {
   margin: 1em 0 0.5em;
-  font: 2.8em 'Arimo', sans-serif;
+  font-size: 2.4em;
   text-transform: uppercase;
 }
 
@@ -198,9 +203,14 @@ svg {
 }
 
 .britechart-test__header {
+  color: $gray;
   background-color: #fff;
   margin-top: 0;
   padding: 1em 2.3em;
+  border-bottom: 1px solid $grayDark;
+  font-weight: normal;
+  text-transform: none;
+  font-size: 4em;
 }
 
 .chart {
@@ -214,7 +224,9 @@ svg {
   color: #fff;
   content: "✓";
   display: block;
-  font: 63em/.59 'Source Code Pro', monospace;
+  font-size: 63em;
+  line-height: 1;
+  font-family: $sans;
   opacity: .25;
   position: absolute;
   top: 0;
