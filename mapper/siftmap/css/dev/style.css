@@ -13,18 +13,11 @@ html, body {
   height: 100%;
 }
 
-html {
-  font-size: 100.01%;
-}
-
 body {
-  background: #1FA2FF;
-  background: -webkit-linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF);
-  background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF);
   font-family: helvetica, arial, sans-serif;
   font-size: 62.5%;
   line-height: 1.5;
-  color: #333;
+  color: $grayMid;
 }
 
 h1, h2, h3 {
@@ -39,7 +32,7 @@ h1, h2 {
 
 h1 {
   color: $grayDark;
-  font-size: 10.2em;
+  font-size: 4rem;
 }
 h1.title__main {
   font-family: $serif;
@@ -49,17 +42,17 @@ h1.title__main {
 
 h2 {
   margin: 1em 0 0.5em;
-  font-size: 2.4em;
+  font-size: 2rem;
   text-transform: uppercase;
 }
 
 p, ol, ul {
-  margin-bottom: 1.4em;
-  font-size: 1.6em;
+  margin-bottom: $space-one-half;
+  font-size: 1.1rem;
 }
 
 ol, ul {
-  margin-left: 3em;
+  margin-left: $space;
 }
 
 ol li {
@@ -75,10 +68,10 @@ ul li {
 }
 
 .header {
-  background-color: $white;
+  background-color: $grayLight;
   height: 100%;
   left: -300px;
-  padding: 2em 0;
+  padding: $space 0;
   position: fixed;
   width: 300px;
   transition: .3s all;
@@ -126,20 +119,20 @@ ul li {
 }
 
 .menu__link {
-  background-color: #fff;
+  background-color: $grayLight;
   border-bottom: 1px solid;
-  color: #333;
+  color: $grayMid;
   display: block;
-  font-size: 1.2rem;
-  padding: 1em;
+  font-size: 1rem;
+  padding: $space;
 
   &:hover {
-    background-color: #eee;
+    background-color: darken($grayLight 20%);
   }
 }
 
 .menu__link--active {
-  background-color: #ccc;
+  background-color: $white;
 }
 
 a {
@@ -152,15 +145,15 @@ code {
   display: inline-block;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 0.15em 0.25em 0 0.25em;
+  padding: $space-one-third $space-one-half 0;
   border-radius: 3px;
   background-color: #e5dfd6;
   font-family: Consolas, Monaco, Menlo, "Lucida Console", monospace;
-  font-size: 1em;
+  font-size: 1rem;
 }
 
 svg {
-  margin: 1.2em 0;
+  margin: $space 0;
   page-break-inside: avoid;
 }
 
@@ -174,9 +167,9 @@ svg {
 }
 .mobile-menu {
   font-size: 1.2rem;
-  color: #333;
-  background-color: #fff;
-  padding: .5em 1em;
+  color: $grayMid;
+  background-color: $white;
+  padding: $space-one-half $space;
   position: absolute;
   top: 120px;
   right: 8%;
@@ -204,47 +197,59 @@ svg {
 
 .britechart-test__header {
   color: $gray;
-  background-color: #fff;
+  background-color: $white;
   margin-top: 0;
-  padding: 1em 2.3em;
+  padding: $space $space-quadruple;
   border-bottom: 1px solid $grayDark;
   font-weight: normal;
   text-transform: none;
-  font-size: 4em;
+  font-size: 2.2rem;
 }
 
 .chart {
   align-items: center;
   overflow: hidden;
-  padding: 5em 7em;
+  padding: $space-quadruple;
   position: relative;
 }
 
+.chart + .chart {
+  border-top: 1px dotted $grayLight;
+  margin-top: $space-triple;
+}
+
 .chart::before {
-  color: #fff;
+  color: $green;
   content: "✓";
   display: block;
-  font-size: 63em;
+  font-size: 4rem;
   line-height: 1;
   font-family: $sans;
-  opacity: .25;
+  opacity: .45;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 16px;
+  left: 64px;
 }
 
-.over-budget:before {
-  content: "X";
+.over-budget {
+  &::before {
+    content: "X";
+    color: $red;
+  }
+  &::after {
+    background: rgba(182,75,78,0.09);
+    top: 0;
+    content: '';
+    display: block;
+    height: 50%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    transform: skewY(45deg);
+    transform-origin: 100%;
+    z-index: -1;
+  }
 }
-
-.chart:nth-child(2n+1) {
-  background-color: rgba(253, 252, 252, 0.59);
-}
-
-.over-budget:nth-child(1n) {
-  background-color: rgba(251, 165, 165, 0.65);
-}
-
 @media only screen and (min-width : 980px) {
   .chart {
     display: flex;
@@ -254,23 +259,29 @@ svg {
   }
 
   .chart__meta {
-    padding-right: 6em;
+    padding-right: $space;
   }
 }
 
+.chart__description {
+  margin: $space 0;
+  padding-bottom: $space-double;
+  border-bottom: 1px solid $grayLight;
+}
 .chart__stats {
-  font-size: 1.4em;
+  font-size: 1rem;
   font-weight: bold;
-  margin-right: 1em;
+  margin-right: $space;
 }
 
 .chart__stats span {
   font-weight: normal;
 }
 
-.chart__passed {
+span.chart__passed {
   font-weight: bold;
   text-transform: uppercase;
+  font-size: 1.3rem;
 }
 
 .chart__data {
@@ -278,18 +289,15 @@ svg {
 }
 
 .chart__label {
-  bottom: 2em;
+  bottom: $space;
   color: #8f8f8f;
   display: block;
-  font-size: 1.4em;
-  left: 50%;
-  margin-left: -50px;
-  position: absolute;
+  font-size: 1rem;
   text-align: center;
 }
 
 .chart__barchart {
-  padding: 3em 0 3.5em;
+  padding: $space-one-half 0;
 }
 
 /* Single Data Ones */

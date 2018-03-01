@@ -7,10 +7,25 @@ $sans: $rubik;
 
 /* colors */
 $white: #fff;
+
 $gray: #A3A3A3;
 $grayMid: #333;
 $grayLight: #E8E8E8;
 $grayDark: #313131;
 
 $green: #61B64B;
+$greenDark: #448234;
+$greenLight: #ACD8A0;
+
 $red: #B64B4E;
+$redDark:#823437;
+$redLight:#DBA7A9;
+
+/* space */
+$space: 15px;
+$space-double: 30px;
+$space-triple: 45px;
+$space-quadruple: 60px;
+
+$space-one-half: $space/2;
+$space-one-third: $space/3;
