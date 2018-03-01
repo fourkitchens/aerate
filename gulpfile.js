@@ -16,6 +16,7 @@ const wpt = require('webpagetest-mapper');
 const fs = require('fs');
 const path = require('path');
 const fakeResults = require('./mapper/fake-results');
+const exec = require('child_process').exec; // eslint-disable-line
 
 gulp.task('css', (done) => {
   const plugins = [
@@ -64,5 +65,10 @@ gulp.task('default', ['css', 'html'], () => {
   });
 
   gulp.watch('./mapper/siftmap/css/dev/**/*.css', ['css']);
-  gulp.watch('./mapper/siftmap/template.html').on('change', browserSync.reload);
+  // No idea why calling gulp html doesn't just work, but this does.
+  gulp.watch('./mapper/siftmap/template.html').on('change', () => {
+    exec('gulp html', () => {
+      browserSync.reload();
+    });
+  });
 });
