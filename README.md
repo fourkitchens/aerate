@@ -54,12 +54,21 @@ See [`/docs/stats.md`](https://github.com/fourkitchens/sift/blob/master/docs/sta
 5. `ui`: OPTIONAL open Sift UI in browser vs. console (defaults to false)
 6. `localPort`: OPTIONAL for local testing, enter your environment port
 
+## How do I set up the dev environment?
+
+1. [x] clone repo, cd into it and run `yarn` to install dependencies
+1. [ ] Run `gulp` (opens up the UI with fake data populated from `mapper/fake-results.json`)
+
+PostCSS usage:
+If you would like any new [PostCSS plugins](https://github.com/postcss/postcss/blob/master/docs/plugins.md) installed, the steps are as follows:
+
+1. `npm install --save-dev PLUGIN_NAME`
+1. Add your plugin to gulpfile.js at the top [like the others](https://github.com/fourkitchens/sift/blob/0be17524b601d649c038bd113ca756ada4bb19ca/gulpfile.js#L10) and reference that addition in the [postCSS call
+](https://github.com/fourkitchens/sift/blob/0be17524b601d649c038bd113ca756ada4bb19ca/gulpfile.js#L27)
+
 
 ## TODO
 
-1. Multiple tests in UI
-1. Add server response time
-1. Possibly subtract server response time in data to return better results?
 1. Responsive charts
 1. Fix webpagetest-mapper install warnings (node-gyp related?)
 1. Email results on a regular basis (separate tool likely)
