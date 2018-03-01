@@ -1,3 +1,5 @@
+@import "_vars.css";
+
 html, body, div, h1, h2, h3, p, a, abbr, ol, ul, li, table, caption, thead, tbody, tr, th, td, section, code {
   margin: 0;
   padding: 0;
@@ -68,7 +70,7 @@ ul li {
 }
 
 .header {
-  background-color: #fff;
+  background-color: $white;
   height: 100%;
   left: -300px;
   padding: 2em 0;
@@ -125,14 +127,14 @@ ul li {
   display: block;
   font-size: 1.2rem;
   padding: 1em;
+
+  &:hover {
+    background-color: #eee;
+  }
 }
 
 .menu__link--active {
   background-color: #ccc;
-}
-
-.menu__link:hover {
-  background-color: #eee;
 }
 
 a {
