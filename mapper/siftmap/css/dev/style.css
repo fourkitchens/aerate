@@ -26,10 +26,6 @@ h1, h2, h3 {
   font-family: $sans;
 }
 
-h1, h2 {
-  letter-spacing: 1px;
-}
-
 h1 {
   color: $grayDark;
   font-size: 4rem;
@@ -125,9 +121,10 @@ ul li {
   display: block;
   font-size: 1rem;
   padding: $space;
+  font-weight: bold;
 
   &:hover {
-    background-color: darken($grayLight 20%);
+    background-color: $grayMid;
   }
 }
 
@@ -211,6 +208,42 @@ svg {
   overflow: hidden;
   padding: $space-quadruple;
   position: relative;
+  &::after {
+    background: rgba(97,182,75,0.09);
+    top: 0;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    transform: skewY(-45deg);
+    transform-origin: 0;
+    z-index: -1;
+  }
+}
+
+.chart__meta {
+  background-color:rgba(255,255,255,0.8);
+  padding: $space-double;
+}
+
+.chart--bytes,
+.chart--requests,
+.chart--connections {
+  &::after {
+    background: rgba(232,232,232,0.6);
+    top: 0;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    transform: skewY(-45deg);
+    transform-origin: 0;
+    z-index: -1;
+  }
 }
 
 .chart + .chart {
@@ -220,20 +253,19 @@ svg {
 
 .chart::before {
   color: $green;
-  content: "✓";
+  content: '\2691';
   display: block;
   font-size: 4rem;
   line-height: 1;
   font-family: $sans;
-  opacity: .45;
   position: absolute;
-  top: 16px;
-  left: 64px;
+  top: $space;
+  left: $space-quadruple;
 }
 
 .over-budget {
   &::before {
-    content: "X";
+    content: '\2716';
     color: $red;
   }
   &::after {
@@ -241,15 +273,16 @@ svg {
     top: 0;
     content: '';
     display: block;
-    height: 50%;
+    height: 100%;
     left: 0;
     position: absolute;
     right: 0;
-    transform: skewY(45deg);
-    transform-origin: 100%;
+    transform: skewY(-45deg);
+    transform-origin: 0;
     z-index: -1;
   }
 }
+
 @media only screen and (min-width : 980px) {
   .chart {
     display: flex;

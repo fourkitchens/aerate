@@ -20,15 +20,12 @@ body {
   font-family: helvetica, arial, sans-serif;
   font-size: 62.5%;
   line-height: 1.5;
-  color: #333;
+  color: ##C4C4C4;
 }
 h1, h2, h3 {
   display: block;
   font-weight: bold;
   font-family: 'Rubik', helvetica, arial, sans-serif;
-}
-h1, h2 {
-  letter-spacing: 1px;
 }
 h1 {
   color: #313131;
@@ -110,13 +107,14 @@ ul li {
 .menu__link {
   background-color: #E8E8E8;
   border-bottom: 1px solid;
-  color: #333;
+  color: ##C4C4C4;
   display: block;
   font-size: 1rem;
   padding: 15px;
+  font-weight: bold;
 }
 .menu__link:hover {
-    background-color: darken(#E8E8E8 20%);
+    background-color: ##C4C4C4;
   }
 .menu__link--active {
   background-color: #fff;
@@ -150,7 +148,7 @@ svg {
 }
 .mobile-menu {
   font-size: 1.2rem;
-  color: #333;
+  color: ##C4C4C4;
   background-color: #fff;
   padding: 15px/2 15px;
   position: absolute;
@@ -193,24 +191,57 @@ svg {
   padding: 60px;
   position: relative;
 }
+.chart::after {
+    background: rgba(97,182,75,0.09);
+    top: 0;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    -webkit-transform: skewY(-45deg);
+            transform: skewY(-45deg);
+    -webkit-transform-origin: 0;
+            transform-origin: 0;
+    z-index: -1;
+  }
+.chart__meta {
+  background-color:rgba(255,255,255,0.8);
+  padding: 30px;
+}
+.chart--bytes::after, .chart--requests::after, .chart--connections::after {
+    background: rgba(232,232,232,0.6);
+    top: 0;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    -webkit-transform: skewY(-45deg);
+            transform: skewY(-45deg);
+    -webkit-transform-origin: 0;
+            transform-origin: 0;
+    z-index: -1;
+  }
 .chart + .chart {
   border-top: 1px dotted #E8E8E8;
   margin-top: 45px;
 }
 .chart::before {
   color: #61B64B;
-  content: "✓";
+  content: '\2691';
   display: block;
   font-size: 4rem;
   line-height: 1;
   font-family: 'Rubik', helvetica, arial, sans-serif;
-  opacity: .45;
   position: absolute;
-  top: 16px;
-  left: 64px;
+  top: 15px;
+  left: 60px;
 }
 .over-budget::before {
-    content: "X";
+    content: '\2716';
     color: #B64B4E;
   }
 .over-budget::after {
@@ -218,14 +249,14 @@ svg {
     top: 0;
     content: '';
     display: block;
-    height: 50%;
+    height: 100%;
     left: 0;
     position: absolute;
     right: 0;
-    -webkit-transform: skewY(45deg);
-            transform: skewY(45deg);
-    -webkit-transform-origin: 100%;
-            transform-origin: 100%;
+    -webkit-transform: skewY(-45deg);
+            transform: skewY(-45deg);
+    -webkit-transform-origin: 0;
+            transform-origin: 0;
     z-index: -1;
   }
 @media only screen and (min-width : 980px) {
