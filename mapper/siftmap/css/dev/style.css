@@ -37,8 +37,7 @@ h1.title__main {
 }
 
 h2 {
-  margin: 1em 0 0.5em;
-  font-size: 2rem;
+  font-size: 1.8rem;
   text-transform: uppercase;
 }
 
@@ -72,6 +71,7 @@ ul li {
   width: 300px;
   transition: .3s all;
   z-index: 2;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
 }
 
 .header--active {
@@ -116,7 +116,7 @@ ul li {
 
 .menu__link {
   background-color: $grayLight;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid $gray;
   color: $grayMid;
   display: block;
   font-size: 1rem;
@@ -124,7 +124,8 @@ ul li {
   font-weight: bold;
 
   &:hover {
-    background-color: $grayMid;
+    background-color: $gray;
+    color: $white;
   }
 }
 
@@ -193,14 +194,13 @@ svg {
 }
 
 .britechart-test__header {
-  color: $gray;
+  color: $grayMid;
   background-color: $white;
   margin-top: 0;
-  padding: $space $space-quadruple;
-  border-bottom: 1px solid $grayDark;
-  font-weight: normal;
+  padding: $space $space-quadruple $space-double;
   text-transform: none;
-  font-size: 2.2rem;
+  font-size: 2.4rem;
+  font-weight: normal;
 }
 
 .chart {
@@ -208,16 +208,18 @@ svg {
   overflow: hidden;
   padding: $space-quadruple;
   position: relative;
+  background: rgba(97,182,75,0.09);
+
   &::after {
-    background: rgba(97,182,75,0.09);
-    top: 0;
-    content: '';
-    display: block;
-    height: 100%;
-    left: 0;
     position: absolute;
+    display: block;
+    content: '';
+    height: 25%;
+    width: 100%;
+    background: rgba(97,182,75,0.3);
+    top: 0;
+    left: 0;
     right: 0;
-    transform: skewY(-45deg);
     transform-origin: 0;
     z-index: -1;
   }
@@ -226,60 +228,53 @@ svg {
 .chart__meta {
   background-color:rgba(255,255,255,0.8);
   padding: $space-double;
+
+  &::before {
+    position: absolute;
+    display: block;
+    top: $space-double;
+    left: $space-quintuple;
+    color: $green;
+    content: '\2691';
+    font-family: $sans;
+    font-size: 4rem;
+    line-height: 1;
+  }
 }
 
 .chart--bytes,
 .chart--requests,
 .chart--connections {
+  background: rgba(224,224,224,0.5);
+
   &::after {
-    background: rgba(232,232,232,0.6);
-    top: 0;
-    content: '';
-    display: block;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    right: 0;
-    transform: skewY(-45deg);
-    transform-origin: 0;
-    z-index: -1;
+    background: rgba(224,224,224,1);
+  }
+
+  .chart__meta {
+    &::before {
+      color: $grayMid;
+    }
   }
 }
 
 .chart + .chart {
-  border-top: 1px dotted $grayLight;
+  border-top: 2px dotted $grayLight;
   margin-top: $space-triple;
 }
 
-.chart::before {
-  color: $green;
-  content: '\2691';
-  display: block;
-  font-size: 4rem;
-  line-height: 1;
-  font-family: $sans;
-  position: absolute;
-  top: $space;
-  left: $space-quadruple;
-}
-
 .over-budget {
-  &::before {
-    content: '\2716';
-    color: $red;
-  }
+  background: rgba(182,75,78,0.15);
+
   &::after {
-    background: rgba(182,75,78,0.09);
-    top: 0;
-    content: '';
-    display: block;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    right: 0;
-    transform: skewY(-45deg);
-    transform-origin: 0;
-    z-index: -1;
+    background: rgba(182,75,78,0.3);
+  }
+
+  .chart__meta {
+    &::before {
+      content: '\2716';
+      color: $red;
+    }
   }
 }
 
@@ -290,16 +285,12 @@ svg {
   .chart__meta, .chart__data {
     flex: 0 1 50%;
   }
-
-  .chart__meta {
-    padding-right: $space;
-  }
 }
 
 .chart__description {
   margin: $space 0;
   padding-bottom: $space-double;
-  border-bottom: 1px solid $grayLight;
+  border-bottom: 5px solid $grayLight;
 }
 .chart__stats {
   font-size: 1rem;
