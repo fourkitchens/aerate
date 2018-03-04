@@ -32,12 +32,10 @@ h1 {
 }
 h1.title__main {
   font-family: $serif;
-  padding: 16px 64px;
-  background-color: $white;
 }
 
 h2 {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   text-transform: uppercase;
 }
 
@@ -60,31 +58,28 @@ ul li {
 
 .wrapper {
   display: flex;
+  flex-flow: row wrap;
 }
 
 .header {
+  display: flex;
   background-color: $grayLight;
-  height: 100%;
-  left: -300px;
-  padding: $space 0;
+  height: $space-quintuple;
+  top: -$space-sextuple;
+  padding: $space-one-half $space-quadruple;
   position: fixed;
-  width: 300px;
+  width: 100%;
   transition: .3s all;
   z-index: 2;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+
+  @media (min-width: 1000px) {
+    top: 0;
+    position: relative;
+  }
 }
 
 .header--active {
-  left: 0;
-}
-
-@media (min-width: 1000px) {
-  .header {
-    height: auto;
-    left: 0;
-    position: relative;
-    width: 25%;
-  }
+  top: 0;
 }
 
 .content {
@@ -92,22 +87,29 @@ ul li {
   width: 100%;
 }
 
-@media (min-width: 1000px) {
-  .content {
-    clear: both;
-    width: 75%;
-  }
+.content__top {
+  display: flex;
+  align-items: center;
+  align-content: space-between;
 }
 
-@media (min-width: 1000px) {
-  .menu {
-    position: fixed;
+.title__main {
+  top: 0;
+  padding: $space $space-quadruple;
+
+  @media (max-width: 1000px) {
+    position: relative;
+    top:0;
     left: 0;
-    top: 0;
-    width: 25%;
+    background-color: $white;
+    z-index: 1;
   }
 }
-
+.menu {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
 .menu, .menu li {
   padding: 0;
   margin: 0;
@@ -121,7 +123,6 @@ ul li {
   display: block;
   font-size: 1rem;
   padding: $space;
-  font-weight: bold;
 
   &:hover {
     background-color: $gray;
@@ -130,7 +131,8 @@ ul li {
 }
 
 .menu__link--active {
-  background-color: $white;
+  background-color: $gray;
+  color: $white;
 }
 
 a {
@@ -164,13 +166,13 @@ svg {
   overflow: hidden;
 }
 .mobile-menu {
-  font-size: 1.2rem;
+  position: relative;
+  font-size: 1rem;
+  font-weight: bold;
   color: $grayMid;
-  background-color: $white;
+  background-color: $grayLight;
   padding: $space-one-half $space;
-  position: absolute;
-  top: 120px;
-  right: 8%;
+  z-index: 2;
 }
 
 @media (min-width: 1000px) {
@@ -197,10 +199,13 @@ svg {
   color: $grayMid;
   background-color: $white;
   margin-top: 0;
-  padding: $space $space-quadruple $space-double;
+  padding: $space $space-quadruple;
   text-transform: none;
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: normal;
+  @media (min-width: 1000px) {
+    display: none;
+  }
 }
 
 .chart {
@@ -283,10 +288,13 @@ svg {
     display: flex;
   }
   .chart__meta, .chart__data {
-    flex: 0 1 50%;
+    flex: 1 1 50%;
   }
 }
 
+.chart__title {
+  padding-top: $space;
+}
 .chart__description {
   margin: $space 0;
   padding-bottom: $space-double;
@@ -314,7 +322,7 @@ span.chart__passed {
 
 .chart__label {
   bottom: $space;
-  color: #8f8f8f;
+  color: $gray;
   display: block;
   font-size: 1rem;
   text-align: center;

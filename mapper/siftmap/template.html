@@ -15,16 +15,18 @@
   <body>
     <div class="wrapper">
       <header class="header" id="header">
-      <ul class="menu">
-        {{#each results}}
-          <li><a href="#{{ this.name }}" class="menu__link">{{ this.name }} {{ this.type }}</a></li>
-        {{/each}}
-      </ul>
+        <ul class="menu">
+          {{#each results}}
+            <li><a href="#{{ this.name }}" class="menu__link">{{ this.name }} {{ this.type }}</a></li>
+          {{/each}}
+        </ul>
       </header>
 
       <div class="content">
-        <h1 class="title__main">Sift</h1>
-        <a href="#" class="mobile-menu" id="mobile-menu">Menu</a>
+        <div class="content__top">
+          <h1 class="title__main">Sift</h1>
+          <a href="#" class="mobile-menu" id="mobile-menu">Menu</a>
+        </div>
         <div id="britecharts">
           {{#each results}}
             <div class="britechart-test" id="{{ this.name }}">
