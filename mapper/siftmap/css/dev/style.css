@@ -64,10 +64,10 @@ ul li {
 .header {
   display: flex;
   background-color: $grayLight;
-  height: $space-quintuple;
+  height: 0;
   top: -$space-sextuple;
   padding: $space-one-half $space-quadruple;
-  position: fixed;
+  position: relative;
   width: 100%;
   transition: .3s all;
   z-index: 2;
@@ -75,11 +75,13 @@ ul li {
   @media (min-width: 1000px) {
     top: 0;
     position: relative;
+    height: $space-quintuple;
   }
 }
 
 .header--active {
   top: 0;
+  height: $space-quintuple;
 }
 
 .content {

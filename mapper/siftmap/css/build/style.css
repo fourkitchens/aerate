@@ -65,10 +65,10 @@ ul li {
   display: -ms-flexbox;
   display: flex;
   background-color: #E8E8E8;
-  height: 5rem;
+  height: 0;
   top: -6rem;
   padding: 0.5rem 4rem;
-  position: fixed;
+  position: relative;
   width: 100%;
   -webkit-transition: .3s all;
   transition: .3s all;
@@ -77,11 +77,13 @@ ul li {
 @media (min-width: 1000px) {
 .header {
     top: 0;
-    position: relative
+    position: relative;
+    height: 5rem
 }
   }
 .header--active {
   top: 0;
+  height: 5rem;
 }
 .content {
   clear: both;
