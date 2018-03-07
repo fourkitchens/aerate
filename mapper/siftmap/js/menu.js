@@ -33,5 +33,6 @@
   mobileMenu.addEventListener('click', (e) => {
     e.preventDefault();
     header.classList.toggle('header--active');
+    mobileMenu.classList.toggle('mobile-menu--active');
   });
 })(document);

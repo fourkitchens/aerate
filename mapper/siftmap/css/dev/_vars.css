@@ -6,21 +6,29 @@ $serif: $karma;
 $sans: $rubik;
 
 /* colors */
-$white: #fff;
+$white: #FFF;
 $black: #000;
 
 $gray: #A3A3A3;
-$grayMid: #515151;
-$grayLight: #E8E8E8;
 $grayDark: #313131;
+$grayMid: #515151;
+$grayLight: #C4C4C4;
+$grayLightest: #E8E8E8;
 
 $green: #61B64B;
 $greenDark: #448234;
+$greenMid: #93cc84;
 $greenLight: #ACD8A0;
+$greenLightest: #ECF6E9;
 
 $red: #B64B4E;
 $redDark: #823437;
+$redMid: #C97C7F;
 $redLight: #DBA7A9;
+$redLightest: #F0DADB;
+
+/* widths */
+$max-width: 1400px;
 
 /* space */
 $space: 1rem;

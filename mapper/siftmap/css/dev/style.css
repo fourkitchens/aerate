@@ -29,9 +29,11 @@ h1, h2, h3 {
 h1 {
   color: $grayDark;
   font-size: 4rem;
-}
-h1.title__main {
-  font-family: $serif;
+
+  &.title__main {
+    font-family: $serif;
+    line-height: 1.15;
+  }
 }
 
 h2 {
@@ -63,10 +65,10 @@ ul li {
 
 .header {
   display: flex;
-  background-color: $grayLight;
+  background-color: $grayLightest;
   height: 0;
   top: -$space-sextuple;
-  padding: $space-one-half $space-quadruple 0;
+  padding: 0 $space-quadruple;
   position: relative;
   width: 100%;
   transition: .3s all;
@@ -76,7 +78,7 @@ ul li {
   @media (min-width: 1000px) {
     top: 0;
     position: relative;
-    height: $space-quintuple;
+    height: $space-quadruple;
   }
 }
 
@@ -85,29 +87,62 @@ ul li {
   height: $space-quintuple;
 }
 
+.title__element-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-double $space-quadruple $space-triple;
+}
+
+.title__bg {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: -$space-quadruple;
+  width: calc(100% + $space-quintuple);
+  height: 100%;
+  background: linear-gradient(0deg, $grayLightest 70%, $white 70%);
+  background-repeat: no-repeat;
+}
+
+.title__content {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.title__main {
+  flex: 0 auto;
+  padding-top: $space;
+  position: relative;
+}
+
+.content__wrap {
+  margin-top: $space-triple;
+}
 .content {
   clear: both;
   width: 100%;
+  padding-bottom: $space-quadruple;
 }
 
 .content__top {
   display: flex;
   align-items: center;
   align-content: space-between;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background: linear-gradient(0deg, $grayLightest 40%, $white 40%);
 }
 
-.title__main {
-  top: 0;
-  padding: $space $space-quadruple;
-
-  @media (max-width: 1000px) {
-    position: relative;
-    top:0;
-    left: 0;
-    background-color: $white;
-    z-index: 1;
-  }
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: $max-width;
 }
+
+/* menu bar */
 .menu {
   display: flex;
   align-items: center;
@@ -120,17 +155,18 @@ ul li {
 }
 
 .menu__link {
-  background-color: $grayLight;
+  background-color: $grayLightest;
   border-top: $space-one-third solid transparent;
   border-bottom: $space-one-third solid $gray;
   color: $grayMid;
   display: block;
   font-size: 1rem;
-  padding: $space;
+  padding: $space-one-half $space;
 
   &:hover {
     background-color: $gray;
     color: $white;
+    border-color: $gray;
   }
 }
 
@@ -147,6 +183,7 @@ a {
   cursor: pointer;
 }
 
+/* element styles */
 code {
   display: inline-block;
   -moz-box-sizing: border-box;
@@ -171,20 +208,28 @@ svg {
   clip: rect(1px, 1px, 1px, 1px);
   overflow: hidden;
 }
+
+/* mobile menu */
 .mobile-menu {
-  position: relative;
+  flex: 0 auto;
   font-size: 1rem;
   font-weight: bold;
   color: $grayMid;
-  background-color: $grayLight;
+  background-color: $grayLightest;
   padding: $space-one-half $space;
-  z-index: 2;
+  text-align: center;
+
+  &.mobile-menu--active {
+    background-color: $gray;
+    color: $white;
+  }
 }
 
 @media (min-width: 1000px) {
   .mobile-menu {
     height: 0;
     visibility:hidden;
+    padding: 0;
   }
 }
 /*
@@ -207,70 +252,49 @@ svg {
   margin-top: 0;
   padding: $space $space-quadruple;
   text-transform: none;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: normal;
   @media (min-width: 1000px) {
     display: none;
   }
 }
 
+/* charts */
 .chart {
   align-items: center;
   overflow: hidden;
   padding: $space-quadruple;
   position: relative;
-  background: rgba(97,182,75,0.09);
-
-  &::after {
-    position: absolute;
-    display: block;
-    content: '';
-    height: 30%;
-    width: 100%;
-    background: rgba(97,182,75,0.3);
-    top: 0;
-    left: 0;
-    right: 0;
-    transform-origin: 0;
-    z-index: -1;
-  }
+  background: linear-gradient(0deg, $greenLightest 75%, $greenLight 75%);
 }
 
 .chart__meta {
-  background-color:rgba(255,255,255,0.8);
-  padding: $space-double;
+  background:rgba(255,255,255,0.7);
+  position: relative;
 
   &::before {
     position: absolute;
     display: block;
-    top: $space;
-    left: 50%;
+    top: 1.5rem;
+    left: 1.5rem;
     color: $green;
     content: '';
     font-family: $sans;
     background-image: url(../../images/icons/stars.svg);
     background-repeat: no-repeat;
     background-size: contain;
-    background-color: $white;
-    width: 55px;
-    height: 55px;
+    width: 45px;
+    height: 45px;
     z-index: 0;
-    border: $space-one-half solid $white;
-    border-radius: 100%;
-    @media only screen and (min-width : 980px) {
-      left: 25%;
-    }
   }
 }
 
+
+/* chart backgrounds */
 .chart--bytes,
 .chart--requests,
 .chart--connections {
-  background: rgba(224,224,224,0.5);
-
-  &::after {
-    background: rgba(224,224,224,1);
-  }
+  background: linear-gradient(0deg, $grayLightest 75%, $grayLight 75%);
 }
 
 .chart--bytes .chart__meta {
@@ -281,27 +305,22 @@ svg {
 
 .chart--requests .chart__meta {
   &::before {
-    background-image: url(../../images/icons/format_list_bulleted.svg);
+    background-image: url(../../images/icons/check_circle.svg);
   }
 }
 
 .chart--connections .chart__meta {
   &::before {
-    background-image: url(../../images/icons/people.svg);
+    background-image: url(../../images/icons/public.svg);
   }
 }
 
 .chart + .chart {
-  border-top: 2px dotted $grayLight;
   margin-top: $space-triple;
 }
 
 .over-budget {
-  background: rgba(182,75,78,0.15);
-
-  &::after {
-    background: rgba(182,75,78,0.3);
-  }
+  background: linear-gradient(0deg, $redLightest 75%, $redLight 75%);
 
   .chart__meta {
     &::before {
@@ -309,6 +328,8 @@ svg {
     }
   }
 }
+
+/* chart responsive layout */
 
 @media only screen and (min-width : 980px) {
   .chart {
@@ -320,12 +341,14 @@ svg {
 }
 
 .chart__title {
-  padding-top: $space;
+  padding: $space-double $space $space $space-quintuple;
 }
 .chart__description {
-  margin: $space 0;
-  padding-bottom: $space-double;
-  border-bottom: 5px solid $grayLight;
+  padding: $space $space-double;
+}
+.chart__stats-wrap {
+  background:rgba(232,232,232,0.7);
+  padding: $space $space-double;
 }
 .chart__stats {
   font-size: 1rem;
