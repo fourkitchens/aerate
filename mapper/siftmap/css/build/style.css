@@ -86,7 +86,6 @@ ul li {
       -ms-flex-align: end;
           align-items: flex-end;
   opacity: 0;
-  z-index: 0;
 }
 .header.header--active {
     height: auto;
