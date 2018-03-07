@@ -101,7 +101,7 @@ ul li {
   left: -$space-quadruple;
   width: calc(100% + $space-quintuple);
   height: 100%;
-  background: linear-gradient(0deg, $grayLightest 70%, $white 70%);
+  background: linear-gradient(0deg, $grayLightest 70%, rgba(255, 255, 255,0) 70%);
   background-repeat: no-repeat;
 }
 
@@ -132,7 +132,8 @@ ul li {
   align-content: space-between;
   justify-content: space-between;
   box-sizing: border-box;
-  background: linear-gradient(0deg, $grayLightest 40%, $white 40%);
+  background: linear-gradient(0deg, $grayLightest 40%, rgba(255, 255, 255,0) 40%);
+  background-image: url(../../images/backgrounds/hatch-sift-pattern.png);
 }
 
 .container {
@@ -269,7 +270,7 @@ svg {
 }
 
 .chart__meta {
-  background:rgba(255,255,255,0.7);
+  background:rgba(255,255,255,0.9);
   position: relative;
 
   &::before {
@@ -347,7 +348,7 @@ svg {
   padding: $space $space-double;
 }
 .chart__stats-wrap {
-  background:rgba(232,232,232,0.7);
+  background:rgba(232,232,232,0.6);
   padding: $space $space-double;
 }
 .chart__stats {
