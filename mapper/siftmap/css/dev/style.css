@@ -330,31 +330,22 @@ svg {
   }
 }
 
-/* chart responsive layout */
-
-@media only screen and (min-width : 980px) {
-  .chart {
-    display: flex;
-  }
-  .chart__meta, .chart__data {
-    flex: 1 1 50%;
-  }
-}
-
 .chart__title {
+  color: $black;
   padding: $space-double $space $space $space-quintuple;
 }
 .chart__description {
   padding: $space $space-double;
 }
 .chart__stats-wrap {
-  background:rgba(232,232,232,0.6);
+  border-top: 1px solid $gray;
   padding: $space $space-double;
 }
 .chart__stats {
   font-size: 1rem;
   font-weight: bold;
   margin-right: $space;
+  color: $grayMid;
 }
 
 .chart__stats span {
@@ -364,7 +355,7 @@ svg {
 span.chart__passed {
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .chart__data {
@@ -403,13 +394,11 @@ span.chart__passed {
 .chart--requests .chart__stats:nth-child(2n),
 .chart--connections .chart__stats:nth-child(2n) {
   display: block;
-  font-size: 1.3rem;
 }
 
 .chart--bytes .chart__stats:nth-child(2n)::after,
 .chart--requests .chart__stats:nth-child(2n)::after,
 .chart--connections .chart__stats:nth-child(2n)::after {
-  font-size: 1.1rem;
   font-weight: normal;
 }
 
@@ -423,4 +412,15 @@ span.chart__passed {
 
 .chart--connections .chart__stats:nth-child(2n)::after {
   content: " connections";
+}
+
+/* chart responsive layout */
+
+@media only screen and (min-width : 980px) {
+  .chart {
+    display: flex;
+  }
+  .chart__meta, .chart__data {
+    flex: 1 1 50%;
+  }
 }
