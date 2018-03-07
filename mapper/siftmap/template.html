@@ -9,21 +9,10 @@
 
     <link rel="stylesheet" href="mapper/siftmap/css/build/style.css" media="all" />
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/britecharts@2.0.0/dist/css/britecharts.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Arimo|Poiret+One|Source+Code+Pro" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Karma:700|Rubik:400,400i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Archivo:500,500i,700,700i|Karma:700" rel="stylesheet">
   </head>
   <body>
     <div class="wrapper">
-      <header class="header" id="header">
-        <div class="header__inner container">
-          <ul class="menu">
-            {{#each results}}
-              <li><a href="#{{ this.name }}" class="menu__link">{{ this.name }} {{ this.type }}</a></li>
-            {{/each}}
-          </ul>
-        </div>
-      </header>
-
       <div class="content">
         <div class="content__top">
           <div class="container">
@@ -36,6 +25,17 @@
             </div>
           </div>
         </div>
+
+        <header class="header" id="header">
+          <div class="header__inner container">
+            <ul class="menu">
+              {{#each results}}
+                <li><a href="#{{ this.name }}" class="menu__link">{{ this.name }} {{ this.type }}</a></li>
+              {{/each}}
+            </ul>
+          </div>
+        </header>
+
         <div class="content__wrap container">
           <div id="britecharts">
             {{#each results}}

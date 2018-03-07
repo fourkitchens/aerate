@@ -11,6 +11,7 @@
       const activeTest = document.querySelector('.britechart-test--active');
       if (active) {
         active.classList.remove('menu__link--active');
+        active.classList.remove('mobile-menu--active');
       }
       if (activeTest) {
         activeTest.classList.remove('britechart-test--active');
@@ -18,6 +19,7 @@
       link.classList.add('menu__link--active');
       test.classList.add('britechart-test--active');
       header.classList.remove('header--active');
+      mobileMenu.classList.remove('mobile-menu--active');
     });
   };
 
