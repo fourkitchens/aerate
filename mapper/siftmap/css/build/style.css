@@ -35,14 +35,14 @@ h1, h2, h3 {
 }
 h1 {
   color: #313131;
-  font-size: 4rem;
+  font-size: 4.5rem;
 }
 h1.title__main {
     font-family: 'Karma', georgia, serif;
     line-height: 1.15;
   }
 h2 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
 }
 h3 {
@@ -115,34 +115,15 @@ ul li {
           justify-content: space-between;
   padding: 2rem 4rem 3rem;
 }
-.title__bg {
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: -4rem;
-  width: calc(100% + 5rem);
-  height: 80%;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(80%, #E8E8E8), color-stop(80%, rgba(255, 255, 255,0)));
-  background: linear-gradient(0deg, #E8E8E8 80%, rgba(255, 255, 255,0) 80%);
-  background-repeat: no-repeat;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
 .title__content {
   display: block;
   position: relative;
   z-index: 1;
 }
-.title__main:hover .title__bg {
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(100%, #E8E8E8), to(rgba(255, 255, 255,0)));
-  background: linear-gradient(0deg, #E8E8E8 100%, rgba(255, 255, 255,0) 100%);
-  height: 100%;
-}
 .title__main {
   -webkit-box-flex: 0;
       -ms-flex: 0 auto;
           flex: 0 auto;
-  padding-top: 1rem;
   position: relative;
 }
 .content__wrap {
@@ -175,7 +156,7 @@ ul li {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
 }
 /* menu bar */
 .menu {
