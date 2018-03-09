@@ -2,8 +2,9 @@
 $karma: 'Karma', georgia, serif;
 $rubik: 'Rubik', helvetica, arial, sans-serif;
 $archivo: 'Archivo', helvetica, arial, sans-serif;
+$rokkitt: 'Rokkitt', georgia, serif;
 
-$serif: $karma;
+$serif: $rokkitt;
 $sans: $archivo;
 
 /* colors */

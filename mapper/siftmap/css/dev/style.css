@@ -132,7 +132,9 @@ ul li {
   justify-content: space-between;
   position: relative;
   background: linear-gradient(0deg, $grayLightest 40%, rgba(255, 255, 255,0) 40%);
-  background-image: url(../../images/backgrounds/hatch-sift-pattern.png);
+  background-image: url(../../images/backgrounds/aerate-circle-pattern.png);
+  background-position: center;
+  background-repeat: repeat;
   z-index: 1;
 }
 
