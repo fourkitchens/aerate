@@ -1,6 +1,7 @@
 [![Four Kitchens](https://img.shields.io/badge/4K-Four%20Kitchens-35AA4E.svg)](https://fourkitchens.com/)
 
 # Sift
+
 Measure frontend performance against a budget with an option to view them using lovely charts in a browser
 
 ## Usage
@@ -8,10 +9,13 @@ Measure frontend performance against a budget with an option to view them using 
 1. Get a [WebPageTest.org API key](https://www.webpagetest.org/getkey.php)
 2. `npm install fourkitchens/sift` or `yarn add fourkitchens/sift`
 3. Require Sift in your project
+
 ```
 const sift = require('sift');
 ```
+
 4. Call the function with the options (options [below](https://github.com/fourkitchens/sift#available-options))
+
 ```
 sift({
   key: 'YOUR_API_KEY',
@@ -24,12 +28,15 @@ sift({
   ]
 });
 ```
+
 5. For a shorter command, add a script to your package.json
+
 ```
 "scripts": {
   "sift": "node sift.js" (or whatever file you're using locally)
 }
 ```
+
 6. `npm run sift` or `yarn sift`
 7. (Optional) Create/copy your own budget.json file using the following format:
 
@@ -41,12 +48,12 @@ sift({
     "value": "300" // Budgeted Value
   }
 }
-
 ```
+
 See [`/docs/stats.md`](https://github.com/fourkitchens/sift/blob/master/docs/stats.md) for the list of available budget statistics
 
-
 ### Available Options:
+
 1. `key`: REQUIRED API Key
 2. `tests`: REQUIRED tests to run
 3. `connection`: OPTIONAL defaults to 'Mobile LTE'
@@ -56,16 +63,8 @@ See [`/docs/stats.md`](https://github.com/fourkitchens/sift/blob/master/docs/sta
 
 ## How do I set up the dev environment?
 
-1. [x] clone repo, cd into it and run `yarn` to install dependencies
-1. [ ] Run `gulp` (opens up the UI with fake data populated from `mapper/fake-results.json`)
-
-PostCSS usage:
-If you would like any new [PostCSS plugins](https://github.com/postcss/postcss/blob/master/docs/plugins.md) installed, the steps are as follows:
-
-1. `npm install --save-dev PLUGIN_NAME`
-1. Add your plugin to gulpfile.js at the top [like the others](https://github.com/fourkitchens/sift/blob/0be17524b601d649c038bd113ca756ada4bb19ca/gulpfile.js#L10) and reference that addition in the [postCSS call
-](https://github.com/fourkitchens/sift/blob/0be17524b601d649c038bd113ca756ada4bb19ca/gulpfile.js#L27)
-
+1. clone repo, cd into it and run `yarn` to install dependencies
+1. Run `gulp` (opens up the UI with fake data populated from `mapper/fake-results.json`)
 
 ## TODO
 
