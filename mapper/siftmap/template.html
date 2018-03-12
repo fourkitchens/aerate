@@ -19,9 +19,11 @@
             <div class="title__element-wrap">
               <h1 class="title__main">
                 <span class="title__content">aerate</span>
-                <span class="title__bg"></span>
               </h1>
               <a href="#" class="mobile-menu" id="mobile-menu">Menu</a>
+              <h3 class="title__slogan">
+                Frontend performance made easy.
+              </h3>
             </div>
           </div>
         </div>
@@ -60,6 +62,53 @@
                 {{/each}}
               </div>
             {{/each}}
+            <div class="chart__misc_wrap">
+              <div class="chart chart--bytes single-data">
+                <div class="chart__meta">
+                  <h2 class="chart__title">Bytes In (Page Size)</h2>
+                  <p class="chart__description">The amount of data that the browser had to download in order to load the page. It is also commonly referred to as the page size</p>
+                  <div class="chart__stats-wrap">
+                    <span class="chart__stats">Budget:<span class="chart__budget"> NA</span></span>
+                    <span class="chart__stats">Results:<span class="chart__results"> 416502</span></span>
+                    <span class="chart__stats"><span class="chart__passed">Passed</span></span>
+                  </div>
+                </div>
+                <div class="chart__data">
+                  <div class="chart__barchart"></div>
+                  <span class="chart__label">milliseconds</span>
+                </div>
+              </div>
+              <div class="chart chart--requests single-data">
+                <div class="chart__meta">
+                  <h2 class="chart__title">Requests</h2>
+                  <p class="chart__description">The total amount of requests</p>
+                  <div class="chart__stats-wrap">
+                    <span class="chart__stats">Budget:<span class="chart__budget"> NA</span></span>
+                    <span class="chart__stats">Results:<span class="chart__results"> 19</span></span>
+                    <span class="chart__stats"><span class="chart__passed">Passed</span></span>
+                  </div>
+                </div>
+                <div class="chart__data">
+                  <div class="chart__barchart"></div>
+                  <span class="chart__label">milliseconds</span>
+                </div>
+              </div>
+              <div class="chart chart--connections single-data">
+                <div class="chart__meta">
+                  <h2 class="chart__title">Connections</h2>
+                  <p class="chart__description">The number of connections used</p>
+                  <div class="chart__stats-wrap">
+                    <span class="chart__stats">Budget:<span class="chart__budget"> NA</span></span>
+                    <span class="chart__stats">Results:<span class="chart__results"> 8</span></span>
+                    <span class="chart__stats"><span class="chart__passed">Passed</span></span>
+                  </div>
+                </div>
+                <div class="chart__data">
+                  <div class="chart__barchart"></div>
+                  <span class="chart__label">milliseconds</span>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -91,7 +140,7 @@
         resultsSpan[0].textContent = ' ' + budgetData[0].percentage + 'ms';
 
         // Britecharts
-        var colors = ['#ffce00', '#6aedc7'];
+        var colors = ['#515151', '#61B64B'];
         if (budgetData[1].class.length > 0) {
           briteElement[i].classList.add(budgetData[1].class);
 
@@ -100,7 +149,7 @@
           }
 
           if (budgetData[1].class == 'over-budget') {
-            colors = ['#ffce00', '#f55573'];
+            colors = ['#515151', '#B64B4E'];
 
             var statusSpan = briteElement[i].querySelectorAll('.chart__passed');
             statusSpan[0].textContent = ' Failed';

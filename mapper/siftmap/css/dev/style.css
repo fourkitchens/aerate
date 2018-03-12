@@ -47,6 +47,13 @@ h2 {
 
 h3 {
   font-size: 1.4rem;
+
+  &.title__slogan {
+    font-size: 1rem;
+    margin-bottom: $space-double;
+    color: $gray;
+    margin: 0;
+  }
 }
 
 p, ol, ul {
@@ -99,9 +106,10 @@ ul li {
 
 .title__element-wrap {
   display: flex;
+  flex-flow: row wrap;
   align-items: flex-end;
   justify-content: space-between;
-  padding: $space-double $space-quadruple $space-triple;
+  padding: $space-double $space-quadruple;
 }
 
 
@@ -109,11 +117,30 @@ ul li {
   display: block;
   position: relative;
   z-index: 1;
+  background-image: url(../../images/logo/aerate-logo.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 0;
+  padding-top: 33%;
+  overflow: hidden;
 }
 
 .title__main {
   flex: 0 auto;
   position: relative;
+}
+
+.title__slogan {
+  flex: 1 auto;
+  position: relative;
+  width: 100%;
+  padding-top: $space;
+
+  @media (min-width: 600px) {
+    flex: 0 auto;
+    width: auto;
+    padding-top: 0;
+  }
 }
 
 .content__wrap {
@@ -132,7 +159,7 @@ ul li {
   justify-content: space-between;
   position: relative;
   background: linear-gradient(0deg, $grayLightest 40%, rgba(255, 255, 255,0) 40%);
-  background-image: url(../../images/backgrounds/aerate-circle-pattern.png);
+  background-image: url(../../images/backgrounds/aerate-pattern.png);
   background-position: center;
   background-repeat: repeat;
   z-index: 1;
@@ -335,27 +362,51 @@ svg {
 
 
 /* chart backgrounds */
+.chart__misc_wrap {
+  display: flex;
+  flex-flow:row wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  align-content: center;
+  margin-top: $space-double;
+  border-top: 1px solid $gray;
+  padding-top: $space-double;
+
+  .chart + .chart {
+    margin-top: 0;
+  }
+}
 .chart--bytes,
 .chart--requests,
 .chart--connections {
-  background: linear-gradient(0deg, $grayLightest 75%, $grayLight 75%);
+  background-image: none;
+  width: 30%;
+  padding: 0;
+
+  .chart__title {
+    font-size: 1.3rem;
+    padding-left: $space-double;
+  }
+  .chart__description {
+    font-size: 1rem;
+  }
 }
 
 .chart--bytes .chart__meta {
   &::before {
-    background-image: url(../../images/icons/pie_chart.svg);
+    background-image: none;
   }
 }
 
 .chart--requests .chart__meta {
   &::before {
-    background-image: url(../../images/icons/person_pin_circle.svg);
+    background-image: none;
   }
 }
 
 .chart--connections .chart__meta {
   &::before {
-    background-image: url(../../images/icons/public.svg);
+    background-image: none;
   }
 }
 

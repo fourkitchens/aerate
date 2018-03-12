@@ -48,6 +48,12 @@ h2 {
 h3 {
   font-size: 1.4rem;
 }
+h3.title__slogan {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    color: #A3A3A3;
+    margin: 0;
+  }
 p, ol, ul {
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
@@ -107,18 +113,28 @@ ul li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 2rem 4rem 3rem;
+  padding: 2rem 4rem;
 }
 .title__content {
   display: block;
   position: relative;
   z-index: 1;
+  background-image: url(../../images/logo/aerate-logo.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 0;
+  padding-top: 33%;
+  overflow: hidden;
 }
 .title__main {
   -webkit-box-flex: 0;
@@ -126,6 +142,23 @@ ul li {
           flex: 0 auto;
   position: relative;
 }
+.title__slogan {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 auto;
+          flex: 1 auto;
+  position: relative;
+  width: 100%;
+  padding-top: 1rem;
+}
+@media (min-width: 600px) {
+.title__slogan {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 auto;
+            flex: 0 auto;
+    width: auto;
+    padding-top: 0
+}
+  }
 .content__wrap {
   margin-top: 3rem;
 }
@@ -149,7 +182,7 @@ ul li {
   position: relative;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(40%, #E8E8E8), color-stop(40%, rgba(255, 255, 255,0)));
   background: linear-gradient(0deg, #E8E8E8 40%, rgba(255, 255, 255,0) 40%);
-  background-image: url(../../images/backgrounds/aerate-circle-pattern.png);
+  background-image: url(../../images/backgrounds/aerate-pattern.png);
   background-position: center;
   background-repeat: repeat;
   z-index: 1;
@@ -350,20 +383,51 @@ svg {
     z-index: 0;
   }
 /* chart backgrounds */
+.chart__misc_wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient:horizontal;
+  -webkit-box-direction:normal;
+      -ms-flex-flow:row wrap;
+          flex-flow:row wrap;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  margin-top: 2rem;
+  border-top: 1px solid #A3A3A3;
+  padding-top: 2rem;
+}
+.chart__misc_wrap .chart + .chart {
+    margin-top: 0;
+  }
 .chart--bytes,
 .chart--requests,
 .chart--connections {
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(75%, #E8E8E8), color-stop(75%, #C4C4C4));
-  background: linear-gradient(0deg, #E8E8E8 75%, #C4C4C4 75%);
+  background-image: none;
+  width: 30%;
+  padding: 0;
 }
+.chart--bytes .chart__title, .chart--requests .chart__title, .chart--connections .chart__title {
+    font-size: 1.3rem;
+    padding-left: 2rem;
+  }
+.chart--bytes .chart__description, .chart--requests .chart__description, .chart--connections .chart__description {
+    font-size: 1rem;
+  }
 .chart--bytes .chart__meta::before {
-    background-image: url(../../images/icons/pie_chart.svg);
+    background-image: none;
   }
 .chart--requests .chart__meta::before {
-    background-image: url(../../images/icons/person_pin_circle.svg);
+    background-image: none;
   }
 .chart--connections .chart__meta::before {
-    background-image: url(../../images/icons/public.svg);
+    background-image: none;
   }
 .chart + .chart {
   margin-top: 3rem;
