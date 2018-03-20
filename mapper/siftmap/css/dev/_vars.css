@@ -22,12 +22,14 @@ $greenDark: #448234;
 $greenMid: #93cc84;
 $greenLight: #ACD8A0;
 $greenLightest: #ECF6E9;
+$testPass: rgb(97, 182, 75);
 
 $red: #B64B4E;
 $redDark: #823437;
 $redMid: #C97C7F;
 $redLight: #DBA7A9;
 $redLightest: #F0DADB;
+$testFail: rgb(182, 75, 78);
 
 /* widths */
 $max-width: 1200px;
@@ -42,3 +44,5 @@ $space-sextuple: 6rem;
 
 $space-one-half: 0.5rem;
 $space-one-third: 0.33rem;
+
+$border-radius: 2px;
