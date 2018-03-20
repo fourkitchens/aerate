@@ -44,7 +44,7 @@ body {
   height: 100%;
 }
 body {
-  font-family: helvetica, arial, sans-serif;
+  font-family: 'Archivo', helvetica, arial, sans-serif;
   font-size: 62.5%;
   line-height: 1.5;
   color: #515151;
@@ -67,6 +67,7 @@ h1.title__main {
 h2 {
   font-size: 1.8rem;
   font-weight: bold;
+  line-height: 1.1;
 }
 h3 {
   font-size: 1.4rem;
@@ -390,26 +391,28 @@ svg {
   }
 /* charts */
 .chart {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: top;
+      -ms-flex-align: top;
+          align-items: top;
   overflow: hidden;
   padding: 4rem;
   position: relative;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(75%, #ECF6E9), color-stop(75%, #ACD8A0));
-  background: linear-gradient(0deg, #ECF6E9 75%, #ACD8A0 75%);
+  background: linear-gradient(180deg, rgb(97, 182, 75) 100px, #ECF6E9 100px);
+  border-radius: 2px;
 }
 .chart__meta {
-  background: rgba(255, 255, 255, 0.9);
+  background:rgba(255,255,255,1);
+  border-radius: 2px;
   position: relative;
 }
 .chart__meta::before {
     position: absolute;
     display: block;
-    top: 2rem;
+    top: 1.7rem;
     left: 2rem;
-    color: #61B64B;
-    content: "";
+    color: rgb(97, 182, 75);
+    fill: rgb(97, 182, 75);
+    content: '';
     font-family: 'Archivo', helvetica, arial, sans-serif;
     background-image: url(../../images/icons/stars.svg);
     background-repeat: no-repeat;
@@ -477,28 +480,30 @@ svg {
     background-image: none;
   }
 .chart + .chart {
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 .over-budget {
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(75%, #F0DADB), color-stop(75%, #DBA7A9));
-  background: linear-gradient(0deg, #F0DADB 75%, #DBA7A9 75%);
+  background: linear-gradient(180deg, rgb(182, 75, 78) 100px, #F0DADB 100px);
 }
 .over-budget .chart__meta::before {
       background-image: url(../../images/icons/report.svg);
     }
 .chart__title {
   color: #515151;
+  border-radius: 2px 2px 0 0;
   padding: 2rem 1rem 1rem 5rem;
 }
 .chart__description {
+  font-size: 0.9rem;
+  line-height: 1.5;
   padding: 1rem 2rem;
 }
 .chart__stats-wrap {
-  border-top: 1px solid #A3A3A3;
+  border-top: 1px solid #E8E8E8;
   padding: 1rem 2rem;
 }
 .chart__stats {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-right: 1rem;
   color: #515151;
@@ -516,12 +521,13 @@ span.chart__passed {
 }
 .chart__label {
   bottom: 1rem;
-  color: #A3A3A3;
+  color: #515151;
   display: block;
   font-size: 1rem;
   text-align: center;
 }
 .chart__barchart {
+  margin-top: 2rem;
   padding: 0.5rem 0;
 }
 /* Single Data Ones */
@@ -563,6 +569,9 @@ span.chart__passed {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
   }
   .chart__meta,
   .chart__data {

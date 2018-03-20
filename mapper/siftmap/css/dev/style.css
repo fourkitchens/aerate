@@ -39,7 +39,7 @@ body {
 }
 
 body {
-  font-family: helvetica, arial, sans-serif;
+  font-family: $sans;
   font-size: 62.5%;
   line-height: 1.5;
   color: $grayMid;
@@ -66,6 +66,7 @@ h1 {
 h2 {
   font-size: 1.8rem;
   font-weight: bold;
+  line-height: 1.1;
 }
 
 h3 {
@@ -362,24 +363,27 @@ svg {
 
 /* charts */
 .chart {
-  align-items: center;
+  align-items: top;
   overflow: hidden;
   padding: $space-quadruple;
   position: relative;
-  background: linear-gradient(0deg, $greenLightest 75%, $greenLight 75%);
+  background: linear-gradient(180deg, $testPass 100px, $greenLightest 100px);
+  border-radius: $border-radius;
 }
 
 .chart__meta {
-  background: rgba(255, 255, 255, 0.9);
+  background:rgba(255,255,255,1);
+  border-radius: $border-radius;
   position: relative;
 
   &::before {
     position: absolute;
     display: block;
-    top: $space-double;
+    top: 1.7rem;
     left: $space-double;
-    color: $green;
-    content: "";
+    color: $testPass;
+    fill: $testPass;
+    content: '';
     font-family: $sans;
     background-image: url(../../images/icons/stars.svg);
     background-repeat: no-repeat;
@@ -451,11 +455,11 @@ svg {
 }
 
 .chart + .chart {
-  margin-top: $space-triple;
+  margin-top: $space;
 }
 
 .over-budget {
-  background: linear-gradient(0deg, $redLightest 75%, $redLight 75%);
+  background: linear-gradient(180deg, $testFail 100px, $redLightest 100px);
 
   .chart__meta {
     &::before {
@@ -466,17 +470,20 @@ svg {
 
 .chart__title {
   color: $grayMid;
+  border-radius: $border-radius $border-radius 0 0;
   padding: $space-double $space $space $space-quintuple;
 }
 .chart__description {
+  font-size: 0.9rem;
+  line-height: 1.5;
   padding: $space $space-double;
 }
 .chart__stats-wrap {
-  border-top: 1px solid $gray;
+  border-top: 1px solid $grayLightest;
   padding: $space $space-double;
 }
 .chart__stats {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-right: $space;
   color: $grayMid;
@@ -498,13 +505,14 @@ span.chart__passed {
 
 .chart__label {
   bottom: $space;
-  color: $gray;
+  color: $grayMid;
   display: block;
   font-size: 1rem;
   text-align: center;
 }
 
 .chart__barchart {
+  margin-top: $space-double;
   padding: $space-one-half 0;
 }
 
@@ -553,6 +561,7 @@ span.chart__passed {
 @media only screen and (min-width: 980px) {
   .chart {
     display: flex;
+    align-items: flex-start;
   }
   .chart__meta,
   .chart__data {
