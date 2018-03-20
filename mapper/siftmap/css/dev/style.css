@@ -396,6 +396,7 @@ svg {
 
 .chart.single-data {
   border-top: 1px solid #a3a3a3;
+  border-radius: 0;
   float: left;
   padding: 2% 7% 0 0;
   width: 100%;
@@ -567,4 +568,26 @@ span.chart__passed {
   .chart__data {
     flex: 1 1 50%;
   }
+}
+
+.footer {
+  background: #444545;
+  padding: 2rem;
+}
+
+.footer__logo-wrap {
+  position: relative;
+}
+
+.footer__header {
+  color: rgba(255,255,255,0.4);
+  font-size: 1.1rem;
+  display: inline-block;
+  position: absolute;
+  left: 112px;
+  top: 6px;
+}
+
+.fk-logo {
+  width: 300px;
 }
