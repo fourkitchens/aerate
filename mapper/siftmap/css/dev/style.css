@@ -1,10 +1,30 @@
 @import "_vars.css";
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-html, body, div, h1, h2, h3, p, a, abbr, ol, ul, li, table, caption, thead, tbody, tr, th, td, section, code {
+html,
+body,
+div,
+h1,
+h2,
+h3,
+p,
+a,
+abbr,
+ol,
+ul,
+li,
+table,
+caption,
+thead,
+tbody,
+tr,
+th,
+td,
+section,
+code {
   margin: 0;
   padding: 0;
   border: none;
@@ -13,7 +33,8 @@ html, body, div, h1, h2, h3, p, a, abbr, ol, ul, li, table, caption, thead, tbod
   vertical-align: baseline;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -24,7 +45,9 @@ body {
   color: $grayMid;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   display: block;
   font-weight: bold;
   font-family: $sans;
@@ -56,12 +79,15 @@ h3 {
   }
 }
 
-p, ol, ul {
+p,
+ol,
+ul {
   margin-bottom: $space-one-half;
   font-size: 1.1rem;
 }
 
-ol, ul {
+ol,
+ul {
   margin-left: $space;
 }
 
@@ -112,7 +138,6 @@ ul li {
   padding: $space-double $space-quadruple;
 }
 
-
 .title__content {
   display: block;
   position: relative;
@@ -158,7 +183,11 @@ ul li {
   align-content: space-between;
   justify-content: space-between;
   position: relative;
-  background: linear-gradient(0deg, $grayLightest 40%, rgba(255, 255, 255,0) 40%);
+  background: linear-gradient(
+    0deg,
+    $grayLightest 40%,
+    rgba(255, 255, 255, 0) 40%
+  );
   background-image: url(../../images/backgrounds/aerate-pattern.png);
   background-position: center;
   background-repeat: repeat;
@@ -191,7 +220,8 @@ ul li {
     }
   }
 }
-.menu, .menu li {
+.menu,
+.menu li {
   padding: 0;
   margin: 0;
   list-style: none;
@@ -299,7 +329,7 @@ svg {
 @media (min-width: 600px) {
   .mobile-menu {
     height: 0;
-    visibility:hidden;
+    visibility: hidden;
     padding: 0;
   }
 }
@@ -340,7 +370,7 @@ svg {
 }
 
 .chart__meta {
-  background:rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.9);
   position: relative;
 
   &::before {
@@ -349,7 +379,7 @@ svg {
     top: $space-double;
     left: $space-double;
     color: $green;
-    content: '';
+    content: "";
     font-family: $sans;
     background-image: url(../../images/icons/stars.svg);
     background-repeat: no-repeat;
@@ -360,11 +390,21 @@ svg {
   }
 }
 
+.chart.single-data {
+  border-top: 1px solid #a3a3a3;
+  float: left;
+  padding: 2% 7% 0 0;
+  width: 100%;
+
+  @media (min-width: 600px) {
+    width: 33.3%;
+  }
+}
 
 /* chart backgrounds */
 .chart__misc_wrap {
   display: flex;
-  flex-flow:row wrap;
+  flex-flow: row wrap;
   align-items: flex-start;
   justify-content: space-between;
   align-content: center;
@@ -510,11 +550,12 @@ span.chart__passed {
 
 /* chart responsive layout */
 
-@media only screen and (min-width : 980px) {
+@media only screen and (min-width: 980px) {
   .chart {
     display: flex;
   }
-  .chart__meta, .chart__data {
+  .chart__meta,
+  .chart__data {
     flex: 1 1 50%;
   }
 }

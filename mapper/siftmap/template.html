@@ -62,53 +62,6 @@
                 {{/each}}
               </div>
             {{/each}}
-            <div class="chart__misc_wrap">
-              <div class="chart chart--bytes single-data">
-                <div class="chart__meta">
-                  <h2 class="chart__title">Bytes In (Page Size)</h2>
-                  <p class="chart__description">The amount of data that the browser had to download in order to load the page. It is also commonly referred to as the page size</p>
-                  <div class="chart__stats-wrap">
-                    <span class="chart__stats">Budget:<span class="chart__budget"> NA</span></span>
-                    <span class="chart__stats">Results:<span class="chart__results"> 416502</span></span>
-                    <span class="chart__stats"><span class="chart__passed">Passed</span></span>
-                  </div>
-                </div>
-                <div class="chart__data">
-                  <div class="chart__barchart"></div>
-                  <span class="chart__label">milliseconds</span>
-                </div>
-              </div>
-              <div class="chart chart--requests single-data">
-                <div class="chart__meta">
-                  <h2 class="chart__title">Requests</h2>
-                  <p class="chart__description">The total amount of requests</p>
-                  <div class="chart__stats-wrap">
-                    <span class="chart__stats">Budget:<span class="chart__budget"> NA</span></span>
-                    <span class="chart__stats">Results:<span class="chart__results"> 19</span></span>
-                    <span class="chart__stats"><span class="chart__passed">Passed</span></span>
-                  </div>
-                </div>
-                <div class="chart__data">
-                  <div class="chart__barchart"></div>
-                  <span class="chart__label">milliseconds</span>
-                </div>
-              </div>
-              <div class="chart chart--connections single-data">
-                <div class="chart__meta">
-                  <h2 class="chart__title">Connections</h2>
-                  <p class="chart__description">The number of connections used</p>
-                  <div class="chart__stats-wrap">
-                    <span class="chart__stats">Budget:<span class="chart__budget"> NA</span></span>
-                    <span class="chart__stats">Results:<span class="chart__results"> 8</span></span>
-                    <span class="chart__stats"><span class="chart__passed">Passed</span></span>
-                  </div>
-                </div>
-                <div class="chart__data">
-                  <div class="chart__barchart"></div>
-                  <span class="chart__label">milliseconds</span>
-                </div>
-              </div>
-            </div>
           </div>
 
         </div>
@@ -190,19 +143,19 @@
           tooltipContainer.datum([]).call(tooltip);
 
           // Responsive
-          const redrawChart = () => {
-            var allCharts = document.querySelectorAll('.chart__barchart');
-            let container = d3.select(allCharts[i]);
-            let newContainerWidth = container.node() ? container.node().getBoundingClientRect().width : false;
-
-            // Setting the new width on the chart
-            barChart.width(newContainerWidth);
-
-            // Rendering the chart again
-            container.datum(budgetData).call(barChart);
-          };
-
-          window.addEventListener("resize", redrawChart);
+          // const redrawChart = () => {
+          //   var allCharts = document.querySelectorAll('.chart__barchart');
+          //   let container = d3.select(allCharts[i]);
+          //   let newContainerWidth = container.node() ? container.node().getBoundingClientRect().width : false;
+          //
+          //   // Setting the new width on the chart
+          //   barChart.width(newContainerWidth);
+          //
+          //   // Rendering the chart again
+          //   container.datum(budgetData).call(barChart);
+          // };
+          //
+          // window.addEventListener("resize", redrawChart);
         }
         createHorizontalBarChart();
       }

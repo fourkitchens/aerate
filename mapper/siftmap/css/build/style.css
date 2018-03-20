@@ -8,10 +8,30 @@
 /* widths */
 /* space */
 * {
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
-html, body, div, h1, h2, h3, p, a, abbr, ol, ul, li, table, caption, thead, tbody, tr, th, td, section, code {
+html,
+body,
+div,
+h1,
+h2,
+h3,
+p,
+a,
+abbr,
+ol,
+ul,
+li,
+table,
+caption,
+thead,
+tbody,
+tr,
+th,
+td,
+section,
+code {
   margin: 0;
   padding: 0;
   border: none;
@@ -19,7 +39,8 @@ html, body, div, h1, h2, h3, p, a, abbr, ol, ul, li, table, caption, thead, tbod
   font: inherit;
   vertical-align: baseline;
 }
-html, body {
+html,
+body {
   height: 100%;
 }
 body {
@@ -28,7 +49,9 @@ body {
   line-height: 1.5;
   color: #515151;
 }
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   display: block;
   font-weight: bold;
   font-family: 'Archivo', helvetica, arial, sans-serif;
@@ -54,11 +77,14 @@ h3.title__slogan {
     color: #A3A3A3;
     margin: 0;
   }
-p, ol, ul {
+p,
+ol,
+ul {
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
 }
-ol, ul {
+ol,
+ul {
   margin-left: 1rem;
 }
 ol li {
@@ -180,8 +206,17 @@ ul li {
       -ms-flex-pack: justify;
           justify-content: space-between;
   position: relative;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(40%, #E8E8E8), color-stop(40%, rgba(255, 255, 255,0)));
-  background: linear-gradient(0deg, #E8E8E8 40%, rgba(255, 255, 255,0) 40%);
+  background: -webkit-gradient(
+    linear,
+    left bottom, left top,
+    color-stop(40%, #E8E8E8),
+    color-stop(40%, rgba(255, 255, 255, 0))
+  );
+  background: linear-gradient(
+    0deg,
+    #E8E8E8 40%,
+    rgba(255, 255, 255, 0) 40%
+  );
   background-image: url(../../images/backgrounds/aerate-pattern.png);
   background-position: center;
   background-repeat: repeat;
@@ -224,7 +259,8 @@ ul li {
       width: auto
   }
     }
-.menu, .menu li {
+.menu,
+.menu li {
   padding: 0;
   margin: 0;
   list-style: none;
@@ -322,7 +358,7 @@ svg {
 @media (min-width: 600px) {
   .mobile-menu {
     height: 0;
-    visibility:hidden;
+    visibility: hidden;
     padding: 0;
   }
 }
@@ -364,7 +400,7 @@ svg {
   background: linear-gradient(0deg, #ECF6E9 75%, #ACD8A0 75%);
 }
 .chart__meta {
-  background:rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.9);
   position: relative;
 }
 .chart__meta::before {
@@ -373,7 +409,7 @@ svg {
     top: 2rem;
     left: 2rem;
     color: #61B64B;
-    content: '';
+    content: "";
     font-family: 'Archivo', helvetica, arial, sans-serif;
     background-image: url(../../images/icons/stars.svg);
     background-repeat: no-repeat;
@@ -382,15 +418,26 @@ svg {
     height: 40px;
     z-index: 0;
   }
+.chart.single-data {
+  border-top: 1px solid #a3a3a3;
+  float: left;
+  padding: 2% 7% 0 0;
+  width: 100%;
+}
+@media (min-width: 600px) {
+.chart.single-data {
+    width: 33.3%
+}
+  }
 /* chart backgrounds */
 .chart__misc_wrap {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient:horizontal;
-  -webkit-box-direction:normal;
-      -ms-flex-flow:row wrap;
-          flex-flow:row wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
@@ -511,13 +558,14 @@ span.chart__passed {
   content: " connections";
 }
 /* chart responsive layout */
-@media only screen and (min-width : 980px) {
+@media only screen and (min-width: 980px) {
   .chart {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
   }
-  .chart__meta, .chart__data {
+  .chart__meta,
+  .chart__data {
     -webkit-box-flex: 1;
         -ms-flex: 1 1 50%;
             flex: 1 1 50%;
