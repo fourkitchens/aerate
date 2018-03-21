@@ -1,3 +1,144 @@
+/* KEYFRAMES */
+
+@-webkit-keyframes animateBubble {
+  0% {
+    margin-top: 170px;
+  }
+  100% {
+    margin-top: -150px;
+  }
+}
+
+@keyframes animateBubble {
+  0% {
+    margin-top: 170px;
+  }
+  100% {
+    margin-top: -150px;
+  }
+}
+
+@-webkit-keyframes sideWays {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: 50px;
+  }
+}
+
+@keyframes sideWays {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: 50px;
+  }
+}
+
+/* ANIMATIONS */
+
+.x1 {
+  -webkit-animation: animateBubble 15s linear infinite, sideWays 2s ease-in-out infinite alternate;
+          animation: animateBubble 15s linear infinite, sideWays 2s ease-in-out infinite alternate;
+  left: -5%;
+  top: 5%;
+  -webkit-transform: scale(0.6);
+          transform: scale(0.6);
+}
+
+.x2 {
+  -webkit-animation: animateBubble 10s linear infinite, sideWays 4s ease-in-out infinite alternate;
+          animation: animateBubble 10s linear infinite, sideWays 4s ease-in-out infinite alternate;
+  left: 5%;
+  top: 80%;
+  -webkit-transform: scale(0.4);
+          transform: scale(0.4);
+}
+
+.x3 {
+  -webkit-animation: animateBubble 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
+          animation: animateBubble 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
+  left: 10%;
+  top: 40%;
+  -webkit-transform: scale(0.7);
+          transform: scale(0.7);
+}
+
+.x4 {
+  -webkit-animation: animateBubble 12s linear infinite, sideWays 3s ease-in-out infinite alternate;
+          animation: animateBubble 12s linear infinite, sideWays 3s ease-in-out infinite alternate;
+  left: 20%;
+  top: 0;
+  -webkit-transform: scale(0.3);
+          transform: scale(0.3);
+}
+
+.x5 {
+  -webkit-animation: animateBubble 13s linear infinite, sideWays 4s ease-in-out infinite alternate;
+          animation: animateBubble 13s linear infinite, sideWays 4s ease-in-out infinite alternate;
+  left: 30%;
+  top: 50%;
+  -webkit-transform: scale(0.5);
+          transform: scale(0.5);
+}
+
+.x6 {
+  -webkit-animation: animateBubble 11s linear infinite, sideWays 2s ease-in-out infinite alternate;
+          animation: animateBubble 11s linear infinite, sideWays 2s ease-in-out infinite alternate;
+  left: 50%;
+  top: 0;
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+}
+
+.x7 {
+  -webkit-animation: animateBubble 10s linear infinite, sideWays 2s ease-in-out infinite alternate;
+          animation: animateBubble 10s linear infinite, sideWays 2s ease-in-out infinite alternate;
+  left: 65%;
+  top: 70%;
+  -webkit-transform: scale(0.4);
+          transform: scale(0.4);
+}
+
+.x8 {
+  -webkit-animation: animateBubble 12s linear infinite, sideWays 3s ease-in-out infinite alternate;
+          animation: animateBubble 12s linear infinite, sideWays 3s ease-in-out infinite alternate;
+  left: 80%;
+  top: 10%;
+  -webkit-transform: scale(0.3);
+          transform: scale(0.3);
+}
+
+.x9 {
+  -webkit-animation: animateBubble 19s linear infinite, sideWays 4s ease-in-out infinite alternate;
+          animation: animateBubble 19s linear infinite, sideWays 4s ease-in-out infinite alternate;
+  left: 90%;
+  top: 50%;
+  -webkit-transform: scale(0.6);
+          transform: scale(0.6);
+}
+
+.x10 {
+  -webkit-animation: animateBubble 16s linear infinite, sideWays 2s ease-in-out infinite alternate;
+          animation: animateBubble 16s linear infinite, sideWays 2s ease-in-out infinite alternate;
+  left: 80%;
+  top: 80%;
+  -webkit-transform: scale(0.3);
+          transform: scale(0.3);
+}
+
+/* OBJECTS */
+
+.bubble {
+  border-radius: 50%;
+  border: 2px solid #308ED9;
+  height: 100px;
+  opacity: 0.5;
+  position: absolute;
+  width: 100px;
+}
+
 /* Type */
 /* colors */
 /* widths */
@@ -7,6 +148,93 @@
 /* colors */
 /* widths */
 /* space */
+/* KEYFRAMES */
+@keyframes animateBubble {
+  0% {
+    margin-top: 170px;
+  }
+  100% {
+    margin-top: -150px;
+  }
+}
+@keyframes sideWays {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: 50px;
+  }
+}
+/* ANIMATIONS */
+.x1 {
+  animation: animateBubble 15s linear infinite, sideWays 2s ease-in-out infinite alternate;
+  left: -5%;
+  top: 5%;
+  transform: scale(0.6);
+}
+.x2 {
+  animation: animateBubble 10s linear infinite, sideWays 4s ease-in-out infinite alternate;
+  left: 5%;
+  top: 80%;
+  transform: scale(0.4);
+}
+.x3 {
+  animation: animateBubble 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
+  left: 10%;
+  top: 40%;
+  transform: scale(0.7);
+}
+.x4 {
+  animation: animateBubble 12s linear infinite, sideWays 3s ease-in-out infinite alternate;
+  left: 20%;
+  top: 0;
+  transform: scale(0.3);
+}
+.x5 {
+  animation: animateBubble 13s linear infinite, sideWays 4s ease-in-out infinite alternate;
+  left: 30%;
+  top: 50%;
+  transform: scale(0.5);
+}
+.x6 {
+  animation: animateBubble 11s linear infinite, sideWays 2s ease-in-out infinite alternate;
+  left: 50%;
+  top: 0;
+  transform: scale(0.8);
+}
+.x7 {
+  animation: animateBubble 10s linear infinite, sideWays 2s ease-in-out infinite alternate;
+  left: 65%;
+  top: 70%;
+  transform: scale(0.4);
+}
+.x8 {
+  animation: animateBubble 12s linear infinite, sideWays 3s ease-in-out infinite alternate;
+  left: 80%;
+  top: 10%;
+  transform: scale(0.3);
+}
+.x9 {
+  animation: animateBubble 19s linear infinite, sideWays 4s ease-in-out infinite alternate;
+  left: 90%;
+  top: 50%;
+  transform: scale(0.6);
+}
+.x10 {
+  animation: animateBubble 16s linear infinite, sideWays 2s ease-in-out infinite alternate;
+  left: 80%;
+  top: 80%;
+  transform: scale(0.3);
+}
+/* OBJECTS */
+.bubble {
+  border-radius: 50%;
+  border: 2px solid #308ED9;
+  height: 100px;
+  opacity: 0.5;
+  position: absolute;
+  width: 100px;
+}
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -129,7 +357,7 @@ ul li {
 @media (min-width: 600px) {
 .header {
     height: auto;
-    background-color: #E8E8E8;
+    background-color: #308ED9;
     position: relative;
     -webkit-transform: translateY(0);
             transform: translateY(0);
@@ -150,7 +378,7 @@ ul li {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 2rem 4rem;
+  padding: 3rem 4rem 2rem;
 }
 .title__content {
   display: block;
@@ -195,6 +423,8 @@ ul li {
   padding-bottom: 4rem;
 }
 .content__top {
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(178,190,251,0.5270483193277311)), color-stop(29%, rgba(255,255,255,0)));
+  background: linear-gradient(180deg, rgba(178,190,251,0.5270483193277311) 0%, rgba(255,255,255,0) 29%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -207,20 +437,7 @@ ul li {
       -ms-flex-pack: justify;
           justify-content: space-between;
   position: relative;
-  background: -webkit-gradient(
-    linear,
-    left bottom, left top,
-    color-stop(40%, #E8E8E8),
-    color-stop(40%, rgba(255, 255, 255, 0))
-  );
-  background: linear-gradient(
-    0deg,
-    #E8E8E8 40%,
-    rgba(255, 255, 255, 0) 40%
-  );
-  background-image: url(../../images/backgrounds/aerate-pattern.png);
-  background-position: center;
-  background-repeat: repeat;
+  /* background: $aerate-blue; */
   z-index: 1;
 }
 .container {
@@ -276,17 +493,22 @@ ul li {
   display: block;
   font-size: 1rem;
   padding: 1rem 1rem 1rem 2rem;
+  -webkit-transition: background-color 0.1s;
+  transition: background-color 0.1s;
 }
 @media (min-width: 600px) {
 .menu__link {
-    background-color: #E8E8E8;
-    padding: 0.5rem 1rem 0.5rem 2rem
+    background-color: rgba(0,0,0,0.15);
+    border-radius: 2px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0.5rem;
+    padding: 0.5rem 1rem
 }
 
     .menu__link:hover {
-      background-color: #A3A3A3;
-      color: #FFF;
+      background-color: rgba(0,0,0,0.2);
       border-color: #A3A3A3;
+      color: #FFF;
     }
   }
 .menu__link--active {
@@ -295,14 +517,20 @@ ul li {
   background-size: 20px;
   background-position: 0 50%;
   color: #000;
+  padding-left: 2rem;
 }
 @media (min-width: 600px) {
   .menu__link--active {
-    background-color: #FFF;
+    background-color: rgba(255, 255, 255, 0.9);
     color: #000;
     border-bottom-color: #FFF;
     background-position: 4% 50%;
   }
+
+    .menu__link--active:hover {
+      background-color: #FFF;
+      color: #000;
+    }
 }
 /* element styles */
 a {
@@ -598,4 +826,17 @@ span.chart__passed {
 }
 .fk-logo {
   width: 300px;
+}
+.aerate-logo {
+  margin: 0;
+  width: 200px;
+}
+.aerate-logo .aerate-logo--mark {
+    fill: #308ED9;
+  }
+.aerate-logo .aerate-logo--subhead {
+    fill: #4B4A4A;
+  }
+.content__top {
+  overflow: hidden;
 }

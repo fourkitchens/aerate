@@ -1,4 +1,5 @@
 @import "_vars.css";
+@import "_bubbles.css";
 
 * {
   box-sizing: border-box;
@@ -124,7 +125,7 @@ ul li {
 
   @media (min-width: 600px) {
     height: auto;
-    background-color: $grayLightest;
+    background-color: $aerate-blue;
     position: relative;
     transform: translateY(0);
     opacity: 1;
@@ -136,7 +137,7 @@ ul li {
   flex-flow: row wrap;
   align-items: flex-end;
   justify-content: space-between;
-  padding: $space-double $space-quadruple;
+  padding: $space-triple $space-quadruple $space-double;
 }
 
 .title__content {
@@ -179,19 +180,13 @@ ul li {
 }
 
 .content__top {
+  background: linear-gradient(180deg, rgba(178,190,251,0.5270483193277311) 0%, rgba(255,255,255,0) 29%);
   display: flex;
   align-items: center;
   align-content: space-between;
   justify-content: space-between;
   position: relative;
-  background: linear-gradient(
-    0deg,
-    $grayLightest 40%,
-    rgba(255, 255, 255, 0) 40%
-  );
-  background-image: url(../../images/backgrounds/aerate-pattern.png);
-  background-position: center;
-  background-repeat: repeat;
+  /* background: $aerate-blue; */
   z-index: 1;
 }
 
@@ -241,15 +236,19 @@ ul li {
   display: block;
   font-size: 1rem;
   padding: $space $space $space $space-double;
+  transition: background-color 0.1s;
 
   @media (min-width: 600px) {
-    background-color: $grayLightest;
-    padding: $space-one-half $space $space-one-half $space-double;
+    background-color: rgba(0,0,0,0.15);
+    border-radius: $border-radius;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0.5rem;
+    padding: $space-one-half $space;
 
     &:hover {
-      background-color: $gray;
-      color: $white;
+      background-color: rgba(0,0,0,0.2);
       border-color: $gray;
+      color: $white;
     }
   }
 }
@@ -259,14 +258,20 @@ ul li {
   background-size: 20px;
   background-position: 0 50%;
   color: $black;
+  padding-left: $space-double;
 }
 
 @media (min-width: 600px) {
   .menu__link--active {
-    background-color: $white;
+    background-color: rgba(255, 255, 255, 0.9);
     color: $black;
     border-bottom-color: $white;
     background-position: 4% 50%;
+
+    &:hover {
+      background-color: #FFF;
+      color: $black;
+    }
   }
 }
 
@@ -590,4 +595,20 @@ span.chart__passed {
 
 .fk-logo {
   width: 300px;
+}
+
+.aerate-logo {
+  margin: 0;
+  width: 200px;
+
+  .aerate-logo--mark {
+    fill: $aerate-blue;
+  }
+  .aerate-logo--subhead {
+    fill: $aerate-dark;
+  }
+}
+
+.content__top {
+  overflow: hidden;
 }
