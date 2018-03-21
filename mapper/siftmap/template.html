@@ -180,7 +180,7 @@
         resultsSpan[0].textContent = ' ' + budgetData[0].percentage + 'ms';
 
         // Britecharts
-        var colors = ['#515151', '#61B64B'];
+        var colors = ['#515151', 'rgb(97, 182, 75)'];
         if (budgetData[1].class.length > 0) {
           briteElement[i].classList.add(budgetData[1].class);
 
@@ -189,7 +189,7 @@
           }
 
           if (budgetData[1].class == 'over-budget') {
-            colors = ['#515151', '#B64B4E'];
+            colors = ['#515151', 'rgb(182, 75, 78)'];
 
             var statusSpan = briteElement[i].querySelectorAll('.chart__passed');
             statusSpan[0].textContent = ' Failed';
