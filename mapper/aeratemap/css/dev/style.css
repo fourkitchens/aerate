@@ -337,9 +337,7 @@ svg {
 
 @media (min-width: 600px) {
   .mobile-menu {
-    height: 0;
-    visibility: hidden;
-    padding: 0;
+    display: none;
   }
 }
 /*
