@@ -1,144 +1,3 @@
-/* KEYFRAMES */
-
-@-webkit-keyframes animateBubble {
-  0% {
-    margin-top: 170px;
-  }
-  100% {
-    margin-top: -150px;
-  }
-}
-
-@keyframes animateBubble {
-  0% {
-    margin-top: 170px;
-  }
-  100% {
-    margin-top: -150px;
-  }
-}
-
-@-webkit-keyframes sideWays {
-  0% {
-    margin-left: 0px;
-  }
-  100% {
-    margin-left: 50px;
-  }
-}
-
-@keyframes sideWays {
-  0% {
-    margin-left: 0px;
-  }
-  100% {
-    margin-left: 50px;
-  }
-}
-
-/* ANIMATIONS */
-
-.x1 {
-  -webkit-animation: animateBubble 15s linear infinite, sideWays 2s ease-in-out infinite alternate;
-          animation: animateBubble 15s linear infinite, sideWays 2s ease-in-out infinite alternate;
-  left: -5%;
-  top: 5%;
-  -webkit-transform: scale(0.6);
-          transform: scale(0.6);
-}
-
-.x2 {
-  -webkit-animation: animateBubble 10s linear infinite, sideWays 4s ease-in-out infinite alternate;
-          animation: animateBubble 10s linear infinite, sideWays 4s ease-in-out infinite alternate;
-  left: 5%;
-  top: 80%;
-  -webkit-transform: scale(0.4);
-          transform: scale(0.4);
-}
-
-.x3 {
-  -webkit-animation: animateBubble 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
-          animation: animateBubble 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
-  left: 10%;
-  top: 40%;
-  -webkit-transform: scale(0.7);
-          transform: scale(0.7);
-}
-
-.x4 {
-  -webkit-animation: animateBubble 12s linear infinite, sideWays 3s ease-in-out infinite alternate;
-          animation: animateBubble 12s linear infinite, sideWays 3s ease-in-out infinite alternate;
-  left: 20%;
-  top: 0;
-  -webkit-transform: scale(0.3);
-          transform: scale(0.3);
-}
-
-.x5 {
-  -webkit-animation: animateBubble 13s linear infinite, sideWays 4s ease-in-out infinite alternate;
-          animation: animateBubble 13s linear infinite, sideWays 4s ease-in-out infinite alternate;
-  left: 30%;
-  top: 50%;
-  -webkit-transform: scale(0.5);
-          transform: scale(0.5);
-}
-
-.x6 {
-  -webkit-animation: animateBubble 11s linear infinite, sideWays 2s ease-in-out infinite alternate;
-          animation: animateBubble 11s linear infinite, sideWays 2s ease-in-out infinite alternate;
-  left: 50%;
-  top: 0;
-  -webkit-transform: scale(0.8);
-          transform: scale(0.8);
-}
-
-.x7 {
-  -webkit-animation: animateBubble 10s linear infinite, sideWays 2s ease-in-out infinite alternate;
-          animation: animateBubble 10s linear infinite, sideWays 2s ease-in-out infinite alternate;
-  left: 65%;
-  top: 70%;
-  -webkit-transform: scale(0.4);
-          transform: scale(0.4);
-}
-
-.x8 {
-  -webkit-animation: animateBubble 12s linear infinite, sideWays 3s ease-in-out infinite alternate;
-          animation: animateBubble 12s linear infinite, sideWays 3s ease-in-out infinite alternate;
-  left: 80%;
-  top: 10%;
-  -webkit-transform: scale(0.3);
-          transform: scale(0.3);
-}
-
-.x9 {
-  -webkit-animation: animateBubble 19s linear infinite, sideWays 4s ease-in-out infinite alternate;
-          animation: animateBubble 19s linear infinite, sideWays 4s ease-in-out infinite alternate;
-  left: 90%;
-  top: 50%;
-  -webkit-transform: scale(0.6);
-          transform: scale(0.6);
-}
-
-.x10 {
-  -webkit-animation: animateBubble 16s linear infinite, sideWays 2s ease-in-out infinite alternate;
-          animation: animateBubble 16s linear infinite, sideWays 2s ease-in-out infinite alternate;
-  left: 80%;
-  top: 80%;
-  -webkit-transform: scale(0.3);
-          transform: scale(0.3);
-}
-
-/* OBJECTS */
-
-.bubble {
-  border-radius: 50%;
-  border: 2px solid #308ED9;
-  height: 100px;
-  opacity: 0.5;
-  position: absolute;
-  width: 100px;
-}
-
 /* Type */
 /* colors */
 /* widths */
@@ -148,93 +7,6 @@
 /* colors */
 /* widths */
 /* space */
-/* KEYFRAMES */
-@keyframes animateBubble {
-  0% {
-    margin-top: 170px;
-  }
-  100% {
-    margin-top: -150px;
-  }
-}
-@keyframes sideWays {
-  0% {
-    margin-left: 0px;
-  }
-  100% {
-    margin-left: 50px;
-  }
-}
-/* ANIMATIONS */
-.x1 {
-  animation: animateBubble 15s linear infinite, sideWays 2s ease-in-out infinite alternate;
-  left: -5%;
-  top: 5%;
-  transform: scale(0.6);
-}
-.x2 {
-  animation: animateBubble 10s linear infinite, sideWays 4s ease-in-out infinite alternate;
-  left: 5%;
-  top: 80%;
-  transform: scale(0.4);
-}
-.x3 {
-  animation: animateBubble 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
-  left: 10%;
-  top: 40%;
-  transform: scale(0.7);
-}
-.x4 {
-  animation: animateBubble 12s linear infinite, sideWays 3s ease-in-out infinite alternate;
-  left: 20%;
-  top: 0;
-  transform: scale(0.3);
-}
-.x5 {
-  animation: animateBubble 13s linear infinite, sideWays 4s ease-in-out infinite alternate;
-  left: 30%;
-  top: 50%;
-  transform: scale(0.5);
-}
-.x6 {
-  animation: animateBubble 11s linear infinite, sideWays 2s ease-in-out infinite alternate;
-  left: 50%;
-  top: 0;
-  transform: scale(0.8);
-}
-.x7 {
-  animation: animateBubble 10s linear infinite, sideWays 2s ease-in-out infinite alternate;
-  left: 65%;
-  top: 70%;
-  transform: scale(0.4);
-}
-.x8 {
-  animation: animateBubble 12s linear infinite, sideWays 3s ease-in-out infinite alternate;
-  left: 80%;
-  top: 10%;
-  transform: scale(0.3);
-}
-.x9 {
-  animation: animateBubble 19s linear infinite, sideWays 4s ease-in-out infinite alternate;
-  left: 90%;
-  top: 50%;
-  transform: scale(0.6);
-}
-.x10 {
-  animation: animateBubble 16s linear infinite, sideWays 2s ease-in-out infinite alternate;
-  left: 80%;
-  top: 80%;
-  transform: scale(0.3);
-}
-/* OBJECTS */
-.bubble {
-  border-radius: 50%;
-  border: 2px solid #308ED9;
-  height: 100px;
-  opacity: 0.5;
-  position: absolute;
-  width: 100px;
-}
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -482,6 +254,9 @@ ul li {
   padding: 0;
   margin: 0;
   list-style: none;
+}
+.menu {
+  margin-left: 3.5rem;
 }
 @media (max-width: 600px) {
 .menu li + li {
@@ -829,7 +604,7 @@ span.chart__passed {
 }
 .aerate-logo {
   margin: 0;
-  width: 200px;
+  width: 250px;
 }
 .aerate-logo .aerate-logo--mark {
     fill: #308ED9;

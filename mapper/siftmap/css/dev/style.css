@@ -1,5 +1,4 @@
 @import "_vars.css";
-@import "_bubbles.css";
 
 * {
   box-sizing: border-box;
@@ -221,6 +220,10 @@ ul li {
   padding: 0;
   margin: 0;
   list-style: none;
+}
+
+.menu {
+  margin-left: 3.5rem;
 }
 
 .menu {
@@ -599,7 +602,7 @@ span.chart__passed {
 
 .aerate-logo {
   margin: 0;
-  width: 200px;
+  width: 250px;
 
   .aerate-logo--mark {
     fill: $aerate-blue;
