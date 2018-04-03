@@ -195,8 +195,7 @@ ul li {
   padding-bottom: 4rem;
 }
 .content__top {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(178,190,251,0.5270483193277311)), color-stop(29%, rgba(255,255,255,0)));
-  background: linear-gradient(180deg, rgba(178,190,251,0.5270483193277311) 0%, rgba(255,255,255,0) 29%);
+  /* background: linear-gradient(180deg, rgba(178,190,251,0.5270483193277311) 0%, rgba(255,255,255,0) 29%); */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -273,7 +272,7 @@ ul li {
 }
 @media (min-width: 600px) {
 .menu__link {
-    background-color: rgba(0,0,0,0.15);
+    background-color: rgba(0, 0, 0, 0.15);
     border-radius: 2px;
     color: rgba(255, 255, 255, 0.8);
     margin: 0.5rem;
@@ -281,7 +280,7 @@ ul li {
 }
 
     .menu__link:hover {
-      background-color: rgba(0,0,0,0.2);
+      background-color: rgba(0, 0, 0, 0.2);
       border-color: #A3A3A3;
       color: #FFF;
     }
@@ -303,7 +302,7 @@ ul li {
   }
 
     .menu__link--active:hover {
-      background-color: #FFF;
+      background-color: #fff;
       color: #000;
     }
 }
@@ -404,7 +403,7 @@ svg {
   border-radius: 2px;
 }
 .chart__meta {
-  background:rgba(255,255,255,1);
+  background: rgba(255, 255, 255, 1);
   border-radius: 2px;
   position: relative;
 }
@@ -415,7 +414,7 @@ svg {
     left: 2rem;
     color: rgb(97, 182, 75);
     fill: rgb(97, 182, 75);
-    content: '';
+    content: "";
     font-family: 'Archivo', helvetica, arial, sans-serif;
     background-image: url(../../images/icons/stars.svg);
     background-repeat: no-repeat;
@@ -592,7 +591,7 @@ span.chart__passed {
   position: relative;
 }
 .footer__header {
-  color: rgba(255,255,255,0.4);
+  color: rgba(255, 255, 255, 0.4);
   font-size: 1.1rem;
   display: inline-block;
   position: absolute;

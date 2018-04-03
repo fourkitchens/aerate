@@ -179,7 +179,7 @@ ul li {
 }
 
 .content__top {
-  background: linear-gradient(180deg, rgba(178,190,251,0.5270483193277311) 0%, rgba(255,255,255,0) 29%);
+  /* background: linear-gradient(180deg, rgba(178,190,251,0.5270483193277311) 0%, rgba(255,255,255,0) 29%); */
   display: flex;
   align-items: center;
   align-content: space-between;
@@ -242,14 +242,14 @@ ul li {
   transition: background-color 0.1s;
 
   @media (min-width: 600px) {
-    background-color: rgba(0,0,0,0.15);
+    background-color: rgba(0, 0, 0, 0.15);
     border-radius: $border-radius;
     color: rgba(255, 255, 255, 0.8);
     margin: 0.5rem;
     padding: $space-one-half $space;
 
     &:hover {
-      background-color: rgba(0,0,0,0.2);
+      background-color: rgba(0, 0, 0, 0.2);
       border-color: $gray;
       color: $white;
     }
@@ -272,7 +272,7 @@ ul li {
     background-position: 4% 50%;
 
     &:hover {
-      background-color: #FFF;
+      background-color: #fff;
       color: $black;
     }
   }
@@ -380,7 +380,7 @@ svg {
 }
 
 .chart__meta {
-  background:rgba(255,255,255,1);
+  background: rgba(255, 255, 255, 1);
   border-radius: $border-radius;
   position: relative;
 
@@ -391,7 +391,7 @@ svg {
     left: $space-double;
     color: $testPass;
     fill: $testPass;
-    content: '';
+    content: "";
     font-family: $sans;
     background-image: url(../../images/icons/stars.svg);
     background-repeat: no-repeat;
@@ -588,7 +588,7 @@ span.chart__passed {
 }
 
 .footer__header {
-  color: rgba(255,255,255,0.4);
+  color: rgba(255, 255, 255, 0.4);
   font-size: 1.1rem;
   display: inline-block;
   position: absolute;
