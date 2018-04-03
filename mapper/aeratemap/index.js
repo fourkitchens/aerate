@@ -17,14 +17,16 @@
 
 /* globals require, __dirname, module */
 
-const fs = require('fs');
-const path = require('path');
-const check = require('check-types');
-const render = require('../../src/templates').compile(path.join(__dirname, 'template.html'));
-const packageInfo = require('../../package.json');
+const fs = require("fs");
+const path = require("path");
+const check = require("check-types");
+const render = require("../../src/templates").compile(
+  path.join(__dirname, "template.html")
+);
+const packageInfo = require("../../package.json");
 
 // Check for local budget file
-let budget = require('../../budget');
+let budget = require("../../budget");
 
 if (fs.existsSync(`${process.env.PWD}/budget.json`)) {
   budget = require(`${process.env.PWD}/budget.json`); // eslint-disable-line
@@ -40,7 +42,7 @@ const barPadding = 2;
 const labelOffset = 16;
 
 function getViewResult(view, result) {
-  return result[view + 'View']; // eslint-disable-line
+  return result[view + "View"]; // eslint-disable-line
 }
 
 function expressValueInRtt(datum) {
@@ -51,17 +53,15 @@ function expressValueInRtt(datum) {
   return Math.ceil(datum.value / datum.rtt);
 }
 
-
 function getSimpleValue(view, chartKey, metric, result) {
   const datum = getViewResult(view, result)[chartKey];
 
-  if (metric === 'rtt') {
+  if (metric === "rtt") {
     return expressValueInRtt(datum);
   }
 
   return datum.value;
 }
-
 
 function getDerivativeOperands(view, chartKey, metric, result) {
   let lhs;
@@ -83,10 +83,10 @@ function getDerivativeOperands(view, chartKey, metric, result) {
     rhs = rhs[chartKey];
   }
 
-  if (metric === 'rtt') {
+  if (metric === "rtt") {
     return {
       lhs: expressValueInRtt(lhs),
-      rhs: expressValueInRtt(rhs),
+      rhs: expressValueInRtt(rhs)
     };
   }
 
@@ -96,12 +96,12 @@ function getDerivativeOperands(view, chartKey, metric, result) {
 function getDerivativeValue(view, chartKey, derivative, metric, result) {
   const operands = getDerivativeOperands(view, chartKey, metric, result);
 
-  if (derivative === 'difference') {
+  if (derivative === "difference") {
     return operands.lhs - operands.rhs;
   }
 
-  if (derivative === 'percentage') {
-    return Math.round((operands.lhs / operands.rhs) * 100);
+  if (derivative === "percentage") {
+    return Math.round(operands.lhs / operands.rhs * 100);
   }
 
   throw new Error(`unrecognised derivative '${derivative}'`);
@@ -119,7 +119,15 @@ function filterResults(view, chartKey, derivative, metric, result) {
   return getValue(view, chartKey, derivative, metric, result) >= 0;
 }
 
-function mapChartResult(view, chartKey, derivative, metric, unitsPerPixel, result, index) {
+function mapChartResult(
+  view,
+  chartKey,
+  derivative,
+  metric,
+  unitsPerPixel,
+  result,
+  index
+) {
   if (result.error) {
     return result;
   }
@@ -132,15 +140,15 @@ function mapChartResult(view, chartKey, derivative, metric, unitsPerPixel, resul
   }
 
   let textAnchor;
-  let textOrientation = '';
-  let textClass = 'chart-label';
+  let textOrientation = "";
+  let textClass = "chart-label";
 
   if (barWidth < 40) {
-    textAnchor = 'start';
+    textAnchor = "start";
   } else {
-    textOrientation = '-';
-    textClass += ' chart-bar-label';
-    textAnchor = 'end';
+    textOrientation = "-";
+    textClass += " chart-bar-label";
+    textAnchor = "end";
   }
 
   return {
@@ -148,10 +156,10 @@ function mapChartResult(view, chartKey, derivative, metric, unitsPerPixel, resul
     name: result.name,
     type: result.type,
     barWidth,
-    value: value + (derivative === 'percentage' ? '%' : ''),
+    value: value + (derivative === "percentage" ? "%" : ""),
     textOrientation,
     textClass,
-    textAnchor,
+    textAnchor
   };
 }
 
@@ -164,8 +172,10 @@ function compareResults(view, chartKey, derivative, metric, first, second) {
     return -1;
   }
 
-  return getValue(view, chartKey, derivative, metric, first) -
-      getValue(view, chartKey, derivative, metric, second);
+  return (
+    getValue(view, chartKey, derivative, metric, first) -
+    getValue(view, chartKey, derivative, metric, second)
+  );
 }
 
 function getMaximumValue(view, chartKey, derivative, metric, results) {
@@ -184,27 +194,51 @@ function getMaximumValue(view, chartKey, derivative, metric, results) {
   }, 0);
 }
 
-
 function mapChart(results, chart) {
-  const fResults = filterResults.bind(null, chart.view, chart.key, chart.derivative, chart.metric);
+  const fResults = filterResults.bind(
+    null,
+    chart.view,
+    chart.key,
+    chart.derivative,
+    chart.metric
+  );
   const filteredResults = results.filter(fResults);
-  const cResults = compareResults.bind(null, chart.view, chart.key, chart.derivative, chart.metric);
-  const maxValue = getMaximumValue(chart.view, chart.key, chart.derivative, chart.metric, results);
+  const cResults = compareResults.bind(
+    null,
+    chart.view,
+    chart.key,
+    chart.derivative,
+    chart.metric
+  );
+  const maxValue = getMaximumValue(
+    chart.view,
+    chart.key,
+    chart.derivative,
+    chart.metric,
+    results
+  );
   const chartDiff = maxValue / (chartWidth - chartMargin);
-  const mappedResult = mapChartResult.bind(null, chart.view, chart.key, chart.derivative, chart.metric, chartDiff); // eslint-disable-line
+  const mappedResult = mapChartResult.bind(
+    null,
+    chart.view,
+    chart.key,
+    chart.derivative,
+    chart.metric,
+    chartDiff
+  ); // eslint-disable-line
 
   return {
     title: chart.title,
     sectionTitle: chart.sectionTitle,
-    height: (filteredResults.length * (barHeight + barPadding)) + chartPadding,
-    yAxisHeight: (filteredResults.length * (barHeight + barPadding)) + barPadding,
+    height: filteredResults.length * (barHeight + barPadding) + chartPadding,
+    yAxisHeight: filteredResults.length * (barHeight + barPadding) + barPadding,
     tests: filteredResults.sort(cResults).map(mappedResult),
     label: chart.label,
     xAxis: {
-      offset: (filteredResults.length * (barHeight + barPadding)) + 1,
-      width: (chartWidth - chartMargin) + 2,
-      labelPosition: Math.round(((chartWidth - chartMargin) + 2) / 2),
-    },
+      offset: filteredResults.length * (barHeight + barPadding) + 1,
+      width: chartWidth - chartMargin + 2,
+      labelPosition: Math.round((chartWidth - chartMargin + 2) / 2)
+    }
   };
 }
 
@@ -217,7 +251,7 @@ function clone(thing) {
     cloned = {};
   }
 
-  Object.keys(thing).forEach((key) => {
+  Object.keys(thing).forEach(key => {
     const property = thing[key];
 
     if (check.either.object(property).or.array(property)) {
@@ -231,7 +265,7 @@ function clone(thing) {
 }
 
 function getViewKey(view) {
-  return view + 'View'; // eslint-disable-line
+  return view + "View"; // eslint-disable-line
 }
 
 function getData(result, metric) {
@@ -263,7 +297,6 @@ function getWaterfallUrl(result, medianMetric, view) {
   return getUrls(result, medianMetric, view).details;
 }
 
-
 function mapResult(log, result) {
   let message;
 
@@ -279,44 +312,44 @@ function mapResult(log, result) {
       name: result.name,
       type: result.type,
       url: result.url,
-      optimisationsUrl: getOptimisationsUrl(result, 'SpeedIndex', 'first'),
+      optimisationsUrl: getOptimisationsUrl(result, "SpeedIndex", "first"),
       firstView: {
         firstByte: {
-          url: getWaterfallUrl(result, 'TTFB', 'first'),
-          value: getMedianRun(result, 'TTFB', 'first').TTFB,
-          rtt: getMedianRun(result, 'TTFB', 'first').server_rtt,
+          url: getWaterfallUrl(result, "TTFB", "first"),
+          value: getMedianRun(result, "TTFB", "first").TTFB,
+          rtt: getMedianRun(result, "TTFB", "first").server_rtt
         },
         startRender: {
-          url: getWaterfallUrl(result, 'render', 'first'),
-          value: getMedianRun(result, 'render', 'first').render,
-          rtt: getMedianRun(result, 'render', 'first').server_rtt,
+          url: getWaterfallUrl(result, "render", "first"),
+          value: getMedianRun(result, "render", "first").render,
+          rtt: getMedianRun(result, "render", "first").server_rtt
         },
         speedIndex: {
-          url: getWaterfallUrl(result, 'SpeedIndex', 'first'),
-          value: getMedianRun(result, 'SpeedIndex', 'first').SpeedIndex,
-          rtt: getMedianRun(result, 'SpeedIndex', 'first').server_rtt,
+          url: getWaterfallUrl(result, "SpeedIndex", "first"),
+          value: getMedianRun(result, "SpeedIndex", "first").SpeedIndex,
+          rtt: getMedianRun(result, "SpeedIndex", "first").server_rtt
         },
         docTime: {
-          value: getMedianRun(result, 'SpeedIndex', 'first').docTime,
+          value: getMedianRun(result, "SpeedIndex", "first").docTime
         },
         load: {
-          url: getWaterfallUrl(result, 'loadTime', 'first'),
-          value: getMedianRun(result, 'loadTime', 'first').loadTime,
-          rtt: getMedianRun(result, 'loadTime', 'first').server_rtt,
+          url: getWaterfallUrl(result, "loadTime", "first"),
+          value: getMedianRun(result, "loadTime", "first").loadTime,
+          rtt: getMedianRun(result, "loadTime", "first").server_rtt
         },
         bytes: {
-          url: getWaterfallUrl(result, 'SpeedIndex', 'first'),
-          value: getMedianRun(result, 'SpeedIndex', 'first').bytesIn,
+          url: getWaterfallUrl(result, "SpeedIndex", "first"),
+          value: getMedianRun(result, "SpeedIndex", "first").bytesIn
         },
         requests: {
-          url: getWaterfallUrl(result, 'SpeedIndex', 'first'),
-          value: getMedianRun(result, 'SpeedIndex', 'first').requests,
+          url: getWaterfallUrl(result, "SpeedIndex", "first"),
+          value: getMedianRun(result, "SpeedIndex", "first").requests
         },
         connections: {
-          url: getWaterfallUrl(result, 'SpeedIndex', 'first'),
-          value: getMedianRun(result, 'SpeedIndex', 'first').connections,
-        },
-      },
+          url: getWaterfallUrl(result, "SpeedIndex", "first"),
+          value: getMedianRun(result, "SpeedIndex", "first").connections
+        }
+      }
     };
   } catch (error) {
     log.error(`failed to map ${message}; ${error.message}`);
@@ -325,9 +358,9 @@ function mapResult(log, result) {
 }
 
 function mapResults(options, results) {
-  let locationParts = options.location.split(':');
+  let locationParts = options.location.split(":");
   if (locationParts.length === 1) {
-    locationParts = options.location.split('_');
+    locationParts = options.location.split("_");
   }
 
   const mapped = results.data.map(mapResult.bind(null, options.log));
@@ -335,7 +368,7 @@ function mapResults(options, results) {
   // Britecharts Needs
   const newBarChart = [];
   mapped.forEach((datum, index) => {
-    Object.keys(budget).forEach((key) => {
+    Object.keys(budget).forEach(key => {
       const barChartData = [];
       if (mapped[index].firstView[key] !== undefined) {
         const actualItem = {};
@@ -343,7 +376,7 @@ function mapResults(options, results) {
         // Measurement Value
         actualItem.percentage = mapped[index].firstView[key].value;
         // Measurement Name
-        actualItem.name = 'Results';
+        actualItem.name = "Results";
         actualItem.id = 1;
         barChartData.push(actualItem);
         mapped[index].firstView[key].testName = budget[key].name;
@@ -351,15 +384,15 @@ function mapResults(options, results) {
         // Budget
         const budgetItem = {};
         budgetItem.percentage = parseInt(budget[key].value, 10);
-        budgetItem.name = 'Budget';
+        budgetItem.name = "Budget";
         budgetItem.id = 0;
         if (actualItem.percentage > budgetItem.percentage) {
-          budgetItem.class = 'over-budget';
+          budgetItem.class = "over-budget";
         } else {
-          budgetItem.class = '';
+          budgetItem.class = "";
         }
-        if (key === 'bytes' || key === 'requests' || key === 'connections') {
-          budgetItem.class = 'single-data';
+        if (key === "bytes" || key === "requests" || key === "connections") {
+          budgetItem.class = "single-data";
         }
         barChartData.push(budgetItem);
       }
@@ -370,7 +403,7 @@ function mapResults(options, results) {
 
   const tests = [];
   const mappedResults = [];
-  mapped.forEach((index) => {
+  mapped.forEach(index => {
     if (Array.isArray(index)) {
       tests.push(index);
     } else {
@@ -389,18 +422,18 @@ function mapResults(options, results) {
     chartMargin,
     barHeight,
     labelOffset,
-    // Sift specific
+    // Aerate specific
     results: mappedResults,
-    tests,
+    tests
   };
 }
 
 function map(options, results) {
-  check.assert.object(options, 'invalid options');
-  check.assert.unemptyString(options.location, 'invalid location option');
-  check.assert.object(results, 'invalid results');
-  check.assert.array(results.data, 'invalid result data');
-  check.assert.object(results.times, 'invalid result times');
+  check.assert.object(options, "invalid options");
+  check.assert.unemptyString(options.location, "invalid location option");
+  check.assert.object(results, "invalid results");
+  check.assert.array(results.data, "invalid result data");
+  check.assert.object(results.times, "invalid result times");
   return render(mapResults(options, results));
 }
 
