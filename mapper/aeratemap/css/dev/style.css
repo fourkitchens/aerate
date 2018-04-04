@@ -109,7 +109,6 @@ ul li {
   display: flex;
   height: 0;
   transform: translateY(-100%);
-  padding: 0 $space-quadruple;
   position: relative;
   width: 100%;
   transition: 0.5s all;
@@ -120,6 +119,10 @@ ul li {
     height: auto;
     transform: translateY(0);
     opacity: 1;
+  }
+
+  &__inner {
+    padding-left: 3.5rem;
   }
 
   @media (min-width: 600px) {
@@ -179,13 +182,11 @@ ul li {
 }
 
 .content__top {
-  /* background: linear-gradient(180deg, rgba(178,190,251,0.5270483193277311) 0%, rgba(255,255,255,0) 29%); */
   display: flex;
   align-items: center;
   align-content: space-between;
   justify-content: space-between;
   position: relative;
-  /* background: $aerate-blue; */
   z-index: 1;
 }
 
@@ -220,10 +221,6 @@ ul li {
   padding: 0;
   margin: 0;
   list-style: none;
-}
-
-.menu {
-  margin-left: 3.5rem;
 }
 
 .menu {
