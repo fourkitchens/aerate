@@ -107,13 +107,10 @@ ul li {
 
 .header {
   display: flex;
-  height: 0;
-  transform: translateY(-100%);
+  background-color: $aerate-blue;
   position: relative;
   width: 100%;
-  transition: 0.5s all;
   align-items: flex-end;
-  opacity: 0;
 
   &.header--active {
     height: auto;
@@ -122,15 +119,9 @@ ul li {
   }
 
   &__inner {
-    padding-left: 3.5rem;
-  }
-
-  @media (min-width: 600px) {
-    height: auto;
-    background-color: $aerate-blue;
-    position: relative;
-    transform: translateY(0);
-    opacity: 1;
+    @media (min-width: 600px) {
+      padding-left: 3.5rem;
+    }
   }
 }
 
@@ -197,83 +188,7 @@ ul li {
   max-width: $max-width;
 }
 
-/* menu bar */
-.menu {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  flex-flow: column wrap;
-
-  @media (min-width: 600px) {
-    flex-flow: row wrap;
-  }
-
-  li {
-    width: 100%;
-
-    @media (min-width: 600px) {
-      width: auto;
-    }
-  }
-}
-.menu,
-.menu li {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.menu {
-  li + li {
-    @media (max-width: 600px) {
-      border-top: 1px solid $grayLight;
-    }
-  }
-}
-
-.menu__link {
-  color: $grayMid;
-  display: block;
-  font-size: 1rem;
-  padding: $space $space $space $space-double;
-  transition: background-color 0.1s;
-
-  @media (min-width: 600px) {
-    background-color: rgba(0, 0, 0, 0.15);
-    border-radius: $border-radius;
-    color: rgba(255, 255, 255, 0.8);
-    margin: 0.5rem;
-    padding: $space-one-half $space;
-
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.2);
-      border-color: $gray;
-      color: $white;
-    }
-  }
-}
-.menu__link--active {
-  background-image: url(../../images/icons/check_box.svg);
-  background-repeat: no-repeat;
-  background-size: 20px;
-  background-position: 0 50%;
-  color: $black;
-  padding-left: $space-double;
-}
-
-@media (min-width: 600px) {
-  .menu__link--active {
-    background-color: rgba(255, 255, 255, 0.9);
-    color: $black;
-    border-bottom-color: $white;
-    background-position: 4% 50%;
-
-    &:hover {
-      background-color: #fff;
-      color: $black;
-    }
-  }
-}
+/
 
 /* element styles */
 
@@ -308,35 +223,7 @@ svg {
   overflow: hidden;
 }
 
-/* mobile menu */
-.mobile-menu {
-  flex: 0 auto;
-  font-size: 1rem;
-  font-weight: bold;
-  color: $grayMid;
-  text-transform: uppercase;
-  background-color: $grayLightest;
-  padding: $space $space-double $space $space-triple;
-  text-align: center;
-  background-image: url(../../images/icons/control_point.svg);
-  background-repeat: no-repeat;
-  background-size: 20px;
-  background-position: 15% 50%;
-  border: 2px solid transparent;
 
-  &.mobile-menu--active {
-    background-color: $white;
-    color: $black;
-    border-color: $black;
-    background-image: url(../../images/icons/remove_circle.svg);
-  }
-}
-
-@media (min-width: 600px) {
-  .mobile-menu {
-    display: none;
-  }
-}
 /*
 * charts
 */
@@ -352,16 +239,7 @@ svg {
 }
 
 .britechart-test__header {
-  color: $grayMid;
-  background-color: $white;
-  margin-top: 0;
-  padding: $space $space-quadruple;
-  text-transform: none;
-  font-size: 1.6rem;
-  font-weight: normal;
-  @media (min-width: 600px) {
-    display: none;
-  }
+  display: none;
 }
 
 /* charts */
@@ -491,6 +369,7 @@ svg {
   font-weight: bold;
   margin-right: $space;
   color: $grayMid;
+  white-space: nowrap;
 }
 
 .chart__stats span {
@@ -610,3 +489,5 @@ span.chart__passed {
 .content__top {
   overflow: hidden;
 }
+
+@import "_menu.css";
