@@ -4,8 +4,6 @@
 
 ## Measure frontend performance against a budget with an optional UI
 
-<div style="display:flex"><h3 style="flex: 0 1 50%">Console Results</h3><h3 style="flex: 0 1 50%">UI Results</h3></div>
-
 <img src="https://user-images.githubusercontent.com/18293479/38394725-3f7eb0d8-38f5-11e8-80fb-a3a396b55fa7.jpg" width="441" alt="Aerate Results" /> <img src="https://user-images.githubusercontent.com/18293479/38394726-3f905ca2-38f5-11e8-9a12-4d1152b083ca.jpg" width="441" alt="Aerate UI" />
 
 ## Usage
