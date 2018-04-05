@@ -4,7 +4,7 @@
 
 Measure frontend performance against a budget with an option to view them using lovely charts in a browser
 
-![](https://user-images.githubusercontent.com/18293479/38394316-94a27fba-38f3-11e8-96e3-defe9190d536.png) ![](https://user-images.githubusercontent.com/18293479/38394317-959484e0-38f3-11e8-8738-7f63480d6e7c.png)
+![](https://user-images.githubusercontent.com/18293479/38394725-3f7eb0d8-38f5-11e8-80fb-a3a396b55fa7.jpg) ![](https://user-images.githubusercontent.com/18293479/38394726-3f905ca2-38f5-11e8-9a12-4d1152b083ca.jpg)
 
 ## Usage
 
