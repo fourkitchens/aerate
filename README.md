@@ -4,6 +4,10 @@
 
 Measure frontend performance against a budget with an option to view them using lovely charts in a browser
 
+|                                                  Results                                                  |                                                    UI                                                     |
+| :-------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
+| ![](https://user-images.githubusercontent.com/18293479/38394316-94a27fba-38f3-11e8-96e3-defe9190d536.png) | ![](https://user-images.githubusercontent.com/18293479/38394317-959484e0-38f3-11e8-8738-7f63480d6e7c.png) |
+
 ## Usage
 
 1.  Get a [WebPageTest.org API key](https://www.webpagetest.org/getkey.php)
