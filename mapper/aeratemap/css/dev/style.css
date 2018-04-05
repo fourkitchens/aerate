@@ -107,14 +107,10 @@ ul li {
 
 .header {
   display: flex;
-  height: 0;
-  transform: translateY(-100%);
-  padding: 0 $space-quadruple;
+  background-color: $aerate-blue;
   position: relative;
   width: 100%;
-  transition: 0.5s all;
   align-items: flex-end;
-  opacity: 0;
 
   &.header--active {
     height: auto;
@@ -122,12 +118,10 @@ ul li {
     opacity: 1;
   }
 
-  @media (min-width: 600px) {
-    height: auto;
-    background-color: $grayLightest;
-    position: relative;
-    transform: translateY(0);
-    opacity: 1;
+  &__inner {
+    @media (min-width: 600px) {
+      padding-left: 3.5rem;
+    }
   }
 }
 
@@ -136,7 +130,7 @@ ul li {
   flex-flow: row wrap;
   align-items: flex-end;
   justify-content: space-between;
-  padding: $space-double $space-quadruple;
+  padding: $space-triple $space-quadruple $space-double;
 }
 
 .title__content {
@@ -184,14 +178,6 @@ ul li {
   align-content: space-between;
   justify-content: space-between;
   position: relative;
-  background: linear-gradient(
-    0deg,
-    $grayLightest 40%,
-    rgba(255, 255, 255, 0) 40%
-  );
-  background-image: url(../../images/backgrounds/aerate-pattern.png);
-  background-position: center;
-  background-repeat: repeat;
   z-index: 1;
 }
 
@@ -200,75 +186,10 @@ ul li {
   margin-right: auto;
   width: 100%;
   max-width: $max-width;
+  padding: 0 4%;
 }
 
-/* menu bar */
-.menu {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  flex-flow: column wrap;
-
-  @media (min-width: 600px) {
-    flex-flow: row wrap;
-  }
-
-  li {
-    width: 100%;
-
-    @media (min-width: 600px) {
-      width: auto;
-    }
-  }
-}
-.menu,
-.menu li {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.menu {
-  li + li {
-    @media (max-width: 600px) {
-      border-top: 1px solid $grayLight;
-    }
-  }
-}
-
-.menu__link {
-  color: $grayMid;
-  display: block;
-  font-size: 1rem;
-  padding: $space $space $space $space-double;
-
-  @media (min-width: 600px) {
-    background-color: $grayLightest;
-    padding: $space-one-half $space $space-one-half $space-double;
-
-    &:hover {
-      background-color: $gray;
-      color: $white;
-      border-color: $gray;
-    }
-  }
-}
-.menu__link--active {
-  background-image: url(../../images/icons/check_box.svg);
-  background-repeat: no-repeat;
-  background-size: 20px;
-  background-position: 0 50%;
-  color: $black;
-}
-
-@media (min-width: 600px) {
-  .menu__link--active {
-    background-color: $white;
-    color: $black;
-    border-bottom-color: $white;
-    background-position: 4% 50%;
-  }
-}
+/
 
 /* element styles */
 
@@ -303,37 +224,6 @@ svg {
   overflow: hidden;
 }
 
-/* mobile menu */
-.mobile-menu {
-  flex: 0 auto;
-  font-size: 1rem;
-  font-weight: bold;
-  color: $grayMid;
-  text-transform: uppercase;
-  background-color: $grayLightest;
-  padding: $space $space-double $space $space-triple;
-  text-align: center;
-  background-image: url(../../images/icons/control_point.svg);
-  background-repeat: no-repeat;
-  background-size: 20px;
-  background-position: 15% 50%;
-  border: 2px solid transparent;
-
-  &.mobile-menu--active {
-    background-color: $white;
-    color: $black;
-    border-color: $black;
-    background-image: url(../../images/icons/remove_circle.svg);
-  }
-}
-
-@media (min-width: 600px) {
-  .mobile-menu {
-    height: 0;
-    visibility: hidden;
-    padding: 0;
-  }
-}
 /*
 * charts
 */
@@ -349,30 +239,25 @@ svg {
 }
 
 .britechart-test__header {
-  color: $grayMid;
-  background-color: $white;
-  margin-top: 0;
-  padding: $space $space-quadruple;
-  text-transform: none;
-  font-size: 1.6rem;
-  font-weight: normal;
-  @media (min-width: 600px) {
-    display: none;
-  }
+  display: none;
 }
 
 /* charts */
 .chart {
   align-items: top;
   overflow: hidden;
-  padding: $space-quadruple;
+  padding: $space;
   position: relative;
   background: linear-gradient(180deg, $testPass 100px, $greenLightest 100px);
   border-radius: $border-radius;
+
+  @media (min-width: 600px) {
+    padding: $space-quadruple;
+  }
 }
 
 .chart__meta {
-  background:rgba(255,255,255,1);
+  background: rgba(255, 255, 255, 1);
   border-radius: $border-radius;
   position: relative;
 
@@ -383,7 +268,7 @@ svg {
     left: $space-double;
     color: $testPass;
     fill: $testPass;
-    content: '';
+    content: "";
     font-family: $sans;
     background-image: url(../../images/icons/stars.svg);
     background-repeat: no-repeat;
@@ -396,6 +281,7 @@ svg {
 
 .chart.single-data {
   border-top: 1px solid #a3a3a3;
+  border-radius: 0;
   float: left;
   padding: 2% 7% 0 0;
   width: 100%;
@@ -487,6 +373,7 @@ svg {
   font-weight: bold;
   margin-right: $space;
   color: $grayMid;
+  white-space: nowrap;
 }
 
 .chart__stats span {
@@ -568,3 +455,43 @@ span.chart__passed {
     flex: 1 1 50%;
   }
 }
+
+.footer {
+  background: #444545;
+  padding: 2rem;
+}
+
+.footer__logo-wrap {
+  position: relative;
+}
+
+.footer__header {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 1.1rem;
+  display: inline-block;
+  position: absolute;
+  left: 112px;
+  top: 6px;
+}
+
+.fk-logo {
+  width: 300px;
+}
+
+.aerate-logo {
+  margin: 0;
+  width: 250px;
+
+  .aerate-logo--mark {
+    fill: $aerate-blue;
+  }
+  .aerate-logo--subhead {
+    fill: $aerate-dark;
+  }
+}
+
+.content__top {
+  overflow: hidden;
+}
+
+@import "_menu.css";
