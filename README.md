@@ -65,8 +65,8 @@ See [`/docs/stats.md`](https://github.com/fourkitchens/aerate/blob/master/docs/s
 
 ## How do I set up the dev environment?
 
-1.  [x] clone repo, cd into it and run `yarn` to install dependencies
-1.  [ ] Run `gulp` (opens up the UI with fake data populated from `mapper/fake-results.json`)
+1.  clone repo, cd into it and run `yarn` to install dependencies
+1.  Run `gulp` (opens up the UI with fake data populated from `mapper/fake-results.json`)
 
 PostCSS usage:
 If you would like any new [PostCSS plugins](https://github.com/postcss/postcss/blob/master/docs/plugins.md) installed, the steps are as follows:
