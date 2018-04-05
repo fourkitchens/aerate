@@ -2,11 +2,11 @@
 
 # Aerate
 
-![Aerate Logo](https://www.dropbox.com/s/5ngh936ud8aia6e/aerate-logo.png?dl=0)
+![Aerate Logo](https://user-images.githubusercontent.com/18293479/38391908-572356b2-38eb-11e8-9fd5-62daf5d2bad3.png)
 
 Measure frontend performance against a budget with an option to view them using lovely charts in a browser
 
-![Aerate Results](https://www.dropbox.com/s/sv91uu4ugriw5nq/aerate_results.png?dl=0)
+![Aerate Results](https://user-images.githubusercontent.com/18293479/38391917-5e7aee02-38eb-11e8-88ad-b863d574f3b8.png)
 
 ## Usage
 
