@@ -1,12 +1,8 @@
 [![Four Kitchens](https://img.shields.io/badge/4K-Four%20Kitchens-35AA4E.svg)](https://fourkitchens.com/)
 
-# Aerate
-
 ![Aerate Logo](https://user-images.githubusercontent.com/18293479/38391908-572356b2-38eb-11e8-9fd5-62daf5d2bad3.png)
 
 Measure frontend performance against a budget with an option to view them using lovely charts in a browser
-
-![Aerate Results](https://user-images.githubusercontent.com/18293479/38391917-5e7aee02-38eb-11e8-88ad-b863d574f3b8.png)
 
 ## Usage
 
