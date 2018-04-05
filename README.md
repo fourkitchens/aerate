@@ -2,7 +2,7 @@
 
 ![Aerate Logo](https://user-images.githubusercontent.com/18293479/38391908-572356b2-38eb-11e8-9fd5-62daf5d2bad3.png)
 
-Measure frontend performance against a budget with an option to view them using lovely charts in a browser
+## Measure frontend performance against a budget with an optional UI
 
 <img src="https://user-images.githubusercontent.com/18293479/38394725-3f7eb0d8-38f5-11e8-80fb-a3a396b55fa7.jpg" width="441" alt="Aerate Results" /> <img src="https://user-images.githubusercontent.com/18293479/38394726-3f905ca2-38f5-11e8-9a12-4d1152b083ca.jpg" width="441" alt="Aerate UI" />
 
