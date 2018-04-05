@@ -14,16 +14,6 @@ aerate({
       name: "Google.com",
       url: "http://google.com",
       type: "homepage"
-    },
-    {
-      name: "Yahoo.com",
-      url: "https://www.yahoo.com/",
-      type: "homepage"
-    },
-    {
-      name: "Bing.com",
-      url: "https://www.bing.com/",
-      type: "homepage"
     }
   ],
   count: 1,
