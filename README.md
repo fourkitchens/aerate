@@ -74,12 +74,3 @@ If you would like any new [PostCSS plugins](https://github.com/postcss/postcss/b
 1.  `npm install --save-dev PLUGIN_NAME`
 1.  Add your plugin to gulpfile.js at the top [like the others](https://github.com/fourkitchens/aerate/blob/0be17524b601d649c038bd113ca756ada4bb19ca/gulpfile.js#L10) and reference that addition in the [postCSS call
     ](https://github.com/fourkitchens/aerate/blob/0be17524b601d649c038bd113ca756ada4bb19ca/gulpfile.js#L27)
-
-## TODO
-
-1.  Responsive charts
-1.  Fix webpagetest-mapper install warnings (node-gyp related?)
-1.  Email results on a regular basis (separate tool likely)
-1.  Cleanup mapper files
-1.  Loading screen?
-1.  Tracking/charting results for a set time period
