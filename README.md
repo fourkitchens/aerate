@@ -5,7 +5,9 @@
 ## Measure frontend performance against a budget with an optional UI
 
 <table width="100%">
+<tbody width="100%">
 <tr><td width="50%"><strong>Console Results</strong></td><td width="50%"><strong>UI Results</strong></td></tr>
+</tbody>
 </table>
 
 <img src="https://user-images.githubusercontent.com/18293479/38394725-3f7eb0d8-38f5-11e8-80fb-a3a396b55fa7.jpg" width="441" alt="Aerate Results" /> <img src="https://user-images.githubusercontent.com/18293479/38394726-3f905ca2-38f5-11e8-9a12-4d1152b083ca.jpg" width="441" alt="Aerate UI" />
