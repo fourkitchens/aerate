@@ -364,6 +364,7 @@ ul li {
   margin-right: auto;
   width: 100%;
   max-width: 1200px;
+  padding: 0 4%;
 }
 /
 
@@ -417,11 +418,16 @@ svg {
       -ms-flex-align: top;
           align-items: top;
   overflow: hidden;
-  padding: 4rem;
+  padding: 1rem;
   position: relative;
   background: linear-gradient(180deg, rgb(97, 182, 75) 100px, #ECF6E9 100px);
   border-radius: 2px;
 }
+@media (min-width: 600px) {
+.chart {
+    padding: 4rem
+}
+  }
 .chart__meta {
   background: rgba(255, 255, 255, 1);
   border-radius: 2px;

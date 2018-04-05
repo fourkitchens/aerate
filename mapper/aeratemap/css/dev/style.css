@@ -186,6 +186,7 @@ ul li {
   margin-right: auto;
   width: 100%;
   max-width: $max-width;
+  padding: 0 4%;
 }
 
 /
@@ -223,7 +224,6 @@ svg {
   overflow: hidden;
 }
 
-
 /*
 * charts
 */
@@ -246,10 +246,14 @@ svg {
 .chart {
   align-items: top;
   overflow: hidden;
-  padding: $space-quadruple;
+  padding: $space;
   position: relative;
   background: linear-gradient(180deg, $testPass 100px, $greenLightest 100px);
   border-radius: $border-radius;
+
+  @media (min-width: 600px) {
+    padding: $space-quadruple;
+  }
 }
 
 .chart__meta {
