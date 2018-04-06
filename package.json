@@ -1,7 +1,8 @@
 {
   "name": "aerate",
-  "description": "Measure frontend performance against a budget using lovely charts in a browser",
-  "version": "1.0.1",
+  "description":
+    "Measure frontend performance against a budget using lovely charts in a browser",
+  "version": "1.0.2",
   "author": "Evan Willhite <evan@fourkitchens.com> (http://fourkitchens.com/)",
   "devDependencies": {
     "autoprefixer": "^8.0.0",
