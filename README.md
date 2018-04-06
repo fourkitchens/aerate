@@ -9,14 +9,14 @@
 ## Usage
 
 1.  Get a [WebPageTest.org API key](https://www.webpagetest.org/getkey.php)
-2.  `npm install fourkitchens/aerate` or `yarn add fourkitchens/aerate`
-3.  Require Aerate in your project
+2.  `yarn add aerate` or `npm i aerate`
+3.  Require Aerate in your project:
 
 ```
 const aerate = require('aerate');
 ```
 
-4.  Call the function with the options (options [below](https://github.com/fourkitchens/aerate#available-options))
+4.  Call the function with the options (options [below](https://github.com/fourkitchens/aerate#available-options)):
 
 ```
 aerate({
