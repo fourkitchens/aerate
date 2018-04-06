@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-const wpt = require('./wpt');
+const wpt = require("./wpt");
 
-module.exports = options => wpt.wpt(options);
-
-// eslint-disable-next-line
-function sift(options) {
+function aerate(options) {
+  // eslint-disable-line
   wpt.wpt(options);
 }
+
+exports = module.exports = aerate; // eslint-disable-line
