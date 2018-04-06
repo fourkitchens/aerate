@@ -1,12 +1,12 @@
 /* globals require */
 
-const wpt = require("webpagetest-mapper");
-const path = require("path");
-const fs = require("fs");
-const portscanner = require("portscanner");
-const browserSync = require("browser-sync").create();
-const Table = require("cli-table");
-let budget = require("./budget");
+const wpt = require('webpagetest-mapper');
+const path = require('path');
+const fs = require('fs');
+const portscanner = require('portscanner');
+const browserSync = require('browser-sync').create();
+const Table = require('cli-table');
+let budget = require('./budget');
 
 if (fs.existsSync(`${process.env.PWD}/budget.json`)) {
   budget = require(`${process.env.PWD}/budget.json`); // eslint-disable-line
@@ -15,8 +15,8 @@ if (fs.existsSync(`${process.env.PWD}/budget.json`)) {
 var exports = (module.exports = {}); // eslint-disable-line
 
 // Find open port using portscanner.
-let openPort = "";
-portscanner.findAPortNotInUse(3000, 3010, "127.0.0.1", (error, port) => {
+let openPort = '';
+portscanner.findAPortNotInUse(3000, 3010, '127.0.0.1', (error, port) => {
   openPort = port;
 });
 
@@ -25,7 +25,7 @@ const wptRun = (options, ngrok) => {
     .fetch({
       key: options.key,
       tests: options.tests,
-      connection: options.connection || "Mobile LTE",
+      connection: options.connection || 'Mobile LTE',
       count: options.count || 9
     })
     .then(result => {
@@ -33,80 +33,80 @@ const wptRun = (options, ngrok) => {
       result.data.forEach((datum, index) => {
         // eslint-disable-line
         const table = new Table({
-          head: ["Test", "Budget", "Result", "Pass/Fail"],
+          head: ['Test', 'Budget', 'Result', 'Pass/Fail'],
           chars: {
-            top: "═",
-            "top-mid": "╤",
-            "top-left": "╔",
-            "top-right": "╗",
-            bottom: "═",
-            "bottom-mid": "╧",
-            "bottom-left": "╚",
-            "bottom-right": "╝",
-            left: "║",
-            "left-mid": "╟",
-            mid: "─",
-            "mid-mid": "┼",
-            right: "║",
-            "right-mid": "╢",
-            middle: "│"
+            top: '═',
+            'top-mid': '╤',
+            'top-left': '╔',
+            'top-right': '╗',
+            bottom: '═',
+            'bottom-mid': '╧',
+            'bottom-left': '╚',
+            'bottom-right': '╝',
+            left: '║',
+            'left-mid': '╟',
+            mid: '─',
+            'mid-mid': '┼',
+            right: '║',
+            'right-mid': '╢',
+            middle: '│'
           },
           style: {
-            head: ["cyan"]
+            head: ['cyan']
           }
         });
         // if there are not errors in the request to webpagetest.org.
         if (!datum.error) {
           // For each budget item.
           Object.keys(budget).forEach(key => {
-            let resultValue = "";
-            let budgetValue = "";
-            let grade = "";
-            let formattedResult = "";
+            let resultValue = '';
+            let budgetValue = '';
+            let grade = '';
+            let formattedResult = '';
             const gradeCheck = () => {
               if (budget[key].value && resultValue > budget[key].value) {
-                grade = "FAIL";
+                grade = 'FAIL';
               } else {
-                grade = "Pass";
+                grade = 'Pass';
               }
             };
             switch (key) {
-              case "requests":
-              case "connections":
+              case 'requests':
+              case 'connections':
                 resultValue = datum.render.data.median.firstView[key];
                 budgetValue = budget[key].value;
                 formattedResult = resultValue;
                 break;
-              case "bytes":
+              case 'bytes':
                 resultValue = datum.render.data.median.firstView.bytesIn;
                 budgetValue = budget[key].value;
                 formattedResult = resultValue;
                 break;
-              case "firstByte":
+              case 'firstByte':
                 resultValue = datum.render.data.median.firstView.TTFB;
                 budgetValue = `${budget[key].value} ms`;
                 gradeCheck();
                 formattedResult = `${resultValue} ms`;
                 break;
-              case "startRender":
+              case 'startRender':
                 resultValue = datum.render.data.median.firstView.render;
                 budgetValue = `${budget[key].value} ms`;
                 gradeCheck();
                 formattedResult = `${resultValue} ms`;
                 break;
-              case "speedIndex":
+              case 'speedIndex':
                 resultValue = datum.render.data.median.firstView.SpeedIndex;
                 budgetValue = `${budget[key].value} ms`;
                 gradeCheck();
                 formattedResult = `${resultValue} ms`;
                 break;
-              case "docTime":
+              case 'docTime':
                 resultValue = datum.render.data.median.firstView.docTime;
                 budgetValue = `${budget[key].value} ms`;
                 gradeCheck();
                 formattedResult = `${resultValue} ms`;
                 break;
-              case "load":
+              case 'load':
                 resultValue = datum.render.data.median.firstView.loadTime;
                 budgetValue = `${budget[key].value} ms`;
                 gradeCheck();
@@ -123,13 +123,13 @@ const wptRun = (options, ngrok) => {
             ]);
           });
           return console.log(
-            "-------------------------------------------------" +
-              "\n" +
-              "\n" +
-              "Aerate Results for " +
+            '-------------------------------------------------' +
+              '\n' +
+              '\n' +
+              'Aerate Results for ' +
               options.tests[index].name +
-              ":" +
-              "\n" +
+              ':' +
+              '\n' +
               table.toString()
           ); // eslint-disable-line
         }
@@ -141,17 +141,17 @@ const wptRun = (options, ngrok) => {
         wpt
           .map(
             {
-              mapper: "aeratemap"
+              mapper: 'aeratemap'
             },
             result
           )
           .then(mapped => {
-            fs.writeFileSync(path.join(__dirname, "results.html"), mapped);
+            fs.writeFileSync(path.join(__dirname, 'results.html'), mapped);
             browserSync.init({
               server: {
                 baseDir: __dirname
               },
-              startPath: "./results.html",
+              startPath: './results.html',
               ui: false,
               open: true,
               port: openPort
@@ -171,7 +171,7 @@ const wptRun = (options, ngrok) => {
 
 exports.wpt = options => {
   if (options.localPort) {
-    const ngrok = require("ngrok"); // eslint-disable-line
+    const ngrok = require('ngrok'); // eslint-disable-line
 
     ngrok.connect(options.localPort, (err, url) => {
       if (err) {

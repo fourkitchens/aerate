@@ -4,9 +4,5 @@ extends:
 plugins:
   - prettier
 rules:
-  prettier/prettier:
-    - error
-    - singleQuote: true
-      trailingComma: none
   valid-jsdoc: error
   no-console: 0
