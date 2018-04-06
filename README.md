@@ -9,7 +9,7 @@
 ## Usage
 
 1.  Get a [WebPageTest.org API key](https://www.webpagetest.org/getkey.php)
-2.  `npm i aerate`
+2.  `yarn add aerate` or `npm i aerate`
 3.  Require Aerate in your project:
 
 ```
