@@ -2,4 +2,9 @@
 
 const wpt = require('./wpt');
 
-module.exports = options => wpt.wpt(options);
+function aerate(options) {
+  // eslint-disable-line
+  wpt.wpt(options);
+}
+
+exports = module.exports = aerate; // eslint-disable-line

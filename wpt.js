@@ -122,16 +122,18 @@ const wptRun = (options, ngrok) => {
               grade
             ]);
           });
-          return console.log(`
-            -------------------------------------------------
-
-
-              Sift Results for ${options.tests[index].name}:
-
-              ${table.toString()}
-          `);
+          return console.log(
+            '-------------------------------------------------' +
+              '\n' +
+              '\n' +
+              'Aerate Results for ' +
+              options.tests[index].name +
+              ':' +
+              '\n' +
+              table.toString()
+          ); // eslint-disable-line
         }
-        return console.log(`Test failed, reason: ${datum.error.message}`);
+        console.log(`Test failed, reason: ${datum.error.message}`);
       });
 
       // If UI
@@ -139,7 +141,7 @@ const wptRun = (options, ngrok) => {
         wpt
           .map(
             {
-              mapper: 'siftmap'
+              mapper: 'aeratemap'
             },
             result
           )
