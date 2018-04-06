@@ -30,9 +30,7 @@
     "portscanner": "^2.1.1",
     "webpagetest-mapper": "^1.0.1"
   },
-  "bin": {
-    "aerate": "./index.js"
-  },
+  "bin": "./index.js",
   "scripts": {
     "aerate": "node index.js",
     "postinstall": "./scripts/aerate-map.sh"
