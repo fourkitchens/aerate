@@ -3,6 +3,8 @@ extends:
   - prettier
 plugins:
   - prettier
+globals:
+  document: true
 rules:
   valid-jsdoc: error
   no-console: 0

@@ -122,18 +122,11 @@ const wptRun = (options, ngrok) => {
               grade
             ]);
           });
-          return console.log(
-            '-------------------------------------------------' +
-              '\n' +
-              '\n' +
-              'Aerate Results for ' +
-              options.tests[index].name +
-              ':' +
-              '\n' +
-              table.toString()
-          ); // eslint-disable-line
+          return console.log(`-------------------------------------------------
+
+          Aerate Results for ${options.tests[index].name}: ${table.toString}`);
         }
-        console.log(`Test failed, reason: ${datum.error.message}`);
+        return console.log(`Test failed, reason: ${datum.error.message}`);
       });
 
       // If UI
