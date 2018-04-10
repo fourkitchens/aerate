@@ -8,7 +8,12 @@
     "autoprefixer": "^8.0.0",
     "eslint": "^4.18.1",
     "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.0",
+    "prettier": "^1.10.2",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-help": "^1.6.1",
@@ -33,7 +38,13 @@
   "bin": "./index.js",
   "scripts": {
     "aerate": "node index.js",
+    "prettier": "prettier --single-quote --write \"**/*.{js,jsx}\"",
+    "lint": "eslint --ext .jsx,.js .",
+    "precommit": "lint-staged && yarn lint",
     "postinstall": "./scripts/aerate-map.sh"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,json,css}": ["prettier --single-quote --write", "git add"]
   },
   "main": "index.js",
   "directories": {
