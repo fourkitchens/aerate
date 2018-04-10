@@ -122,13 +122,9 @@ const wptRun = (options, ngrok) => {
               grade
             ]);
           });
-          return console.log(
-            `-------------------------------------------------
+          return console.log(`-------------------------------------------------
 
-Aerate Results for ${options.tests[index].name}:
-
-${table.toString()}`
-          );
+          Aerate Results for ${options.tests[index].name}: ${table.toString}`);
         }
         return console.log(`Test failed, reason: ${datum.error.message}`);
       });
