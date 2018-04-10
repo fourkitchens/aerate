@@ -21,7 +21,7 @@ const fs = require('fs');
 const handlebars = require('handlebars');
 const check = require('check-types');
 
-handlebars.registerHelper('formatInteger', (number) => {
+handlebars.registerHelper('formatInteger', number => {
   if (!number) {
     return number;
   }
@@ -35,7 +35,7 @@ handlebars.registerHelper('minus', (lhs, rhs) => lhs - rhs);
 
 handlebars.registerHelper('halve', number => number / 2);
 
-handlebars.registerHelper('percent', (number) => {
+handlebars.registerHelper('percent', number => {
   if (number === -1) {
     return 'n/a';
   }
@@ -43,7 +43,7 @@ handlebars.registerHelper('percent', (number) => {
   return `${number}%`;
 });
 
-handlebars.registerHelper('lowercase', (string) => {
+handlebars.registerHelper('lowercase', string => {
   if (!string) {
     return string;
   }
@@ -51,7 +51,7 @@ handlebars.registerHelper('lowercase', (string) => {
   return string.toLowerCase();
 });
 
-handlebars.registerHelper('uppercase', (string) => {
+handlebars.registerHelper('uppercase', string => {
   if (!string) {
     return string;
   }
@@ -59,12 +59,22 @@ handlebars.registerHelper('uppercase', (string) => {
   return string.toUpperCase();
 });
 
-handlebars.registerHelper('debug', (value) => {
-  console.log('######################################################################');
-  console.log('#####               ##################################################');
-  console.log('#####   D E B U G   ##################################################');
-  console.log('#####               ##################################################');
-  console.log('######################################################################');
+handlebars.registerHelper('debug', value => {
+  console.log(
+    '######################################################################'
+  );
+  console.log(
+    '#####               ##################################################'
+  );
+  console.log(
+    '#####   D E B U G   ##################################################'
+  );
+  console.log(
+    '#####               ##################################################'
+  );
+  console.log(
+    '######################################################################'
+  );
   console.log('template context:');
   console.log(this);
   if (arguments.length === 2) {
@@ -78,7 +88,9 @@ handlebars.registerHelper('json', context => JSON.stringify(context));
 function compile(templatePath) {
   check.assert.unemptyString(templatePath, 'invalid template path');
 
-  return handlebars.compile(fs.readFileSync(templatePath, { encoding: 'utf8' }));
+  return handlebars.compile(
+    fs.readFileSync(templatePath, { encoding: 'utf8' })
+  );
 }
 
 module.exports = { compile };
