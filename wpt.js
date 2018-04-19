@@ -124,7 +124,8 @@ const wptRun = (options, ngrok) => {
           });
           return console.log(`-------------------------------------------------
 
-          Aerate Results for ${options.tests[index].name}: ${table.toString}`);
+Aerate Results for ${options.tests[index].name}:
+${table}`);
         }
         return console.log(`Test failed, reason: ${datum.error.message}`);
       });
