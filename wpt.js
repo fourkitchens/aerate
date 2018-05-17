@@ -26,7 +26,8 @@ const wptRun = (options, ngrok) => {
       key: options.key,
       tests: options.tests,
       connection: options.connection || 'Mobile LTE',
-      count: options.count || 9
+      count: options.count || 9,
+      uri: options.uri || 'www.webpagetest.org'
     })
     .then(result => {
       // For each test.
