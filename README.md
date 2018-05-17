@@ -8,15 +8,15 @@
 
 ## Usage
 
-1.  Get a [WebPageTest.org API key](https://www.webpagetest.org/getkey.php)
-2.  `yarn add aerate` or `npm i aerate`
-3.  Require Aerate in your project:
+1. Get a [WebPageTest.org API key](https://www.webpagetest.org/getkey.php)
+2. `yarn add aerate` or `npm i aerate`
+3. Require Aerate in your project:
 
 ```
 const aerate = require('aerate');
 ```
 
-4.  Call the function with the options (options [below](https://github.com/fourkitchens/aerate#available-options)):
+4. Call the function with the options (options [below](https://github.com/fourkitchens/aerate#available-options)):
 
 ```
 aerate({
@@ -31,7 +31,7 @@ aerate({
 });
 ```
 
-5.  For a shorter command, add a script to your package.json
+5. For a shorter command, add a script to your package.json
 
 ```
 "scripts": {
@@ -39,8 +39,8 @@ aerate({
 }
 ```
 
-6.  `npm run aerate` or `yarn aerate`
-7.  (Optional) Create/copy your own budget.json file using the following format:
+6. `npm run aerate` or `yarn aerate`
+7. (Optional) Create/copy your own budget.json file using the following format:
 
 ```
 {
@@ -56,21 +56,22 @@ See [`/docs/stats.md`](https://github.com/fourkitchens/aerate/blob/master/docs/s
 
 ### Available Options:
 
-1.  `key`: REQUIRED API Key
-2.  `tests`: REQUIRED tests to run
-3.  `connection`: OPTIONAL defaults to 'Mobile LTE'
-4.  `count`: OPTIONAL how many tests to run (WebPageTest.org supports up to 9)
-5.  `ui`: OPTIONAL open Aerate UI in browser vs. console (defaults to false)
-6.  `localPort`: OPTIONAL for local testing, enter your environment port
+1. `key`: REQUIRED API Key
+2. `tests`: REQUIRED tests to run
+3. `connection`: OPTIONAL defaults to 'Mobile LTE'
+4. `count`: OPTIONAL how many tests to run (WebPageTest.org supports up to 9)
+5. `ui`: OPTIONAL open Aerate UI in browser vs. console (defaults to false)
+6. `localPort`: OPTIONAL for local testing, enter your environment port
+7. `uri`: OPTIONAL for private WebPageTest instance
 
 ## How do I set up the dev environment?
 
-1.  clone repo, cd into it and run `yarn` to install dependencies
-1.  Run `gulp` (opens up the UI with fake data populated from `mapper/fake-results.json`)
+1. clone repo, cd into it and run `yarn` to install dependencies
+1. Run `gulp` (opens up the UI with fake data populated from `mapper/fake-results.json`)
 
 PostCSS usage:
 If you would like any new [PostCSS plugins](https://github.com/postcss/postcss/blob/master/docs/plugins.md) installed, the steps are as follows:
 
-1.  `npm install --save-dev PLUGIN_NAME`
-1.  Add your plugin to gulpfile.js at the top [like the others](https://github.com/fourkitchens/aerate/blob/0be17524b601d649c038bd113ca756ada4bb19ca/gulpfile.js#L10) and reference that addition in the [postCSS call
-    ](https://github.com/fourkitchens/aerate/blob/0be17524b601d649c038bd113ca756ada4bb19ca/gulpfile.js#L27)
+1. `npm install --save-dev PLUGIN_NAME`
+1. Add your plugin to gulpfile.js at the top [like the others](https://github.com/fourkitchens/aerate/blob/0be17524b601d649c038bd113ca756ada4bb19ca/gulpfile.js#L10) and reference that addition in the [postCSS call
+   ](https://github.com/fourkitchens/aerate/blob/0be17524b601d649c038bd113ca756ada4bb19ca/gulpfile.js#L27)
