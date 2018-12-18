@@ -124,7 +124,8 @@ const wptRun = (options, ngrok) => {
           });
           return console.log(`-------------------------------------------------
 
-Aerate Results for ${options.tests[index].name}:
+Aerate Results for ${options.tests[index].name} ${options.tests[index].type}:
+URL: ${options.tests[index].url}
 ${table}`);
         }
         return console.log(`Test failed, reason: ${datum.error.message}`);
@@ -167,17 +168,20 @@ exports.wpt = options => {
   if (options.localPort) {
     const ngrok = require('ngrok'); // eslint-disable-line
 
-    ngrok.connect(options.localPort, (err, url) => {
-      if (err) {
-        console.log(err);
-      }
-      Object.values(options.tests).forEach(i => {
-        i.url = url + i.url; // eslint-disable-line
-      });
-      console.log(url);
+    ngrok.connect(
+      options.localPort,
+      (err, url) => {
+        if (err) {
+          console.log(err);
+        }
+        Object.values(options.tests).forEach(i => {
+          i.url = url + i.url; // eslint-disable-line
+        });
+        console.log(url);
 
-      wptRun(options, ngrok);
-    });
+        wptRun(options, ngrok);
+      }
+    );
   } else {
     wptRun(options);
   }
