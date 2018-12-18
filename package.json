@@ -1,7 +1,6 @@
 {
   "name": "aerate",
-  "description":
-    "Measure frontend performance against a budget using lovely charts in a browser",
+  "description": "Measure frontend performance against a budget using lovely charts in a browser",
   "version": "1.1.0",
   "author": "Evan Willhite <evan@fourkitchens.com> (http://fourkitchens.com/)",
   "devDependencies": {
@@ -44,7 +43,10 @@
     "postinstall": "./scripts/aerate-map.sh"
   },
   "lint-staged": {
-    "**/*.{js,jsx,json,css}": ["prettier --single-quote --write", "git add"]
+    "**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
   },
   "main": "index.js",
   "directories": {
