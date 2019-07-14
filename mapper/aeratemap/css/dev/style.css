@@ -1,4 +1,4 @@
-@import "_vars.css";
+@import '_vars.css';
 
 * {
   box-sizing: border-box;
@@ -206,7 +206,7 @@ code {
   padding: $space-one-third $space-one-half 0;
   border-radius: 3px;
   background-color: #e5dfd6;
-  font-family: Consolas, Monaco, Menlo, "Lucida Console", monospace;
+  font-family: Consolas, Monaco, Menlo, 'Lucida Console', monospace;
   font-size: 1rem;
 }
 
@@ -268,7 +268,7 @@ svg {
     left: $space-double;
     color: $testPass;
     fill: $testPass;
-    content: "";
+    content: '';
     font-family: $sans;
     background-image: url(../../images/icons/stars.svg);
     background-repeat: no-repeat;
@@ -432,15 +432,15 @@ span.chart__passed {
 }
 
 .chart--bytes .chart__stats:nth-child(2n)::after {
-  content: " bytes";
+  content: ' bytes';
 }
 
 .chart--requests .chart__stats:nth-child(2n)::after {
-  content: " requests";
+  content: ' requests';
 }
 
 .chart--connections .chart__stats:nth-child(2n)::after {
-  content: " connections";
+  content: ' connections';
 }
 
 /* chart responsive layout */
@@ -494,4 +494,4 @@ span.chart__passed {
   overflow: hidden;
 }
 
-@import "_menu.css";
+@import '_menu.css';

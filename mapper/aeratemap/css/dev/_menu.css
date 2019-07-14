@@ -1,4 +1,4 @@
-@import "_vars.css";
+@import '_vars.css';
 
 /* menu bar */
 .menu {
@@ -120,7 +120,6 @@
     }
   }
 } */
-
 
 /* mobile menu */
 /* .mobile-menu {

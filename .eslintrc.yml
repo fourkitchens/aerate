@@ -8,3 +8,6 @@ globals:
 rules:
   valid-jsdoc: error
   no-console: 0
+env:
+  browser: true
+  node: true
