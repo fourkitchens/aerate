@@ -17,6 +17,7 @@
     "test": "jest --coverage --silent",
     "type": "tsc --noEmit",
     "twatch": "jest --no-coverage --watch --verbose",
+    "postinstall": "husky install",
     "semantic-release": "semantic-release",
     "husky:commit-msg": "commitlint -e ${GIT_PARAMS:-}",
     "husky:pre-commit": "lint-staged && yarn lint",
